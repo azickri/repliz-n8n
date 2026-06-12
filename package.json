@@ -1,12 +1,19 @@
 {
   "name": "n8n-nodes-repliz",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "n8n community nodes for Repliz API — manage accounts, comments, chats, content, schedules, and platform addons.",
   "keywords": [
     "n8n-community-node-package"
   ],
   "license": "MIT",
-  "homepage": "https://repliz.com",
+  "homepage": "https://github.com/azickri/repliz-n8n#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azickri/repliz-n8n.git"
+  },
+  "bugs": {
+    "url": "https://github.com/azickri/repliz-n8n/issues"
+  },
   "author": "Azickri <contact.azickri@gmail.com>",
   "main": "index.js",
   "files": [
