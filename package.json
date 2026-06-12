@@ -1,14 +1,14 @@
 {
   "name": "n8n-nodes-repliz",
-  "version": "1.0.0",
-  "description": "n8n community node for Repliz API, supporting accounts, scheduling, comments, chat, and platform integrations.",
+  "version": "1.0.2",
+  "description": "n8n community nodes for Repliz API — manage accounts, comments, chats, content, schedules, and platform addons.",
   "keywords": [
     "n8n-community-node-package"
   ],
   "license": "MIT",
   "homepage": "https://repliz.com",
   "author": "Azickri <contact.azickri@gmail.com>",
-  "main": "dist/nodes/Repliz/Repliz.node.js",
+  "main": "index.js",
   "files": [
     "dist"
   ],
@@ -18,18 +18,30 @@
       "dist/credentials/ReplizApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/Repliz/Repliz.node.js"
+      "dist/nodes/ReplizAccount/ReplizAccount.node.js",
+      "dist/nodes/ReplizAccountFacebook/ReplizAccountFacebook.node.js",
+      "dist/nodes/ReplizAccountInstagram/ReplizAccountInstagram.node.js",
+      "dist/nodes/ReplizAccountThreads/ReplizAccountThreads.node.js",
+      "dist/nodes/ReplizAccountYoutube/ReplizAccountYoutube.node.js",
+      "dist/nodes/ReplizAccountLinkedIn/ReplizAccountLinkedIn.node.js",
+      "dist/nodes/ReplizAccountTikTok/ReplizAccountTikTok.node.js",
+      "dist/nodes/ReplizAccountShopee/ReplizAccountShopee.node.js",
+      "dist/nodes/ReplizComment/ReplizComment.node.js",
+      "dist/nodes/ReplizChat/ReplizChat.node.js",
+      "dist/nodes/ReplizContent/ReplizContent.node.js",
+      "dist/nodes/ReplizSchedule/ReplizSchedule.node.js",
+      "dist/nodes/ReplizAddon/ReplizAddon.node.js"
     ]
   },
   "scripts": {
-    "build": "tsc && cp nodes/Repliz/repliz.svg dist/nodes/Repliz/repliz.svg",
+    "build": "tsc && node scripts/copy-assets.js",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "n8n-workflow": "*"
   },
   "devDependencies": {
-    "@types/node": "^25.9.2",
+    "@types/node": "^20.0.0",
     "n8n-workflow": "^1.0.0",
     "typescript": "^5.0.0"
   }

@@ -1,153 +1,167 @@
 # n8n-nodes-repliz
 
-This is an n8n community node that integrates with the [Repliz API](https://api.repliz.com).
+An n8n community node package for the [Repliz](https://repliz.com) API.
 
-Repliz is a smart comment, messaging, and post-scheduling platform designed to manage multiple social channels in one centralized dashboard. This integration allows you to automate comment moderation, direct messaging, schedule rich media posts, retrieve channel analytics, and fetch Shopee products.
+Repliz is a social media management platform that centralizes comment moderation, live chat, post scheduling, and analytics across multiple platforms in one dashboard.
 
 ---
 
-## Features
+## Nodes
 
-### 👤 Account Management
-- **Get Many / Get**: List and inspect connected workspace profiles.
-- **Statistics**: Retrieve global usage metrics across all platforms.
-- **Delete**: Unlink any platform account.
-- **Social Connect & OAuth (FB, IG, YouTube, LinkedIn, Threads, TikTok, Shopee)**: 
-  - Retrieve auth URLs.
-  - Exchange authorization codes for long-lived tokens.
-  - Connect and reconnect pages, channels, and shops.
+This package provides 13 nodes, each mapped to a specific Repliz API group:
 
-### 💬 Live Chat
-- **Get Many / Get**: Monitor live conversations.
-- **Get Messages**: Fetch conversation history.
-- **Send Message**: Send raw texts, media payloads (Images, Videos, Audios, Documents), and interactive buttons.
-- **Mark Read**: Clear read counts programmatically.
+### Account Management
 
-### 📝 Comment Management
-- **Get Many / Get**: Retrieve stored comments with filters (status, accounts, search).
-- **Reply**: Post automated comment responses.
-- **Update Status**: Set status (pending, resolved, ignored).
+**Repliz Account** `Standard+`
+Manage connected workspace accounts. Operations: Get All, Count, Get, Delete.
 
-### 📱 Content & Analytics
-- **Get Many / Get**: Track published content.
-- **Get Comments**: Retrieve engagement lists for a post.
-- **Create Comment**: Comment directly under a platform post.
-- **Get Statistics**: Fetch view, reach, like, and share analytics.
-- **Delete Comment**: Remove comments from posts.
-- **Message Comment**: Direct message comment authors.
+**Repliz Account Facebook** `Gold+`
+Connect and authenticate Facebook pages. Operations: Authorize, Get Pages, Exchange Token, Connect, Reconnect.
 
-### 📅 Post Scheduling
-- **Get Many / Get / Delete / Delete Many**: Manage schedules.
-- **Create / Update**: Queue upcoming posts (supporting Text, Image, Video, Reels, Albums, Links, Stories) with automatic follow-up comment configurations.
-- **Retry**: Force reprocessing of a failed schedule.
+**Repliz Account Instagram** `Gold+`
+Connect and authenticate Instagram accounts. Operations: Authorize, Connect, Reconnect.
 
-### 🔗 Link Metadata
-- **Get Metadata**: Extract URL preview details (title, description, image) for social publishing.
+**Repliz Account Threads** `Gold+`
+Connect and authenticate Threads accounts. Operations: Authorize, Connect, Reconnect.
 
-### 🛍️ Shopee Integration
-- **Get Products**: Fetch shop products to reference in posts.
+**Repliz Account YouTube** `Gold+`
+Connect and authenticate YouTube channels. Operations: Authorize, Get Channels, Exchange Token, Connect, Reconnect.
 
-### 🎵 TikTok Integration
-- **Get Trending Music**: Find trending audio tracks by genre and country.
+**Repliz Account LinkedIn** `Gold+`
+Connect and authenticate LinkedIn organizations. Operations: Authorize, Get Organization, Exchange Token, Connect, Reconnect.
+
+**Repliz Account TikTok** `Gold+`
+Connect and authenticate TikTok accounts. Operations: Authorize, Connect, Reconnect.
+
+**Repliz Account Shopee** `Gold+`
+Connect and authenticate Shopee shops. Operations: Authorize, Connect, Reconnect.
+
+---
+
+### Comment & Chat
+
+**Repliz Comment** `Standard+`
+Manage and moderate comments collected by Repliz. Operations: Get All, Get, Reply, Update Status.
+
+**Repliz Chat** `Gold+`
+Manage live chat conversations and messages. Operations: Get All, Get, Get Messages, Send Message, Mark as Read.
+
+---
+
+### Content & Scheduling
+
+**Repliz Content** `Gold+`
+Retrieve and interact with published social media content. Operations: Get All, Get, Get Comments, Create Comment, Delete Comment, Get Statistics, Message Comment Author.
+
+**Repliz Schedule** `Premium+`
+Create and manage scheduled posts across platforms.
+Operations: Get All, Get, Create, Update, Delete, Delete Many, Retry.
+
+Supported post types: Text, Image, Video, Reel, Album, Link, Story.
+
+---
+
+### Addons
+
+**Repliz Addon** `Premium+`
+Access premium platform features. Operations: Get TikTok Trending Music, Get Shopee Products, Get Link Metadata.
 
 ---
 
 ## Installation
 
-### In n8n (UI)
+### Via n8n UI (Self-Hosted)
+
 1. Go to **Settings > Community Nodes**.
 2. Click **Install a new node**.
-3. Enter `n-nodes-repliz` or the published NPM package name.
-4. Agree to terms and click **Install**.
+3. Enter `n8n-nodes-repliz` and click **Install**.
+4. Restart n8n if prompted.
 
-### Manual Installation
-In your self-hosted n8n installation directory, install the package:
+### Manual
+
 ```bash
 npm install n8n-nodes-repliz
 ```
-Restart n8n to load the node.
 
 ---
 
-## Credentials Setup
+## Credentials
 
-To use the Repliz node, you need to configure your Basic Authentication credentials:
-1. **Access Key**: Your Repliz API Access Key.
-2. **Secret Key**: Your Repliz API Secret Key.
-3. **API Base URL** (Optional): Defaults to `https://api.repliz.com`.
+All nodes require a **Repliz API** credential with the following fields:
+
+| Field | Required | Description |
+|---|---|---|
+| Access Key | Yes | Your Repliz API access key |
+| Secret Key | Yes | Your Repliz API secret key |
+| API Base URL | No | Defaults to `https://api.repliz.com` |
+
+To obtain your API keys, log in to your Repliz dashboard and navigate to **Settings > API**.
 
 ---
 
-## Detailed Operations
+## Usage Notes
 
-### Post Scheduling Payload Structures
-For advanced scheduling (`Create` or `Update` operations), the node uses JSON editors for nested parameters to keep the UI clean:
+### Schedule — Payload Fields
 
-#### 1. Medias (JSON)
-Specifies the media assets to attach to the scheduled post.
+The **Create** and **Update** operations on `Repliz Schedule` accept several JSON fields:
+
+**Medias** — Array of media objects to attach:
 ```json
 [
   {
-    "type": 0,
-    "url": "https://storage.repliz.com/image.jpg",
-    "alt": "An optional alt text for accessibility"
+    "type": "image",
+    "url": "https://storage.repliz.com/image.png",
+    "thumbnail": "https://storage.repliz.com/thumb.png",
+    "alt": ""
   }
 ]
 ```
-*(Use `type: 0` for images, and `type: 1` for videos).*
 
-#### 2. Replies (JSON)
-Enables you to schedule automatic comments/replies underneath your scheduled post once it goes live.
+**Replies** — Array of auto-comments to post after publishing:
 ```json
 [
   {
-    "title": "Welcome Reply",
-    "description": "Thanks for checking out our page!",
-    "topic": "Welcome",
     "type": "text",
-    "medias": []
+    "description": "Thanks for watching!"
   }
 ]
 ```
 
-#### 3. Additional Info (JSON)
-Configure tags, mentions, co-authors, product attachments, and audio tracks.
+**Additional Info** — Tags, mentions, music, products, and collaborators:
 ```json
 {
   "isAiGenerated": false,
   "isDraft": false,
-  "tags": ["marketing", "ai"],
+  "tags": ["marketing"],
   "mentions": ["replizofficial"],
   "collaborators": [],
-  "link": "https://repliz.com"
+  "products": [],
+  "music": { "id": "", "artist": "", "name": "", "thumbnail": "" },
+  "link": ""
 }
 ```
 
 ---
 
-## Local Development & Contribution
+## Local Development
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/your-username/repliz-n8n.git
-   cd repliz-n8n
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Compile TypeScript files:
-   ```bash
-   npm run build
-   ```
-4. Link the node pack to your local n8n setup:
-   ```bash
-   npm link
-   ```
-   *(Then in your local n8n directory)*
-   ```bash
-   npm link n8n-nodes-repliz
-   ```
+```bash
+git clone https://github.com/your-username/n8n-nodes-repliz.git
+cd n8n-nodes-repliz
+npm install
+npm run build
+```
+
+To test locally with an n8n instance:
+
+```bash
+npm link
+# In your n8n directory:
+npm link n8n-nodes-repliz
+```
+
+---
 
 ## License
+
 [MIT](LICENSE)
