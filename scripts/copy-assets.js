@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const srcSvg = path.join(__dirname, '..', 'nodes', 'Repliz', 'repliz.svg');
+const srcSvg = path.join(__dirname, '..', 'nodes', 'repliz.svg');
 const nodesDirs = [
   'ReplizAccount',
   'ReplizAccountFacebook',
