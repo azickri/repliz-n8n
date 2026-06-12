@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-repliz",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "n8n community nodes for Repliz API — manage accounts, comments, chats, content, schedules, and platform addons.",
   "keywords": [
     "n8n-community-node-package"
