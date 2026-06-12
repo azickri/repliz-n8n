@@ -135,7 +135,7 @@ export class ReplizSchedule implements INodeType {
 					} else {
 						const limit = this.getNodeParameter('limit', i) as number;
 						const res = await replizApiRequest.call(this, 'GET', '/public/schedule', {}, { ...qs, page: 1, limit });
-						responseData = res.docs || [];
+						responseData = res
 					}
 				} else if (operation === 'get') {
 					const scheduleId = this.getNodeParameter('scheduleId', i) as string;

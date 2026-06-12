@@ -112,7 +112,7 @@ export class ReplizAccount implements INodeType {
 					} else {
 						const limit = this.getNodeParameter('limit', i) as number;
 						const res = await replizApiRequest.call(this, 'GET', '/public/account', {}, { ...qs, page: 1, limit });
-						responseData = res.docs || [];
+						responseData = res
 					}
 				} else if (operation === 'count') {
 					responseData = await replizApiRequest.call(this, 'GET', '/public/account/count');

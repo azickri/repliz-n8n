@@ -119,7 +119,7 @@ export class ReplizChat implements INodeType {
 					} else {
 						const limit = this.getNodeParameter('limit', i) as number;
 						const res = await replizApiRequest.call(this, 'GET', '/public/chat', {}, { ...qs, page: 1, limit });
-						responseData = res.docs || [];
+						responseData = res
 					}
 				} else if (operation === 'get') {
 					const chatId = this.getNodeParameter('chatId', i) as string;
@@ -132,7 +132,7 @@ export class ReplizChat implements INodeType {
 					} else {
 						const limit = this.getNodeParameter('limit', i) as number;
 						const res = await replizApiRequest.call(this, 'GET', `/public/chat/${chatId}/message`, {}, { page: 1, limit });
-						responseData = res.docs || [];
+						responseData = res
 					}
 				} else if (operation === 'sendMessage') {
 					const chatId = this.getNodeParameter('chatId', i) as string;

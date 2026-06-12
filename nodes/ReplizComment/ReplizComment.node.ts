@@ -144,7 +144,7 @@ export class ReplizComment implements INodeType {
 					} else {
 						const limit = this.getNodeParameter('limit', i) as number;
 						const res = await replizApiRequest.call(this, 'GET', '/public/comment', {}, { ...qs, page: 1, limit });
-						responseData = res.docs || [];
+						responseData = res
 					}
 				} else if (operation === 'get') {
 					const commentId = this.getNodeParameter('commentId', i) as string;
