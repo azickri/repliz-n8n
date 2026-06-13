@@ -8,7 +8,7 @@ Repliz is a social media management platform that centralizes comment moderation
 
 ## Nodes
 
-This package provides 13 nodes, each mapped to a specific Repliz API group:
+This package provides 14 nodes, each mapped to a specific Repliz API group:
 
 ### Account Management
 
@@ -58,6 +58,14 @@ Create and manage scheduled posts across platforms.
 Operations: Get All, Get, Create, Update, Delete, Delete Many, Retry.
 
 Supported post types: Text, Image, Video, Reel, Album, Link, Story.
+
+---
+
+### Research
+
+**Repliz Research** `Gold+`
+Discover and analyze social media content and profiles from external accounts. Useful for competitor research, trend monitoring, and audience insights.
+Operations: Search Threads Content by Keyword, Search Threads Content by User, Search Threads User.
 
 ---
 
@@ -146,7 +154,7 @@ The **Create** and **Update** operations on `Repliz Schedule` accept several JSO
 ## Local Development
 
 ```bash
-git clone https://github.com/your-username/n8n-nodes-repliz.git
+git clone https://github.com/azickri/repliz-n8n.git
 cd n8n-nodes-repliz
 npm install
 npm run build
