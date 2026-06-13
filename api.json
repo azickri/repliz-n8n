@@ -1221,7 +1221,7 @@
                         "in": "query",
                         "schema": {
                             "format": "date-time",
-                            "example": "2026-06-11T12:13:22.384Z",
+                            "example": "2026-06-13T01:00:57.380Z",
                             "type": "string"
                         }
                     },
@@ -1231,7 +1231,7 @@
                         "in": "query",
                         "schema": {
                             "format": "date-time",
-                            "example": "2026-06-11T12:13:22.384Z",
+                            "example": "2026-06-13T01:00:57.380Z",
                             "type": "string"
                         }
                     }
@@ -1437,7 +1437,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-11T12:13:22.394Z"
+                                        "scheduleAt": "2026-06-13T01:00:57.387Z"
                                     }
                                 },
                                 "image": {
@@ -1478,7 +1478,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-11T12:13:22.394Z"
+                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
                                     }
                                 },
                                 "video": {
@@ -1519,7 +1519,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-11T12:13:22.394Z"
+                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
                                     }
                                 },
                                 "reel": {
@@ -1560,7 +1560,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-11T12:13:22.394Z"
+                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
                                     }
                                 },
                                 "album": {
@@ -1607,7 +1607,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-11T12:13:22.394Z"
+                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
                                     }
                                 },
                                 "link": {
@@ -1648,7 +1648,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-11T12:13:22.394Z"
+                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
                                     }
                                 },
                                 "story": {
@@ -1689,7 +1689,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-11T12:13:22.394Z"
+                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
                                     }
                                 },
                                 "nested": {
@@ -1753,7 +1753,7 @@
                                             }
                                         ],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-11T12:13:22.394Z"
+                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
                                     }
                                 },
                                 "template": {
@@ -1786,7 +1786,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-11T12:13:22.394Z",
+                                        "scheduleAt": "2026-06-13T01:00:57.388Z",
                                         "templateId": "680affa5ce12f2f72a16f67c"
                                     }
                                 },
@@ -1830,7 +1830,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-11T12:13:22.394Z"
+                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
                                     }
                                 },
                                 "additionaoInfoMusic": {
@@ -1871,7 +1871,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-11T12:13:22.394Z"
+                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
                                     }
                                 },
                                 "additionalInfoProduct": {
@@ -1920,7 +1920,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-11T12:13:22.394Z"
+                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
                                     }
                                 },
                                 "additionalInfoTag": {
@@ -1964,7 +1964,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-11T12:13:22.394Z"
+                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
                                     }
                                 },
                                 "additionalInfoMention": {
@@ -2007,7 +2007,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-11T12:13:22.394Z"
+                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
                                     }
                                 },
                                 "additionaoInfoLink": {
@@ -2048,7 +2048,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-11T12:13:22.394Z"
+                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
                                     }
                                 }
                             }
@@ -3704,6 +3704,247 @@
                 ]
             }
         },
+        "/public/research/threads/content/search": {
+            "get": {
+                "description": "\nSearch public content on Threads.\n\nThis endpoint is used to search Threads posts based on a keyword or phrase.\nIt allows retrieving content from the platform for discovery, analysis, or engagement purposes.\n\nParameters:\n- accountId (string) — The connected Threads account identifier\n- search (string) — Keyword or phrase used to search content\n- nextToken (string, optional) — Token for retrieving the next page of results\n\nResponse:\n- Returns an array of Threads content objects\n- Includes content details such as id, text, media, author, and publish timestamp\n- May include nextToken for pagination\n",
+                "operationId": "ResearchController_searchContentThreads",
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "example": "680affa5ce12f2f72916f67e",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "example": "Video",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nextToken",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "example": "06584df0146aabfc81fae7ae34ca55099f88ca8f6b7bf3b7b5521a422dc54fc07d86c9751523a501861d6b15228cd68b",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "docs": [
+                                        {
+                                            "id": "17978975645952848",
+                                            "title": "",
+                                            "description": "Hello",
+                                            "type": "text",
+                                            "owner": {
+                                                "id": "9649353151817077",
+                                                "name": "Bayu Anjani",
+                                                "picture": "https://scontent.cdninstagram.com/v/t51.2885-19/491422881_1012145564215707_4586291667947890222_n.jpg?stp=dst-jpg_s206x206_tt6&_nc_cat=108&ccb=7-5&_nc_sid=30ff31&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=407dzSI-KOEQ7kNvwG7ntYL&_nc_oc=AdpWQOatYeXUkm6lCc4jfVAZFeWMWvxpU9ezuA495hDZwa_hrY74qY8jN3GWsh0sElIWKs_UbHgI672NJQOlvFCO&_nc_zt=24&_nc_ht=scontent.cdninstagram.com&edm=ANzRFEsEAAAA&_nc_tpa=Q5bMBQFSDVTJtKTqs_PkkOFI4oVZI0cH5Q8oH6C_8URO7tMS0oJM0EhBimZAwIu_dvRUnbILBUbukH5FbA&oh=00_Af4-i-EW2_L1GAe8e6_llzI_OuJ0q_AKMeFYQQrDwzOgag&oe=6A159498"
+                                            },
+                                            "medias": [],
+                                            "url": "https://www.threads.com/@bayu_anjani_megumin/post/DTF6qjcEshy",
+                                            "createdAt": "2026-01-04T14:40:18.000Z"
+                                        }
+                                    ],
+                                    "nextToken": ""
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "code": 404,
+                                    "message": "account not found"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "basic": []
+                    }
+                ],
+                "summary": "API Search Content Threads",
+                "tags": [
+                    "API Research (Gold+)"
+                ]
+            }
+        },
+        "/public/research/threads/content/user": {
+            "get": {
+                "description": "\nRetrieve Threads content from a specific user.\n\nThis endpoint is used to fetch posts from a target Threads user by username.\nIt is useful for monitoring, reviewing, or analyzing content from a specific account.\n\nParameters:\n- accountId (string) — The connected Threads account identifier\n- username (string) — The target Threads username\n- nextToken (string, optional) — Token for retrieving the next page of results\n\nResponse:\n- Returns an array of Threads content objects from the specified user\n- Includes content details such as id, text, media, and publish timestamp\n- May include nextToken for pagination\n",
+                "operationId": "ResearchController_searchContentUserThreads",
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "example": "680affa5ce12f2f72916f67e",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "username",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "example": "meta",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nextToken",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "example": "06584df0146aabfc81fae7ae34ca55099f88ca8f6b7bf3b7b5521a422dc54fc07d86c9751523a501861d6b15228cd68b",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "docs": [
+                                        {
+                                            "id": "18439214386190993",
+                                            "title": "",
+                                            "description": "weeds are no match for @aiatmeta",
+                                            "type": "video",
+                                            "owner": {
+                                                "id": "",
+                                                "name": "",
+                                                "picture": ""
+                                            },
+                                            "medias": [
+                                                {
+                                                    "type": "video",
+                                                    "thumbnail": "https://scontent.cdninstagram.com/v/t51.71878-15/671284855_27517940931142565_5980685917477664410_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=108&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=cc4yKmlDM1cQ7kNvwGZxqM_&_nc_oc=AdrqhhB8XW6npR3bbMpc_JYJVly4M4CFrmrgXPuQk2yiN2XxP7yiobHEm28a3uzBIhA1GXupDfVKfgBLRv7HVCHh&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&edm=AFAZAHoEAAAA&_nc_gid=d6PsaNDUzk2BleeTkwVddA&_nc_tpa=Q5bMBQEJZKu66XbXBruBT181rQhy8qIlvb6yDFSWauyp69bSIndYEblvkhFGNPXVm2QJOyb-aYfJQURYdw&oh=00_Af56DFCaihFS0yQ-xwSP9tjZef0u4G139ZJ0nICp1vPHrA&oe=6A15994B",
+                                                    "url": "https://instagram.fbdo9-1.fna.fbcdn.net/o1/v/t16/f2/m84/AQORkvt4V_t1S6r06Vh2dLFuGMrZGZQUHjIXp7sE2rLe_nTJ5zoKgX3g2BVYZ2YYQZe9LPjIKwHRTPCTIWZ8wY9CSI5xxuoiUgYa96E.mp4?_nc_cat=108&_nc_oc=AdptcfKUIIic59u5uUZXAHyhetW4CRrleh2O0d6oCDU-A5VRPiKVXVlJsy-81u92jGNCv1ue7PrG75kkpDqk7Y67&_nc_sid=1d576d&_nc_ht=instagram.fbdo9-1.fna.fbcdn.net&_nc_ohc=ZM3qrcgDOfoQ7kNvwGhH5ZE&efg=eyJ2ZW5jb2RlX3RhZyI6InZ0c192b2RfdXJsZ2VuLmZlZWQudW5rbm93bi1DMy43MjAuZGFzaF9iYXNlbGluZV8xX3YxIiwidXJsZ2VuX3NvdXJjZSI6Ind3dyJ9&ccb=17-1&vs=2027637885298805_2773358586&_nc_vs=HBksFQIYTGlnX2JhY2tmaWxsX3RpbWVsaW5lX3ZvZC8zMTREQjU2NDFBMEVGNEI4NThCQ0EyQTdBNUI2MDNCQl92aWRlb19kYXNoaW5pdC5tcDQVAALIARIAFQIYUWlnX3hwdl9wbGFjZW1lbnRfcGVybWFuZW50X3YyLzI0NDRBOUFGMzMwOEQwRTcyRDhDMDY4MjI0MUNERUEwX2F1ZGlvX2Rhc2hpbml0Lm1wNBUCAsgBEgAoABgAGwGIB3VzZV9vaWwBMRUAACbY7bq3saPqPxUCKAJDMywXQEKRBiTdLxsYEmRhc2hfYmFzZWxpbmVfMV92MREAdeoHZeieAQA%3D&_nc_gid=d6PsaNDUzk2BleeTkwVddA&edm=AFAZAHoEAAAA&_nc_zt=28&oh=00_Af5D-Iia0P9TrQZ2GqGdYZwZ6q9B7L7GUAR1L2jrrTDAGg&oe=6A11C60C"
+                                                }
+                                            ],
+                                            "url": "https://www.threads.com/@meta/post/DYZ80_hDVCA",
+                                            "createdAt": "2026-05-16T16:00:41.000Z"
+                                        }
+                                    ],
+                                    "nextToken": ""
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "code": 404,
+                                    "message": "account not found"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "basic": []
+                    }
+                ],
+                "summary": "API Search Content User Threads",
+                "tags": [
+                    "API Research (Gold+)"
+                ]
+            }
+        },
+        "/public/research/threads/user": {
+            "get": {
+                "description": "\nSearch for Threads users by username.\n\nThis endpoint is used to find public Threads accounts matching the provided username.\nIt helps identify users before retrieving their content.\n\nParameters:\n- accountId (string) — The connected Threads account identifier\n- username (string) — The target Threads username to search\n\nResponse:\n- Returns an array of user objects\n- Includes user details such as id, username, display name, and profile information\n",
+                "operationId": "ResearchController_searchUserThreads",
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "example": "680affa5ce12f2f72916f67e",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "username",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "example": "meta",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "name": "Meta",
+                                    "username": "meta",
+                                    "picture": "https://scontent.cdninstagram.com/v/t51.82787-19/551871521_17926195818103788_5244672897793476443_n.jpg?stp=dst-jpg_s206x206_tt6&_nc_cat=100&ccb=7-5&_nc_sid=30ff31&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy40MDAuQzMifQ%3D%3D&_nc_ohc=4xuG2S_mF9UQ7kNvwE-37sP&_nc_oc=AdpxOhuUmM_giUNMzrZ4V5RjB1lilc3X8Vh8rR9XdRLXEKgOroGot25h3VsYfIjEpA1Ue1j3GMTQRdMRxT4-KnRN&_nc_zt=24&_nc_ht=scontent.cdninstagram.com&edm=AGL55lAEAAAA&_nc_gid=n8QqwkghDM5S3_xAgl4UXA&_nc_tpa=Q5bMBQFDTf25p6xSMTXCap4_NVMDbKSZ0CHoTnUcs6rVKsT0tx-3DmUHxFTgiyWiW3amL7yoVCXRIhC7WA&oh=00_Af7AMBPlnc-ZjhR1Zj7nQcaQKxwzg-EcGxHD6yDb3rk89A&oe=6A159454",
+                                    "isVerified": true,
+                                    "statistic": {
+                                        "follower": 1676247,
+                                        "like": 997,
+                                        "quotes": 11,
+                                        "replies": 111,
+                                        "repost": 51,
+                                        "views": 230894
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "code": 404,
+                                    "message": "account not found"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "basic": []
+                    }
+                ],
+                "summary": "API Search  User Threads",
+                "tags": [
+                    "API Research (Gold+)"
+                ]
+            }
+        },
         "/public/account/facebook/authorize": {
             "get": {
                 "description": "\nInitiate Facebook authorization process.\n\nThis endpoint is used to redirect users to Facebook OAuth authorization page.\nAfter successful authorization, the user will be redirected back to the provided redirect URL with an authorization code.\n\nParameters:\n- redirect (string) — The URL to redirect after authorization is completed\n\nResponse:\n- Redirects user to Facebook OAuth page\n",
@@ -5261,7 +5502,7 @@
                     "scheduleAt": {
                         "format": "date-time",
                         "type": "string",
-                        "example": "2026-06-11T12:13:22.387Z"
+                        "example": "2026-06-13T01:00:57.381Z"
                     },
                     "templateId": {
                         "type": "string",
@@ -5330,7 +5571,7 @@
                     "scheduleAt": {
                         "format": "date-time",
                         "type": "string",
-                        "example": "2026-06-11T12:13:22.388Z"
+                        "example": "2026-06-13T01:00:57.383Z"
                     },
                     "templateId": {
                         "type": "string",
