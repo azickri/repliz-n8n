@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-repliz",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "n8n community nodes for Repliz API — manage accounts, comments, chats, content, schedules, and platform addons.",
   "keywords": [
     "n8n-community-node-package"
@@ -38,6 +38,7 @@
       "dist/nodes/ReplizContent/ReplizContent.node.js",
       "dist/nodes/ReplizSchedule/ReplizSchedule.node.js",
       "dist/nodes/ReplizResearch/ReplizResearch.node.js",
+      "dist/nodes/ReplizStorage/ReplizStorage.node.js",
       "dist/nodes/ReplizAddon/ReplizAddon.node.js"
     ]
   },

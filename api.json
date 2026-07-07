@@ -1221,7 +1221,7 @@
                         "in": "query",
                         "schema": {
                             "format": "date-time",
-                            "example": "2026-06-13T01:00:57.380Z",
+                            "example": "2026-07-07T08:54:08.403Z",
                             "type": "string"
                         }
                     },
@@ -1231,7 +1231,7 @@
                         "in": "query",
                         "schema": {
                             "format": "date-time",
-                            "example": "2026-06-13T01:00:57.380Z",
+                            "example": "2026-07-07T08:54:08.403Z",
                             "type": "string"
                         }
                     }
@@ -1433,11 +1433,12 @@
                                             "products": [],
                                             "tags": [],
                                             "mentions": [],
-                                            "link": ""
+                                            "link": "",
+                                            "targetCountries": []
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-13T01:00:57.387Z"
+                                        "scheduleAt": "2026-07-07T08:54:08.409Z"
                                     }
                                 },
                                 "image": {
@@ -1474,11 +1475,12 @@
                                             "products": [],
                                             "tags": [],
                                             "mentions": [],
-                                            "link": ""
+                                            "link": "",
+                                            "targetCountries": []
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
+                                        "scheduleAt": "2026-07-07T08:54:08.409Z"
                                     }
                                 },
                                 "video": {
@@ -1515,11 +1517,12 @@
                                             "products": [],
                                             "tags": [],
                                             "mentions": [],
-                                            "link": ""
+                                            "link": "",
+                                            "targetCountries": []
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
+                                        "scheduleAt": "2026-07-07T08:54:08.409Z"
                                     }
                                 },
                                 "reel": {
@@ -1556,11 +1559,12 @@
                                             "products": [],
                                             "tags": [],
                                             "mentions": [],
-                                            "link": ""
+                                            "link": "",
+                                            "targetCountries": []
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
+                                        "scheduleAt": "2026-07-07T08:54:08.409Z"
                                     }
                                 },
                                 "album": {
@@ -1603,11 +1607,12 @@
                                             "products": [],
                                             "tags": [],
                                             "mentions": [],
-                                            "link": ""
+                                            "link": "",
+                                            "targetCountries": []
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
+                                        "scheduleAt": "2026-07-07T08:54:08.409Z"
                                     }
                                 },
                                 "link": {
@@ -1644,11 +1649,12 @@
                                             "products": [],
                                             "tags": [],
                                             "mentions": [],
-                                            "link": ""
+                                            "link": "",
+                                            "targetCountries": []
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
+                                        "scheduleAt": "2026-07-07T08:54:08.409Z"
                                     }
                                 },
                                 "story": {
@@ -1685,11 +1691,12 @@
                                             "products": [],
                                             "tags": [],
                                             "mentions": [],
-                                            "link": ""
+                                            "link": "",
+                                            "targetCountries": []
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
+                                        "scheduleAt": "2026-07-07T08:54:08.409Z"
                                     }
                                 },
                                 "nested": {
@@ -1718,7 +1725,8 @@
                                             "products": [],
                                             "tags": [],
                                             "mentions": [],
-                                            "link": ""
+                                            "link": "",
+                                            "targetCountries": []
                                         },
                                         "replies": [
                                             {
@@ -1753,7 +1761,7 @@
                                             }
                                         ],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
+                                        "scheduleAt": "2026-07-07T08:54:08.409Z"
                                     }
                                 },
                                 "template": {
@@ -1782,11 +1790,12 @@
                                             "products": [],
                                             "tags": [],
                                             "mentions": [],
-                                            "link": ""
+                                            "link": "",
+                                            "targetCountries": []
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-13T01:00:57.388Z",
+                                        "scheduleAt": "2026-07-07T08:54:08.410Z",
                                         "templateId": "680affa5ce12f2f72a16f67c"
                                     }
                                 },
@@ -1826,11 +1835,12 @@
                                             "products": [],
                                             "tags": [],
                                             "mentions": [],
-                                            "link": ""
+                                            "link": "",
+                                            "targetCountries": []
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
+                                        "scheduleAt": "2026-07-07T08:54:08.410Z"
                                     }
                                 },
                                 "additionaoInfoMusic": {
@@ -1867,11 +1877,12 @@
                                             "products": [],
                                             "tags": [],
                                             "mentions": [],
-                                            "link": ""
+                                            "link": "",
+                                            "targetCountries": []
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
+                                        "scheduleAt": "2026-07-07T08:54:08.410Z"
                                     }
                                 },
                                 "additionalInfoProduct": {
@@ -1916,11 +1927,12 @@
                                             ],
                                             "tags": [],
                                             "mentions": [],
-                                            "link": ""
+                                            "link": "",
+                                            "targetCountries": []
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
+                                        "scheduleAt": "2026-07-07T08:54:08.410Z"
                                     }
                                 },
                                 "additionalInfoTag": {
@@ -1960,11 +1972,12 @@
                                                 "AI Trend 2026"
                                             ],
                                             "mentions": [],
-                                            "link": ""
+                                            "link": "",
+                                            "targetCountries": []
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
+                                        "scheduleAt": "2026-07-07T08:54:08.410Z"
                                     }
                                 },
                                 "additionalInfoMention": {
@@ -2003,11 +2016,12 @@
                                             "mentions": [
                                                 "replizofficial"
                                             ],
-                                            "link": ""
+                                            "link": "",
+                                            "targetCountries": []
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
+                                        "scheduleAt": "2026-07-07T08:54:08.410Z"
                                     }
                                 },
                                 "additionaoInfoLink": {
@@ -2044,11 +2058,56 @@
                                             "products": [],
                                             "tags": [],
                                             "mentions": [],
-                                            "link": "https://repliz.com"
+                                            "link": "https://repliz.com",
+                                            "targetCountries": []
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-06-13T01:00:57.388Z"
+                                        "scheduleAt": "2026-07-07T08:54:08.410Z"
+                                    }
+                                },
+                                "additionalInfoTargetCountries": {
+                                    "summary": "Post with Additional Info Target Countries",
+                                    "value": {
+                                        "title": "",
+                                        "description": "Hola! This is example for post video with mentions",
+                                        "topic": "",
+                                        "type": "video",
+                                        "medias": [
+                                            {
+                                                "alt": "",
+                                                "customThumbnail": false,
+                                                "type": "video",
+                                                "thumbnail": "https://storage.repliz.com/thumbnail.png",
+                                                "url": "https://storage.repliz.com/video.mp4"
+                                            }
+                                        ],
+                                        "meta": {
+                                            "title": "",
+                                            "description": "",
+                                            "url": ""
+                                        },
+                                        "additionalInfo": {
+                                            "isAiGenerated": false,
+                                            "isDraft": false,
+                                            "collaborators": [],
+                                            "music": {
+                                                "id": "",
+                                                "artist": "",
+                                                "name": "",
+                                                "thumbnail": ""
+                                            },
+                                            "products": [],
+                                            "tags": [],
+                                            "mentions": [],
+                                            "link": "",
+                                            "targetCountries": [
+                                                "ID"
+                                            ]
+                                        },
+                                        "replies": [],
+                                        "accountId": "680affa5ce12f2f72916f67e",
+                                        "scheduleAt": "2026-07-07T08:54:08.410Z"
                                     }
                                 }
                             }
@@ -5169,6 +5228,331 @@
                     "API Account Shopee (Gold+)"
                 ]
             }
+        },
+        "/public/storage/statistic": {
+            "get": {
+                "description": "\nRetrieve storage usage statistics.\n\nThis endpoint is used to get information about the current storage usage, including the total number of files, used storage space, and remaining available capacity.\n\nResponse:\n- Returns storage usage statistics\n- Includes information such as total files, used storage, and storage limit\n",
+                "operationId": "StorageController_getStatistic",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "file": {
+                                        "total": 1,
+                                        "success": 1,
+                                        "pending": 0
+                                    },
+                                    "usage": {
+                                        "total": 5368709120,
+                                        "free": 5367653384,
+                                        "used": 1055736
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "basic": []
+                    }
+                ],
+                "summary": "API Get Statistic Storage",
+                "tags": [
+                    "API Storage (Storage+)"
+                ]
+            }
+        },
+        "/public/storage/file": {
+            "get": {
+                "description": "\nRetrieve a list of uploaded files.\n\nThis endpoint is used to fetch files stored in your storage.\nIt supports pagination and optional search by filename.\n\nParameters:\n- page (number) — The page number to retrieve\n- limit (number) — Number of files per page\n- search (string, optional) — Search files by filename\n\nResponse:\n- Returns an array of file objects\n- Each file includes id, filename, size, mimetype, and upload information\n",
+                "operationId": "StorageController_getFile",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "example": 1,
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "example": 20,
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "example": "hello",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "docs": [
+                                        {
+                                            "_id": "6a4c3b580afd72bb342c3885",
+                                            "filename": "filename.mp4",
+                                            "mimetype": "video/mp4",
+                                            "size": 1055736,
+                                            "key": "uploads/6879b98097fc8c8a78d1d4c1/d69f8f58-48e6-4b58-bfbb-97dc6e5e16b4.mp4",
+                                            "url": "https://storage.repliz.com/uploads/6879b98097fc8c8a78d1d4c1/d69f8f58-48e6-4b58-bfbb-97dc6e5e16b4.mp4",
+                                            "status": "success",
+                                            "userId": "6879b98097fc8c8a78d1d4c1",
+                                            "createdAt": "2026-07-06T23:33:44.019Z",
+                                            "updatedAt": "2026-07-06T23:38:37.176Z",
+                                            "__v": 0,
+                                            "id": "6a4c3b580afd72bb342c3885"
+                                        },
+                                        {
+                                            "_id": "6a4c3a3bc4586b1f1ce483e4",
+                                            "filename": "filename.mp4",
+                                            "mimetype": "video/mp4",
+                                            "size": 102400,
+                                            "key": "uploads/6879b98097fc8c8a78d1d4c1/0dcb2544-bbc8-4b42-a2e3-0449133ef58f.mp4",
+                                            "url": "https://storage.repliz.com/uploads/6879b98097fc8c8a78d1d4c1/0dcb2544-bbc8-4b42-a2e3-0449133ef58f.mp4",
+                                            "status": "pending",
+                                            "userId": "6879b98097fc8c8a78d1d4c1",
+                                            "createdAt": "2026-07-06T23:28:59.836Z",
+                                            "updatedAt": "2026-07-06T23:28:59.836Z",
+                                            "__v": 0,
+                                            "id": "6a4c3a3bc4586b1f1ce483e4"
+                                        }
+                                    ],
+                                    "totalDocs": 2,
+                                    "limit": 20,
+                                    "totalPages": 1,
+                                    "page": 1,
+                                    "pagingCounter": 1,
+                                    "hasPrevPage": false,
+                                    "hasNextPage": false,
+                                    "prevPage": null,
+                                    "nextPage": null
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "basic": []
+                    }
+                ],
+                "summary": "API Get File Storage",
+                "tags": [
+                    "API Storage (Storage+)"
+                ]
+            }
+        },
+        "/public/storage/file/{fileId}": {
+            "get": {
+                "description": "\nRetrieve detailed information of a specific file.\n\nThis endpoint is used to fetch complete information about a stored file.\n\nParameters:\n- fileId (string) — The unique identifier of the file\n\nResponse:\n- Returns a single file object with detailed metadata\n",
+                "operationId": "StorageController_getOneFile",
+                "parameters": [
+                    {
+                        "name": "fileId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "example": "680affa5ce12f2f72916f67e",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "_id": "6a4c3a3bc4586b1f1ce483e4",
+                                    "filename": "filename.mp4",
+                                    "mimetype": "video/mp4",
+                                    "size": 102400,
+                                    "key": "uploads/6879b98097fc8c8a78d1d4c1/0dcb2544-bbc8-4b42-a2e3-0449133ef58f.mp4",
+                                    "url": "https://storage.repliz.com/uploads/6879b98097fc8c8a78d1d4c1/0dcb2544-bbc8-4b42-a2e3-0449133ef58f.mp4",
+                                    "status": "pending",
+                                    "userId": "6879b98097fc8c8a78d1d4c1",
+                                    "createdAt": "2026-07-06T23:28:59.836Z",
+                                    "updatedAt": "2026-07-06T23:28:59.836Z",
+                                    "__v": 0,
+                                    "id": "6a4c3a3bc4586b1f1ce483e4"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "code": 404,
+                                    "message": "file not found"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "basic": []
+                    }
+                ],
+                "summary": "API Get One File Storage",
+                "tags": [
+                    "API Storage (Storage+)"
+                ]
+            },
+            "delete": {
+                "description": "\nDelete a stored file.\n\nThis endpoint is used to permanently remove a file from storage.\n\nParameters:\n- fileId (string) — The unique identifier of the file\n\nResponse:\n- No content is returned on success (204 No Content)\n",
+                "operationId": "StorageController_removeFile",
+                "parameters": [
+                    {
+                        "name": "fileId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "example": "680affa5ce12f2f72916f67e",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": ""
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "code": 404,
+                                    "message": "file not found"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "basic": []
+                    }
+                ],
+                "summary": "API Remove File Storage",
+                "tags": [
+                    "API Storage (Storage+)"
+                ]
+            }
+        },
+        "/public/storage/file/init": {
+            "post": {
+                "description": "\nInitialize a file upload.\n\nThis endpoint is used before uploading a file to storage.\nProvide the filename, file size, and MIME type to create an upload session.\n\nBody:\n- filename (string) — Name of the file\n- size (number) — File size in bytes\n- mimetype (string) — MIME type of the file\n\nResponse:\n- Returns upload session information\n- Includes the file identifier and upload URL required to upload the file\n",
+                "operationId": "StorageController_initFile",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BodyInitFileDTO"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "id": "6a4c3a3bc4586b1f1ce483e4",
+                                    "upload": "https://repliz.2ca853e78c4cd1a89797e3d770c7ca9f.r2.cloudflarestorage.com/uploads/6879b98097fc8c8a78d1d4c1/0dcb2544-bbc8-4b42-a2e3-0449133ef58f.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=58039744a2190ee9aa84ad91e5c410f9%2F20260706%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20260706T232859Z&X-Amz-Expires=600&X-Amz-Signature=866b35ae426e15da69f7335918382eebe8c90b3ea7895d66508307c0ac2120f7&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject",
+                                    "key": "uploads/6879b98097fc8c8a78d1d4c1/0dcb2544-bbc8-4b42-a2e3-0449133ef58f.mp4",
+                                    "url": "https://storage.repliz.com/uploads/6879b98097fc8c8a78d1d4c1/0dcb2544-bbc8-4b42-a2e3-0449133ef58f.mp4"
+                                }
+                            }
+                        }
+                    },
+                    "402": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "code": 429,
+                                    "message": "upgrade to get more storage"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "basic": []
+                    }
+                ],
+                "summary": "API Init File Storage",
+                "tags": [
+                    "API Storage (Storage+)"
+                ]
+            }
+        },
+        "/public/storage/file/{fileId}/complete": {
+            "post": {
+                "description": "\nComplete a file upload.\n\nThis endpoint is used after the file has been successfully uploaded to storage.\nIt finalizes the upload process and makes the file available for use.\n\nParameters:\n- fileId (string) — The unique identifier of the uploaded file\n\nResponse:\n- No content is returned on success (204 No Content)\n",
+                "operationId": "StorageController_completeFile",
+                "parameters": [
+                    {
+                        "name": "fileId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "example": "680affa5ce12f2f72916f67e",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": ""
+                    },
+                    "402": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "code": 429,
+                                    "message": "upgrade to get more storage"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "basic": []
+                    }
+                ],
+                "summary": "API Complete File Storage",
+                "tags": [
+                    "API Storage (Storage+)"
+                ]
+            }
         }
     },
     "info": {
@@ -5393,6 +5777,16 @@
                     "link": {
                         "type": "string",
                         "example": "https://repliz.com"
+                    },
+                    "targetCountries": {
+                        "example": [
+                            "ID",
+                            "EN"
+                        ],
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     }
                 },
                 "required": [
@@ -5403,7 +5797,8 @@
                     "products",
                     "tags",
                     "mentions",
-                    "link"
+                    "link",
+                    "targetCountries"
                 ]
             },
             "ScheduleReply": {
@@ -5502,7 +5897,7 @@
                     "scheduleAt": {
                         "format": "date-time",
                         "type": "string",
-                        "example": "2026-06-13T01:00:57.381Z"
+                        "example": "2026-07-07T08:54:08.404Z"
                     },
                     "templateId": {
                         "type": "string",
@@ -5571,7 +5966,7 @@
                     "scheduleAt": {
                         "format": "date-time",
                         "type": "string",
-                        "example": "2026-06-13T01:00:57.383Z"
+                        "example": "2026-07-07T08:54:08.404Z"
                     },
                     "templateId": {
                         "type": "string",
@@ -5948,6 +6343,28 @@
                 },
                 "required": [
                     "code"
+                ]
+            },
+            "BodyInitFileDTO": {
+                "type": "object",
+                "properties": {
+                    "filename": {
+                        "type": "string",
+                        "example": "filename.mp4"
+                    },
+                    "size": {
+                        "type": "number",
+                        "example": 102400
+                    },
+                    "mimetype": {
+                        "type": "string",
+                        "example": "video/mp4"
+                    }
+                },
+                "required": [
+                    "filename",
+                    "size",
+                    "mimetype"
                 ]
             }
         }

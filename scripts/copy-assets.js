@@ -16,6 +16,7 @@ const nodesDirs = [
   'ReplizContent',
   'ReplizSchedule',
   'ReplizResearch',
+  'ReplizStorage',
   'ReplizAddon',
 ];
 

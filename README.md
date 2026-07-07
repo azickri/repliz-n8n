@@ -8,7 +8,7 @@ Repliz is a social media management platform that centralizes comment moderation
 
 ## Nodes
 
-This package provides 14 nodes, each mapped to a specific Repliz API group:
+This package provides 15 nodes, each mapped to a specific Repliz API group:
 
 ### Account Management
 
@@ -66,6 +66,14 @@ Supported post types: Text, Image, Video, Reel, Album, Link, Story.
 **Repliz Research** `Gold+`
 Discover and analyze social media content and profiles from external accounts. Useful for competitor research, trend monitoring, and audience insights.
 Operations: Search Threads Content by Keyword, Search Threads Content by User, Search Threads User.
+
+---
+
+### Storage
+
+**Repliz Storage** `Storage+`
+Manage files in Repliz cloud storage. Upload media assets for use in scheduled posts, retrieve file info, and free up space by deleting unused files.
+Operations: Get Statistics, Get All Files, Get File, Delete File, Initialize Upload, Complete Upload.
 
 ---
 
