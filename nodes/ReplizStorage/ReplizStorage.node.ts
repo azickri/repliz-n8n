@@ -57,6 +57,12 @@ export class ReplizStorage implements INodeType {
 						description: 'Mark a file upload as completed after the binary has been uploaded to the returned URL',
 						action: 'Complete file upload',
 					},
+					{
+						name: 'Delete Many Files',
+						value: 'deleteMany',
+						description: 'Permanently delete multiple files from storage at once',
+						action: 'Delete many files',
+					},
 				],
 				default: 'getAll',
 			},
@@ -130,6 +136,18 @@ export class ReplizStorage implements INodeType {
 				placeholder: 'e.g. video/mp4, image/jpeg, audio/mpeg',
 				description: 'The MIME type of the file (e.g. video/mp4, image/jpeg)',
 			},
+
+			// ── Delete Many ────────────────────────────────────────────────
+			{
+				displayName: 'File IDs',
+				name: 'fileIds',
+				type: 'string',
+				required: true,
+				displayOptions: { show: { operation: ['deleteMany'] } },
+				default: '',
+				placeholder: 'id1,id2,id3',
+				description: 'Comma-separated list of file IDs to delete',
+			},
 		],
 	};
 
@@ -176,6 +194,13 @@ export class ReplizStorage implements INodeType {
 				} else if (operation === 'completeUpload') {
 					const fileId = this.getNodeParameter('fileId', i) as string;
 					responseData = await replizApiRequest.call(this, 'POST', `/public/storage/file/${fileId}/complete`);
+
+				} else if (operation === 'deleteMany') {
+					const fileIds = (this.getNodeParameter('fileIds', i) as string)
+						.split(',')
+						.map((s: string) => s.trim())
+						.filter(Boolean);
+					responseData = await replizApiRequest.call(this, 'DELETE', '/public/storage/file/mass', {}, { fileIds });
 				}
 
 				returnData.push(...this.helpers.returnJsonArray(responseData));

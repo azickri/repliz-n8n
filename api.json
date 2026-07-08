@@ -1221,7 +1221,7 @@
                         "in": "query",
                         "schema": {
                             "format": "date-time",
-                            "example": "2026-07-07T08:54:08.403Z",
+                            "example": "2026-07-08T00:40:45.256Z",
                             "type": "string"
                         }
                     },
@@ -1231,7 +1231,7 @@
                         "in": "query",
                         "schema": {
                             "format": "date-time",
-                            "example": "2026-07-07T08:54:08.403Z",
+                            "example": "2026-07-08T00:40:45.256Z",
                             "type": "string"
                         }
                     }
@@ -1438,7 +1438,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-07-07T08:54:08.409Z"
+                                        "scheduleAt": "2026-07-08T00:40:45.262Z"
                                     }
                                 },
                                 "image": {
@@ -1480,7 +1480,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-07-07T08:54:08.409Z"
+                                        "scheduleAt": "2026-07-08T00:40:45.262Z"
                                     }
                                 },
                                 "video": {
@@ -1522,7 +1522,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-07-07T08:54:08.409Z"
+                                        "scheduleAt": "2026-07-08T00:40:45.262Z"
                                     }
                                 },
                                 "reel": {
@@ -1564,7 +1564,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-07-07T08:54:08.409Z"
+                                        "scheduleAt": "2026-07-08T00:40:45.262Z"
                                     }
                                 },
                                 "album": {
@@ -1612,7 +1612,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-07-07T08:54:08.409Z"
+                                        "scheduleAt": "2026-07-08T00:40:45.262Z"
                                     }
                                 },
                                 "link": {
@@ -1654,7 +1654,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-07-07T08:54:08.409Z"
+                                        "scheduleAt": "2026-07-08T00:40:45.262Z"
                                     }
                                 },
                                 "story": {
@@ -1696,7 +1696,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-07-07T08:54:08.409Z"
+                                        "scheduleAt": "2026-07-08T00:40:45.262Z"
                                     }
                                 },
                                 "nested": {
@@ -1761,7 +1761,7 @@
                                             }
                                         ],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-07-07T08:54:08.409Z"
+                                        "scheduleAt": "2026-07-08T00:40:45.262Z"
                                     }
                                 },
                                 "template": {
@@ -1795,7 +1795,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-07-07T08:54:08.410Z",
+                                        "scheduleAt": "2026-07-08T00:40:45.262Z",
                                         "templateId": "680affa5ce12f2f72a16f67c"
                                     }
                                 },
@@ -1840,7 +1840,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-07-07T08:54:08.410Z"
+                                        "scheduleAt": "2026-07-08T00:40:45.262Z"
                                     }
                                 },
                                 "additionaoInfoMusic": {
@@ -1882,7 +1882,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-07-07T08:54:08.410Z"
+                                        "scheduleAt": "2026-07-08T00:40:45.262Z"
                                     }
                                 },
                                 "additionalInfoProduct": {
@@ -1932,7 +1932,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-07-07T08:54:08.410Z"
+                                        "scheduleAt": "2026-07-08T00:40:45.262Z"
                                     }
                                 },
                                 "additionalInfoTag": {
@@ -1977,7 +1977,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-07-07T08:54:08.410Z"
+                                        "scheduleAt": "2026-07-08T00:40:45.262Z"
                                     }
                                 },
                                 "additionalInfoMention": {
@@ -2021,7 +2021,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-07-07T08:54:08.410Z"
+                                        "scheduleAt": "2026-07-08T00:40:45.262Z"
                                     }
                                 },
                                 "additionaoInfoLink": {
@@ -2063,7 +2063,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-07-07T08:54:08.410Z"
+                                        "scheduleAt": "2026-07-08T00:40:45.262Z"
                                     }
                                 },
                                 "additionalInfoTargetCountries": {
@@ -2107,7 +2107,7 @@
                                         },
                                         "replies": [],
                                         "accountId": "680affa5ce12f2f72916f67e",
-                                        "scheduleAt": "2026-07-07T08:54:08.410Z"
+                                        "scheduleAt": "2026-07-08T00:40:45.263Z"
                                     }
                                 }
                             }
@@ -5494,7 +5494,7 @@
                         "content": {
                             "application/json": {
                                 "example": {
-                                    "code": 429,
+                                    "code": 402,
                                     "message": "upgrade to get more storage"
                                 }
                             }
@@ -5536,7 +5536,7 @@
                         "content": {
                             "application/json": {
                                 "example": {
-                                    "code": 429,
+                                    "code": 402,
                                     "message": "upgrade to get more storage"
                                 }
                             }
@@ -5549,6 +5549,43 @@
                     }
                 ],
                 "summary": "API Complete File Storage",
+                "tags": [
+                    "API Storage (Storage+)"
+                ]
+            }
+        },
+        "/public/storage/file/mass": {
+            "delete": {
+                "description": "\nDelete multiple files.\n\nThis endpoint is used to remove multiple files at once so they will not be executed.\n\nParameters:\n- fileIds (string[]) — Array of file identifiers to be removed\n\nResponse:\n- No content is returned on success (204 No Content)\n",
+                "operationId": "StorageController_removeFiles",
+                "parameters": [
+                    {
+                        "name": "fileIds",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "example": [
+                                "680affa5ce12f2f72916f67e",
+                                "680affa5ce12f2f72916f67a"
+                            ],
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "basic": []
+                    }
+                ],
+                "summary": "API Remove Files Storage",
                 "tags": [
                     "API Storage (Storage+)"
                 ]
@@ -5897,7 +5934,7 @@
                     "scheduleAt": {
                         "format": "date-time",
                         "type": "string",
-                        "example": "2026-07-07T08:54:08.404Z"
+                        "example": "2026-07-08T00:40:45.257Z"
                     },
                     "templateId": {
                         "type": "string",
@@ -5966,7 +6003,7 @@
                     "scheduleAt": {
                         "format": "date-time",
                         "type": "string",
-                        "example": "2026-07-07T08:54:08.404Z"
+                        "example": "2026-07-08T00:40:45.259Z"
                     },
                     "templateId": {
                         "type": "string",
