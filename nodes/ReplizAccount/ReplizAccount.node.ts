@@ -24,6 +24,7 @@ export class ReplizAccount implements INodeType {
 					{ name: 'Get All', value: 'getAll', description: 'Retrieve all connected accounts', action: 'Get all accounts' },
 					{ name: 'Count', value: 'count', description: 'Get account usage statistics per platform', action: 'Count accounts' },
 					{ name: 'Get', value: 'get', description: 'Retrieve detailed info of a specific account', action: 'Get an account' },
+					{ name: 'Get Statistics', value: 'getStatistic', description: 'Retrieve statistics for a specific account', action: 'Get account statistics' },
 					{ name: 'Delete', value: 'delete', description: 'Disconnect and remove an account', action: 'Delete an account' },
 				],
 				default: 'getAll',
@@ -78,13 +79,13 @@ export class ReplizAccount implements INodeType {
 					},
 				],
 			},
-			// Get / Delete
+			// Get / Delete / Get Statistics
 			{
 				displayName: 'Account ID',
 				name: 'accountId',
 				type: 'string',
 				required: true,
-				displayOptions: { show: { operation: ['get', 'delete'] } },
+				displayOptions: { show: { operation: ['get', 'delete', 'getStatistic'] } },
 				default: '',
 				description: 'The unique identifier of the account',
 			},
@@ -119,6 +120,9 @@ export class ReplizAccount implements INodeType {
 				} else if (operation === 'get') {
 					const accountId = this.getNodeParameter('accountId', i) as string;
 					responseData = await replizApiRequest.call(this, 'GET', `/public/account/${accountId}`);
+				} else if (operation === 'getStatistic') {
+					const accountId = this.getNodeParameter('accountId', i) as string;
+					responseData = await replizApiRequest.call(this, 'GET', `/public/account/${accountId}/statistic`);
 				} else if (operation === 'delete') {
 					const accountId = this.getNodeParameter('accountId', i) as string;
 					responseData = await replizApiRequest.call(this, 'DELETE', `/public/account/${accountId}`);
