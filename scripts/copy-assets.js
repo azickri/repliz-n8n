@@ -2,23 +2,11 @@ const fs = require('fs');
 const path = require('path');
 
 const srcSvg = path.join(__dirname, '..', 'nodes', 'repliz.svg');
-const nodesDirs = [
-  'ReplizAccount',
-  'ReplizAccountFacebook',
-  'ReplizAccountInstagram',
-  'ReplizAccountThreads',
-  'ReplizAccountYoutube',
-  'ReplizAccountLinkedIn',
-  'ReplizAccountTikTok',
-  'ReplizAccountShopee',
-  'ReplizComment',
-  'ReplizChat',
-  'ReplizContent',
-  'ReplizSchedule',
-  'ReplizResearch',
-  'ReplizStorage',
-  'ReplizAddon',
-];
+const nodesDir = path.join(__dirname, '..', 'nodes');
+const nodesDirs = fs.readdirSync(nodesDir).filter(f => {
+  const full = path.join(nodesDir, f);
+  return fs.statSync(full).isDirectory();
+});
 
 for (const dir of nodesDirs) {
   const destDir = path.join(__dirname, '..', 'dist', 'nodes', dir);

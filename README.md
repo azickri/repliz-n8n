@@ -8,12 +8,12 @@ Repliz is a social media management platform that centralizes comment moderation
 
 ## Nodes
 
-This package provides 15 nodes, each mapped to a specific Repliz API group:
+This package provides 18 nodes, each mapped to a specific Repliz API group:
 
 ### Account Management
 
 **Repliz Account** `Standard+`
-Manage connected workspace accounts. Operations: Get All, Count, Get, Delete.
+Manage connected workspace accounts. Operations: Get All, Count, Get, Get Statistics, Update Automation, Delete.
 
 **Repliz Account Facebook** `Gold+`
 Connect and authenticate Facebook pages. Operations: Authorize, Get Pages, Exchange Token, Connect, Reconnect.
@@ -36,6 +36,9 @@ Connect and authenticate TikTok accounts. Operations: Authorize, Connect, Reconn
 **Repliz Account Shopee** `Gold+`
 Connect and authenticate Shopee shops. Operations: Authorize, Connect, Reconnect.
 
+**Repliz Account Twitter** `Gold+`
+Connect and authenticate Twitter/X accounts. Operations: Authorize, Connect, Reconnect.
+
 ---
 
 ### Comment & Chat
@@ -48,10 +51,10 @@ Manage live chat conversations and messages. Operations: Get All, Get, Get Messa
 
 ---
 
-### Content & Scheduling
+### Content, Scheduling & Automation
 
 **Repliz Content** `Gold+`
-Retrieve and interact with published social media content. Operations: Get All, Get, Get Comments, Create Comment, Delete Comment, Get Statistics, Message Comment Author.
+Retrieve and interact with published social media content. Operations: Get All, Get, Delete, Get Comments, Create Comment, Delete Comment, Get Statistics, Message Comment Author.
 
 **Repliz Schedule** `Premium+`
 Create and manage scheduled posts across platforms.
@@ -59,13 +62,19 @@ Operations: Get All, Get, Create, Update, Delete, Delete Many, Retry.
 
 Supported post types: Text, Image, Video, Reel, Album, Link, Story.
 
+**Repliz Automation** `Gold+`
+Create and manage content automation rules. Operations: Get All, Create, Get, Update, Delete.
+
 ---
 
-### Research
+### Research & Reports
 
 **Repliz Research** `Gold+`
 Discover and analyze social media content and profiles from external accounts. Useful for competitor research, trend monitoring, and audience insights.
 Operations: Search Threads Content by Keyword, Search Threads Content by User, Search Threads User.
+
+**Repliz Report** `Gold+`
+View and retry background job execution reports. Operations: Get All, Get, Retry.
 
 ---
 
@@ -80,7 +89,7 @@ Operations: Get Statistics, Get All Files, Get File, Delete File, Initialize Upl
 ### Addons
 
 **Repliz Addon** `Premium+`
-Access premium platform features. Operations: Get TikTok Trending Music, Get Shopee Products, Get Link Metadata.
+Access premium platform features. Operations: Get Addon Allocation, Get TikTok Trending Music, Get Shopee Products, Get Link Metadata.
 
 ---
 

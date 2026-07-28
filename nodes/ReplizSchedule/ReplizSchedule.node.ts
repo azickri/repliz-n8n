@@ -98,8 +98,8 @@ export class ReplizSchedule implements INodeType {
 				name: 'additionalInfoJson',
 				type: 'json',
 				displayOptions: { show: { operation: ['create', 'update'] } },
-				default: '{"isAiGenerated":false,"isDraft":false,"tags":[],"mentions":[],"collaborators":[],"products":[],"music":{},"link":""}',
-				description: 'Extra metadata: tags, mentions, collaborators, music, products, link',
+				default: '{"isAiGenerated":false,"isDraft":false,"isAutoAddMusic":false,"link":"","targetCountries":[],"tags":[],"mentions":[],"collaborators":[],"products":[],"music":{}}',
+				description: 'Extra metadata: isAutoAddMusic, link, targetCountries, tags, mentions, collaborators, music, products',
 			},
 			{
 				displayName: 'Replies (JSON)',

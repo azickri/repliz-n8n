@@ -25,6 +25,7 @@ export class ReplizAccount implements INodeType {
 					{ name: 'Count', value: 'count', description: 'Get account usage statistics per platform', action: 'Count accounts' },
 					{ name: 'Get', value: 'get', description: 'Retrieve detailed info of a specific account', action: 'Get an account' },
 					{ name: 'Get Statistics', value: 'getStatistic', description: 'Retrieve statistics for a specific account', action: 'Get account statistics' },
+					{ name: 'Update Automation', value: 'updateAutomation', description: 'Update content automation settings for a connected account', action: 'Update account automation' },
 					{ name: 'Delete', value: 'delete', description: 'Disconnect and remove an account', action: 'Delete an account' },
 				],
 				default: 'getAll',
@@ -79,15 +80,25 @@ export class ReplizAccount implements INodeType {
 					},
 				],
 			},
-			// Get / Delete / Get Statistics
+			// Get / Delete / Get Statistics / Update Automation
 			{
 				displayName: 'Account ID',
 				name: 'accountId',
 				type: 'string',
 				required: true,
-				displayOptions: { show: { operation: ['get', 'delete', 'getStatistic'] } },
+				displayOptions: { show: { operation: ['get', 'delete', 'getStatistic', 'updateAutomation'] } },
 				default: '',
 				description: 'The unique identifier of the account',
+			},
+			// Update Automation Config
+			{
+				displayName: 'Automation Config (JSON)',
+				name: 'configJson',
+				type: 'json',
+				required: true,
+				displayOptions: { show: { operation: ['updateAutomation'] } },
+				default: '{"delete":{},"reply":{},"like":{},"message":{},"chat":{},"story":{}}',
+				description: 'Automation configuration object including delete, reply, like, message, chat, and story rules',
 			},
 		],
 	};
@@ -123,6 +134,11 @@ export class ReplizAccount implements INodeType {
 				} else if (operation === 'getStatistic') {
 					const accountId = this.getNodeParameter('accountId', i) as string;
 					responseData = await replizApiRequest.call(this, 'GET', `/public/account/${accountId}/statistic`);
+				} else if (operation === 'updateAutomation') {
+					const accountId = this.getNodeParameter('accountId', i) as string;
+					const configRaw = this.getNodeParameter('configJson', i);
+					const config = typeof configRaw === 'string' ? JSON.parse(configRaw) : configRaw;
+					responseData = await replizApiRequest.call(this, 'PUT', `/public/account/${accountId}/automation`, config);
 				} else if (operation === 'delete') {
 					const accountId = this.getNodeParameter('accountId', i) as string;
 					responseData = await replizApiRequest.call(this, 'DELETE', `/public/account/${accountId}`);

@@ -29,11 +29,12 @@ export class ReplizAddon implements INodeType {
 				type: 'options',
 				noDataExpression: true,
 				options: [
+					{ name: 'Get Addon Allocation', value: 'getAddon', description: 'Retrieve current account addon allocation (accounts, operators, storage, twitter)', action: 'Get addon allocation' },
 					{ name: 'Get TikTok Trending Music', value: 'getTrendingMusic', description: 'Retrieve trending music tracks from TikTok by genre and country', action: 'Get TikTok trending music' },
 					{ name: 'Get Shopee Products', value: 'getShopeeProducts', description: 'Fetch product listings from a connected Shopee shop', action: 'Get Shopee products' },
 					{ name: 'Get Link Metadata', value: 'getLinkMetadata', description: 'Extract preview metadata (title, description, image) from a URL', action: 'Get link metadata' },
 				],
-				default: 'getTrendingMusic',
+				default: 'getAddon',
 			},
 			// TikTok Trending Music
 			{
@@ -112,7 +113,9 @@ export class ReplizAddon implements INodeType {
 				const operation = this.getNodeParameter('operation', i) as string;
 				let responseData: any;
 
-				if (operation === 'getTrendingMusic') {
+				if (operation === 'getAddon') {
+					responseData = await replizApiRequest.call(this, 'GET', '/public/me/addon');
+				} else if (operation === 'getTrendingMusic') {
 					const genre = this.getNodeParameter('genre', i) as string;
 					const countryCode = this.getNodeParameter('countryCode', i) as string;
 					const dateRange = this.getNodeParameter('dateRange', i) as string;

@@ -33,13 +33,16 @@
       "dist/nodes/ReplizAccountLinkedIn/ReplizAccountLinkedIn.node.js",
       "dist/nodes/ReplizAccountTikTok/ReplizAccountTikTok.node.js",
       "dist/nodes/ReplizAccountShopee/ReplizAccountShopee.node.js",
+      "dist/nodes/ReplizAccountTwitter/ReplizAccountTwitter.node.js",
       "dist/nodes/ReplizComment/ReplizComment.node.js",
       "dist/nodes/ReplizChat/ReplizChat.node.js",
       "dist/nodes/ReplizContent/ReplizContent.node.js",
       "dist/nodes/ReplizSchedule/ReplizSchedule.node.js",
       "dist/nodes/ReplizResearch/ReplizResearch.node.js",
       "dist/nodes/ReplizStorage/ReplizStorage.node.js",
-      "dist/nodes/ReplizAddon/ReplizAddon.node.js"
+      "dist/nodes/ReplizAddon/ReplizAddon.node.js",
+      "dist/nodes/ReplizReport/ReplizReport.node.js",
+      "dist/nodes/ReplizAutomation/ReplizAutomation.node.js"
     ]
   },
   "scripts": {
