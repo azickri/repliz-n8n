@@ -23,6 +23,7 @@ export class ReplizComment implements INodeType {
 				options: [
 					{ name: 'Get All', value: 'getAll', description: 'Retrieve all stored comments', action: 'Get all comments' },
 					{ name: 'Get', value: 'get', description: 'Retrieve detailed info of a specific comment', action: 'Get a comment' },
+					{ name: 'Delete', value: 'delete', description: 'Delete a comment from the platform', action: 'Delete a comment' },
 					{ name: 'Reply', value: 'reply', description: 'Send a reply to a stored comment on the original platform', action: 'Reply to comment' },
 					{ name: 'Update Status', value: 'updateStatus', description: 'Update comment status (pending, resolved, ignored)', action: 'Update comment status' },
 				],
@@ -83,13 +84,13 @@ export class ReplizComment implements INodeType {
 					},
 				],
 			},
-			// Get / Reply / Update Status
+			// Get / Delete / Reply / Update Status
 			{
 				displayName: 'Comment ID',
 				name: 'commentId',
 				type: 'string',
 				required: true,
-				displayOptions: { show: { operation: ['get', 'reply', 'updateStatus'] } },
+				displayOptions: { show: { operation: ['get', 'delete', 'reply', 'updateStatus'] } },
 				default: '',
 				description: 'The unique identifier of the comment',
 			},
@@ -149,6 +150,9 @@ export class ReplizComment implements INodeType {
 				} else if (operation === 'get') {
 					const commentId = this.getNodeParameter('commentId', i) as string;
 					responseData = await replizApiRequest.call(this, 'GET', `/public/comment/${commentId}`);
+				} else if (operation === 'delete') {
+					const commentId = this.getNodeParameter('commentId', i) as string;
+					responseData = await replizApiRequest.call(this, 'DELETE', `/public/comment/${commentId}`);
 				} else if (operation === 'reply') {
 					const commentId = this.getNodeParameter('commentId', i) as string;
 					const text = this.getNodeParameter('text', i) as string;

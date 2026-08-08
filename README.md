@@ -44,7 +44,7 @@ Connect and authenticate Twitter/X accounts. Operations: Authorize, Connect, Rec
 ### Comment & Chat
 
 **Repliz Comment** `Standard+`
-Manage and moderate comments collected by Repliz. Operations: Get All, Get, Reply, Update Status.
+Manage and moderate comments collected by Repliz. Operations: Get All, Get, Delete, Reply, Update Status.
 
 **Repliz Chat** `Gold+`
 Manage live chat conversations and messages. Operations: Get All, Get, Get Messages, Send Message, Mark as Read.

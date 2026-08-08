@@ -1839,6 +1839,46 @@
         "tags": [
           "API Comment (Standard+)"
         ]
+      },
+      "delete": {
+        "description": "\nDelete a comment from the platform.\n\nThis endpoint is used to remove a comment associated with the content on the social media platform.\nIt can be used for comment moderation or removing unwanted comments.\n\nParameters:\n- commentId (string) — The unique identifier of the comment\n\nResponse:\n- No content is returned on success (204 No Content)\n",
+        "operationId": "CommentController_removeComment",
+        "parameters": [
+          {
+            "name": "commentId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "example": "680affa5ce12f2f72916f67e",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 404,
+                  "message": "comment not found"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "summary": "API Remove Comment",
+        "tags": [
+          "API Comment (Standard+)"
+        ]
       }
     },
     "/public/comment/{commentId}/status": {
@@ -2499,7 +2539,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2026-07-28T02:13:45.399Z",
+              "example": "2026-08-08T01:15:59.847Z",
               "type": "string"
             }
           },
@@ -2509,7 +2549,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2026-07-28T02:13:45.399Z",
+              "example": "2026-08-08T01:15:59.847Z",
               "type": "string"
             }
           }
@@ -2717,7 +2757,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-07-28T02:13:45.408Z"
+                    "scheduleAt": "2026-08-08T01:15:59.854Z"
                   }
                 },
                 "image": {
@@ -2760,7 +2800,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-07-28T02:13:45.408Z"
+                    "scheduleAt": "2026-08-08T01:15:59.854Z"
                   }
                 },
                 "video": {
@@ -2803,7 +2843,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-07-28T02:13:45.408Z"
+                    "scheduleAt": "2026-08-08T01:15:59.854Z"
                   }
                 },
                 "reel": {
@@ -2846,7 +2886,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-07-28T02:13:45.408Z"
+                    "scheduleAt": "2026-08-08T01:15:59.854Z"
                   }
                 },
                 "album": {
@@ -2895,7 +2935,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-07-28T02:13:45.409Z"
+                    "scheduleAt": "2026-08-08T01:15:59.854Z"
                   }
                 },
                 "link": {
@@ -2938,7 +2978,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-07-28T02:13:45.409Z"
+                    "scheduleAt": "2026-08-08T01:15:59.854Z"
                   }
                 },
                 "story": {
@@ -2981,7 +3021,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-07-28T02:13:45.409Z"
+                    "scheduleAt": "2026-08-08T01:15:59.854Z"
                   }
                 },
                 "nested": {
@@ -3047,7 +3087,7 @@
                       }
                     ],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-07-28T02:13:45.409Z"
+                    "scheduleAt": "2026-08-08T01:15:59.854Z"
                   }
                 },
                 "template": {
@@ -3082,7 +3122,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-07-28T02:13:45.409Z",
+                    "scheduleAt": "2026-08-08T01:15:59.854Z",
                     "templateId": "680affa5ce12f2f72a16f67c"
                   }
                 },
@@ -3128,7 +3168,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-07-28T02:13:45.409Z"
+                    "scheduleAt": "2026-08-08T01:15:59.854Z"
                   }
                 },
                 "additionaoInfoMusic": {
@@ -3171,7 +3211,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-07-28T02:13:45.409Z"
+                    "scheduleAt": "2026-08-08T01:15:59.854Z"
                   }
                 },
                 "additionalInfoProduct": {
@@ -3222,7 +3262,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-07-28T02:13:45.409Z"
+                    "scheduleAt": "2026-08-08T01:15:59.854Z"
                   }
                 },
                 "additionalInfoTag": {
@@ -3268,7 +3308,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-07-28T02:13:45.409Z"
+                    "scheduleAt": "2026-08-08T01:15:59.854Z"
                   }
                 },
                 "additionalInfoMention": {
@@ -3313,7 +3353,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-07-28T02:13:45.409Z"
+                    "scheduleAt": "2026-08-08T01:15:59.854Z"
                   }
                 },
                 "additionaoInfoLink": {
@@ -3356,7 +3396,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-07-28T02:13:45.409Z"
+                    "scheduleAt": "2026-08-08T01:15:59.854Z"
                   }
                 },
                 "additionalInfoTargetCountries": {
@@ -3401,7 +3441,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-07-28T02:13:45.409Z"
+                    "scheduleAt": "2026-08-08T01:15:59.854Z"
                   }
                 }
               }
@@ -8932,7 +8972,7 @@
           "scheduleAt": {
             "format": "date-time",
             "type": "string",
-            "example": "2026-07-28T02:13:45.400Z"
+            "example": "2026-08-08T01:15:59.848Z"
           },
           "templateId": {
             "type": "string",
@@ -9001,7 +9041,7 @@
           "scheduleAt": {
             "format": "date-time",
             "type": "string",
-            "example": "2026-07-28T02:13:45.401Z"
+            "example": "2026-08-08T01:15:59.850Z"
           },
           "templateId": {
             "type": "string",
