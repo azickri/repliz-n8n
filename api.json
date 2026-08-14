@@ -2539,7 +2539,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2026-08-08T01:15:59.847Z",
+              "example": "2026-08-14T12:24:21.398Z",
               "type": "string"
             }
           },
@@ -2549,7 +2549,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2026-08-08T01:15:59.847Z",
+              "example": "2026-08-14T12:24:21.398Z",
               "type": "string"
             }
           }
@@ -2757,7 +2757,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-08T01:15:59.854Z"
+                    "scheduleAt": "2026-08-14T12:24:21.405Z"
                   }
                 },
                 "image": {
@@ -2800,7 +2800,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-08T01:15:59.854Z"
+                    "scheduleAt": "2026-08-14T12:24:21.405Z"
                   }
                 },
                 "video": {
@@ -2843,7 +2843,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-08T01:15:59.854Z"
+                    "scheduleAt": "2026-08-14T12:24:21.405Z"
                   }
                 },
                 "reel": {
@@ -2886,7 +2886,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-08T01:15:59.854Z"
+                    "scheduleAt": "2026-08-14T12:24:21.405Z"
                   }
                 },
                 "album": {
@@ -2935,7 +2935,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-08T01:15:59.854Z"
+                    "scheduleAt": "2026-08-14T12:24:21.405Z"
                   }
                 },
                 "link": {
@@ -2978,7 +2978,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-08T01:15:59.854Z"
+                    "scheduleAt": "2026-08-14T12:24:21.405Z"
                   }
                 },
                 "story": {
@@ -3021,7 +3021,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-08T01:15:59.854Z"
+                    "scheduleAt": "2026-08-14T12:24:21.405Z"
                   }
                 },
                 "nested": {
@@ -3087,7 +3087,7 @@
                       }
                     ],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-08T01:15:59.854Z"
+                    "scheduleAt": "2026-08-14T12:24:21.405Z"
                   }
                 },
                 "template": {
@@ -3122,7 +3122,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-08T01:15:59.854Z",
+                    "scheduleAt": "2026-08-14T12:24:21.405Z",
                     "templateId": "680affa5ce12f2f72a16f67c"
                   }
                 },
@@ -3168,7 +3168,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-08T01:15:59.854Z"
+                    "scheduleAt": "2026-08-14T12:24:21.405Z"
                   }
                 },
                 "additionaoInfoMusic": {
@@ -3211,7 +3211,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-08T01:15:59.854Z"
+                    "scheduleAt": "2026-08-14T12:24:21.405Z"
                   }
                 },
                 "additionalInfoProduct": {
@@ -3262,7 +3262,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-08T01:15:59.854Z"
+                    "scheduleAt": "2026-08-14T12:24:21.405Z"
                   }
                 },
                 "additionalInfoTag": {
@@ -3308,7 +3308,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-08T01:15:59.854Z"
+                    "scheduleAt": "2026-08-14T12:24:21.405Z"
                   }
                 },
                 "additionalInfoMention": {
@@ -3353,7 +3353,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-08T01:15:59.854Z"
+                    "scheduleAt": "2026-08-14T12:24:21.405Z"
                   }
                 },
                 "additionaoInfoLink": {
@@ -3396,7 +3396,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-08T01:15:59.854Z"
+                    "scheduleAt": "2026-08-14T12:24:21.405Z"
                   }
                 },
                 "additionalInfoTargetCountries": {
@@ -3441,7 +3441,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-08T01:15:59.854Z"
+                    "scheduleAt": "2026-08-14T12:24:21.405Z"
                   }
                 }
               }
@@ -5078,6 +5078,78 @@
           }
         ],
         "summary": "API Message Comment",
+        "tags": [
+          "API Content (Gold+)"
+        ]
+      }
+    },
+    "/public/content/{contentId}/like/{commentId}": {
+      "post": {
+        "description": "\nLike a comment on the platform.\n\nThis endpoint is used to add a like or reaction to a specific comment on the associated social media platform.\nThe action will be performed using the selected connected account.\n\nParameters:\n- contentId (string) — The unique identifier of the content containing the comment\n- commentId (string) — The unique identifier of the comment\n- accountId (string) — The account used to perform the like action\n\nResponse:\n- No content is returned on success (204 No Content)\n",
+        "operationId": "ContentController_likeComment",
+        "parameters": [
+          {
+            "name": "contentId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "example": "113958387982006_942538351814577",
+              "type": "string"
+            }
+          },
+          {
+            "name": "commentId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "example": "113958387982006",
+              "type": "string"
+            }
+          },
+          {
+            "name": "accountId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "example": "680affa5ce12f2f72916f67e",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "account": {
+                    "summary": "Account",
+                    "value": {
+                      "code": 404,
+                      "message": "account not found"
+                    }
+                  },
+                  "content": {
+                    "summary": "Comment",
+                    "value": {
+                      "code": 404,
+                      "message": "comment not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "summary": "API Like Comment",
         "tags": [
           "API Content (Gold+)"
         ]
@@ -8972,7 +9044,7 @@
           "scheduleAt": {
             "format": "date-time",
             "type": "string",
-            "example": "2026-08-08T01:15:59.848Z"
+            "example": "2026-08-14T12:24:21.398Z"
           },
           "templateId": {
             "type": "string",
@@ -9041,7 +9113,7 @@
           "scheduleAt": {
             "format": "date-time",
             "type": "string",
-            "example": "2026-08-08T01:15:59.850Z"
+            "example": "2026-08-14T12:24:21.399Z"
           },
           "templateId": {
             "type": "string",

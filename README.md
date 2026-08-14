@@ -54,7 +54,7 @@ Manage live chat conversations and messages. Operations: Get All, Get, Get Messa
 ### Content, Scheduling & Automation
 
 **Repliz Content** `Gold+`
-Retrieve and interact with published social media content. Operations: Get All, Get, Delete, Get Comments, Create Comment, Delete Comment, Get Statistics, Message Comment Author.
+Retrieve and interact with published social media content. Operations: Get All, Get, Delete, Get Comments, Create Comment, Delete Comment, Like Comment, Get Statistics, Message Comment Author.
 
 **Repliz Schedule** `Premium+`
 Create and manage scheduled posts across platforms.

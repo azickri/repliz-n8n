@@ -27,14 +27,15 @@ export class ReplizContent implements INodeType {
 					{ name: 'Get Comments', value: 'getComments', description: 'Retrieve all comments on a content post', action: 'Get content comments' },
 					{ name: 'Create Comment', value: 'createComment', description: 'Post a comment on a content item', action: 'Create content comment' },
 					{ name: 'Delete Comment', value: 'deleteComment', description: 'Delete a comment from a content item', action: 'Delete content comment' },
+					{ name: 'Like Comment', value: 'likeComment', description: 'Add a like to a specific comment on a content item', action: 'Like a comment' },
 					{ name: 'Get Statistics', value: 'getStatistics', description: 'Retrieve engagement statistics for a content item', action: 'Get content statistics' },
 					{ name: 'Message Comment Author', value: 'messageComment', description: 'Send a direct message to a comment author', action: 'Message comment author' },
 				],
 				default: 'getAll',
 			},
 			// Shared account + content IDs
-			{ displayName: 'Account ID', name: 'accountId', type: 'string', required: true, displayOptions: { show: { operation: ['getAll', 'get', 'delete', 'getComments', 'createComment', 'deleteComment', 'getStatistics', 'messageComment'] } }, default: '', description: 'The ID of the connected account to fetch content from' },
-			{ displayName: 'Content ID', name: 'contentId', type: 'string', required: true, displayOptions: { show: { operation: ['get', 'delete', 'getComments', 'createComment', 'deleteComment', 'getStatistics', 'messageComment'] } }, default: '', description: 'The unique identifier of the content item' },
+			{ displayName: 'Account ID', name: 'accountId', type: 'string', required: true, displayOptions: { show: { operation: ['getAll', 'get', 'delete', 'getComments', 'createComment', 'deleteComment', 'likeComment', 'getStatistics', 'messageComment'] } }, default: '', description: 'The ID of the connected account to fetch content from' },
+			{ displayName: 'Content ID', name: 'contentId', type: 'string', required: true, displayOptions: { show: { operation: ['get', 'delete', 'getComments', 'createComment', 'deleteComment', 'likeComment', 'getStatistics', 'messageComment'] } }, default: '', description: 'The unique identifier of the content item' },
 			// Get All
 			{ displayName: 'Content Type', name: 'contentType', type: 'string', displayOptions: { show: { operation: ['getAll'] } }, default: '', placeholder: 'e.g. video, image', description: 'Filter content by type (optional)' },
 			{ displayName: 'Next Token', name: 'nextToken', type: 'string', displayOptions: { show: { operation: ['getAll', 'getComments'] } }, default: '', description: 'Pagination cursor token from previous response' },
@@ -43,8 +44,8 @@ export class ReplizContent implements INodeType {
 			// Create Comment
 			{ displayName: 'Text', name: 'text', type: 'string', required: true, typeOptions: { rows: 3 }, displayOptions: { show: { operation: ['createComment'] } }, default: '', description: 'The text of the comment to post' },
 			{ displayName: 'Reply To Comment ID', name: 'replyToCommentId', type: 'string', displayOptions: { show: { operation: ['createComment'] } }, default: '', description: 'Optional: ID of the comment to reply to' },
-			// Delete Comment
-			{ displayName: 'Comment ID', name: 'commentId', type: 'string', required: true, displayOptions: { show: { operation: ['deleteComment'] } }, default: '', description: 'The unique identifier of the comment to delete' },
+			// Delete Comment / Like Comment
+			{ displayName: 'Comment ID', name: 'commentId', type: 'string', required: true, displayOptions: { show: { operation: ['deleteComment', 'likeComment'] } }, default: '', description: 'The unique identifier of the comment' },
 			// Message Comment Author
 			{ displayName: 'Target Comment ID', name: 'targetCommentId', type: 'string', required: true, displayOptions: { show: { operation: ['messageComment'] } }, default: '', description: 'ID of the comment whose author will receive the DM' },
 			{
@@ -122,6 +123,10 @@ export class ReplizContent implements INodeType {
 					const contentId = this.getNodeParameter('contentId', i) as string;
 					const commentId = this.getNodeParameter('commentId', i) as string;
 					responseData = await replizApiRequest.call(this, 'DELETE', `/public/content/${contentId}/comment/${commentId}`, {}, { accountId });
+				} else if (operation === 'likeComment') {
+					const contentId = this.getNodeParameter('contentId', i) as string;
+					const commentId = this.getNodeParameter('commentId', i) as string;
+					responseData = await replizApiRequest.call(this, 'POST', `/public/content/${contentId}/like/${commentId}`, {}, { accountId });
 				} else if (operation === 'getStatistics') {
 					const contentId = this.getNodeParameter('contentId', i) as string;
 					responseData = await replizApiRequest.call(this, 'GET', `/public/content/${contentId}/statistic`, {}, { accountId });
