@@ -117,11 +117,11 @@ npm install n8n-nodes-repliz
 
 All nodes require a **Repliz API** credential with the following fields:
 
-| Field | Required | Description |
-|---|---|---|
-| Access Key | Yes | Your Repliz API access key |
-| Secret Key | Yes | Your Repliz API secret key |
-| API Base URL | No | Defaults to `https://api.repliz.com` |
+| Field        | Required | Description                          |
+| ------------ | -------- | ------------------------------------ |
+| Access Key   | Yes      | Your Repliz API access key           |
+| Secret Key   | Yes      | Your Repliz API secret key           |
+| API Base URL | No       | Defaults to `https://api.repliz.com` |
 
 To obtain your API keys, log in to your Repliz dashboard and navigate to **Settings > API**.
 
@@ -134,6 +134,7 @@ To obtain your API keys, log in to your Repliz dashboard and navigate to **Setti
 The **Create** and **Update** operations on `Repliz Schedule` accept several JSON fields:
 
 **Medias** — Array of media objects to attach:
+
 ```json
 [
   {
@@ -146,6 +147,7 @@ The **Create** and **Update** operations on `Repliz Schedule` accept several JSO
 ```
 
 **Replies** — Array of auto-comments to post after publishing:
+
 ```json
 [
   {
@@ -156,6 +158,7 @@ The **Create** and **Update** operations on `Repliz Schedule` accept several JSO
 ```
 
 **Additional Info** — Tags, mentions, music, products, and collaborators:
+
 ```json
 {
   "isAiGenerated": false,
