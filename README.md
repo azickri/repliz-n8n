@@ -8,7 +8,7 @@ Repliz is a social media management platform that centralizes comment moderation
 
 ## Nodes
 
-This package provides 18 nodes, each mapped to a specific Repliz API group:
+This package provides 19 nodes, each mapped to a specific Repliz API group:
 
 ### Account Management
 
@@ -64,6 +64,9 @@ Supported post types: Text, Image, Video, Reel, Album, Link, Story.
 
 **Repliz Automation** `Gold+`
 Create and manage content automation rules. Operations: Get All, Create, Get, Update, Delete.
+
+**Repliz Template Automation** `Gold+`
+Create and manage reusable automation templates. Operations: Get All, Create, Get, Update, Delete.
 
 ---
 
