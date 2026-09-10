@@ -167,7 +167,13 @@ The **Create** and **Update** operations on `Repliz Schedule` accept several JSO
   "mentions": ["replizofficial"],
   "collaborators": [],
   "products": [],
-  "music": { "id": "", "artist": "", "name": "", "thumbnail": "" },
+  "music": {
+    "id": "",
+    "artist": "",
+    "name": "",
+    "thumbnail": "",
+    "volume": { "video": 50, "music": 100 }
+  },
   "link": ""
 }
 ```

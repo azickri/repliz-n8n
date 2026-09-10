@@ -1686,7 +1686,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2026-08-28T06:51:18.355Z",
+              "example": "2026-09-10T04:20:30.671Z",
               "type": "string"
             }
           },
@@ -1696,7 +1696,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2026-08-28T06:51:18.355Z",
+              "example": "2026-09-10T04:20:30.671Z",
               "type": "string"
             }
           }
@@ -1746,6 +1746,24 @@
                           "status": "pending"
                         }
                       ],
+                      "additionalInfo": {
+                        "isAiGenerated": false,
+                        "isDraft": false,
+                        "isAutoAddMusic": false,
+                        "collaborators": [],
+                        "music": {
+                          "id": "7602104441417107457",
+                          "artist": "CHAYRA",
+                          "name": "Mudik Raya",
+                          "thumbnail": "https://p16-sg.tiktokcdn.com/aweme/100x100/tos-alisg-v-2774/oYAl1dJBDECv7BjbCUFAQVZyeBfEpABEEVgntg.jpeg",
+                          "volume": { "video": 50, "music": 100 }
+                        },
+                        "products": [],
+                        "tags": [],
+                        "mentions": [],
+                        "link": "",
+                        "targetCountries": []
+                      },
                       "accountId": "69686c4c41ec8ac5117c8929",
                       "userId": "6879b98097fc8c8a78d1d4c1",
                       "createdAt": "2026-03-28T04:03:59.523Z",
@@ -1884,7 +1902,8 @@
                         "id": "",
                         "artist": "",
                         "name": "",
-                        "thumbnail": ""
+                        "thumbnail": "",
+                        "volume": { "video": 50, "music": 100 }
                       },
                       "products": [],
                       "tags": [],
@@ -1894,7 +1913,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-28T06:51:18.358Z"
+                    "scheduleAt": "2026-09-10T04:20:30.683Z"
                   }
                 },
                 "image": {
@@ -1923,7 +1942,8 @@
                         "id": "",
                         "artist": "",
                         "name": "",
-                        "thumbnail": ""
+                        "thumbnail": "",
+                        "volume": { "video": 50, "music": 100 }
                       },
                       "products": [],
                       "tags": [],
@@ -1933,7 +1953,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-28T06:51:18.358Z"
+                    "scheduleAt": "2026-09-10T04:20:30.683Z"
                   }
                 },
                 "video": {
@@ -1962,7 +1982,8 @@
                         "id": "",
                         "artist": "",
                         "name": "",
-                        "thumbnail": ""
+                        "thumbnail": "",
+                        "volume": { "video": 50, "music": 100 }
                       },
                       "products": [],
                       "tags": [],
@@ -1972,7 +1993,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-28T06:51:18.358Z"
+                    "scheduleAt": "2026-09-10T04:20:30.683Z"
                   }
                 },
                 "reel": {
@@ -2001,7 +2022,8 @@
                         "id": "",
                         "artist": "",
                         "name": "",
-                        "thumbnail": ""
+                        "thumbnail": "",
+                        "volume": { "video": 50, "music": 100 }
                       },
                       "products": [],
                       "tags": [],
@@ -2011,7 +2033,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-28T06:51:18.358Z"
+                    "scheduleAt": "2026-09-10T04:20:30.683Z"
                   }
                 },
                 "album": {
@@ -2046,7 +2068,8 @@
                         "id": "",
                         "artist": "",
                         "name": "",
-                        "thumbnail": ""
+                        "thumbnail": "",
+                        "volume": { "video": 50, "music": 100 }
                       },
                       "products": [],
                       "tags": [],
@@ -2056,7 +2079,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-28T06:51:18.358Z"
+                    "scheduleAt": "2026-09-10T04:20:30.683Z"
                   }
                 },
                 "link": {
@@ -2089,7 +2112,8 @@
                         "id": "",
                         "artist": "",
                         "name": "",
-                        "thumbnail": ""
+                        "thumbnail": "",
+                        "volume": { "video": 50, "music": 100 }
                       },
                       "products": [],
                       "tags": [],
@@ -2099,7 +2123,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-28T06:51:18.358Z"
+                    "scheduleAt": "2026-09-10T04:20:30.683Z"
                   }
                 },
                 "story": {
@@ -2128,7 +2152,8 @@
                         "id": "",
                         "artist": "",
                         "name": "",
-                        "thumbnail": ""
+                        "thumbnail": "",
+                        "volume": { "video": 50, "music": 100 }
                       },
                       "products": [],
                       "tags": [],
@@ -2138,7 +2163,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-28T06:51:18.358Z"
+                    "scheduleAt": "2026-09-10T04:20:30.683Z"
                   }
                 },
                 "nested": {
@@ -2159,7 +2184,8 @@
                         "id": "",
                         "artist": "",
                         "name": "",
-                        "thumbnail": ""
+                        "thumbnail": "",
+                        "volume": { "video": 50, "music": 100 }
                       },
                       "products": [],
                       "tags": [],
@@ -2200,7 +2226,7 @@
                       }
                     ],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-28T06:51:18.358Z"
+                    "scheduleAt": "2026-09-10T04:20:30.683Z"
                   }
                 },
                 "template": {
@@ -2221,7 +2247,8 @@
                         "id": "",
                         "artist": "",
                         "name": "",
-                        "thumbnail": ""
+                        "thumbnail": "",
+                        "volume": { "video": 50, "music": 100 }
                       },
                       "products": [],
                       "tags": [],
@@ -2231,7 +2258,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-28T06:51:18.358Z",
+                    "scheduleAt": "2026-09-10T04:20:30.683Z",
                     "templateId": "680affa5ce12f2f72a16f67c"
                   }
                 },
@@ -2261,7 +2288,8 @@
                         "id": "",
                         "artist": "",
                         "name": "",
-                        "thumbnail": ""
+                        "thumbnail": "",
+                        "volume": { "video": 50, "music": 100 }
                       },
                       "products": [],
                       "tags": [],
@@ -2271,7 +2299,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-28T06:51:18.358Z"
+                    "scheduleAt": "2026-09-10T04:20:30.683Z"
                   }
                 },
                 "additionaoInfoMusic": {
@@ -2300,7 +2328,8 @@
                         "id": "7602104441417107457",
                         "artist": "CHAYRA",
                         "name": "Mudik Raya",
-                        "thumbnail": "https://p16-sg.tiktokcdn.com/aweme/100x100/tos-alisg-v-2774/oYAl1dJBDECv7BjbCUFAQVZyeBfEpABEEVgntg.jpeg"
+                        "thumbnail": "https://p16-sg.tiktokcdn.com/aweme/100x100/tos-alisg-v-2774/oYAl1dJBDECv7BjbCUFAQVZyeBfEpABEEVgntg.jpeg",
+                        "volume": { "video": 50, "music": 100 }
                       },
                       "products": [],
                       "tags": [],
@@ -2310,7 +2339,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-28T06:51:18.358Z"
+                    "scheduleAt": "2026-09-10T04:20:30.683Z"
                   }
                 },
                 "additionalInfoProduct": {
@@ -2339,7 +2368,8 @@
                         "id": "",
                         "artist": "",
                         "name": "",
-                        "thumbnail": ""
+                        "thumbnail": "",
+                        "volume": { "video": 50, "music": 100 }
                       },
                       "products": [
                         {
@@ -2357,7 +2387,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-28T06:51:18.358Z"
+                    "scheduleAt": "2026-09-10T04:20:30.683Z"
                   }
                 },
                 "additionalInfoTag": {
@@ -2386,7 +2416,8 @@
                         "id": "",
                         "artist": "",
                         "name": "",
-                        "thumbnail": ""
+                        "thumbnail": "",
+                        "volume": { "video": 50, "music": 100 }
                       },
                       "products": [],
                       "tags": ["AI YouTube", "AI Trend 2026"],
@@ -2396,7 +2427,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-28T06:51:18.358Z"
+                    "scheduleAt": "2026-09-10T04:20:30.683Z"
                   }
                 },
                 "additionalInfoMention": {
@@ -2425,7 +2456,8 @@
                         "id": "",
                         "artist": "",
                         "name": "",
-                        "thumbnail": ""
+                        "thumbnail": "",
+                        "volume": { "video": 50, "music": 100 }
                       },
                       "products": [],
                       "tags": [],
@@ -2435,7 +2467,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-28T06:51:18.358Z"
+                    "scheduleAt": "2026-09-10T04:20:30.683Z"
                   }
                 },
                 "additionaoInfoLink": {
@@ -2464,7 +2496,8 @@
                         "id": "",
                         "artist": "",
                         "name": "",
-                        "thumbnail": ""
+                        "thumbnail": "",
+                        "volume": { "video": 50, "music": 100 }
                       },
                       "products": [],
                       "tags": [],
@@ -2474,7 +2507,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-28T06:51:18.358Z"
+                    "scheduleAt": "2026-09-10T04:20:30.683Z"
                   }
                 },
                 "additionalInfoTargetCountries": {
@@ -2503,7 +2536,8 @@
                         "id": "",
                         "artist": "",
                         "name": "",
-                        "thumbnail": ""
+                        "thumbnail": "",
+                        "volume": { "video": 50, "music": 100 }
                       },
                       "products": [],
                       "tags": [],
@@ -2513,7 +2547,7 @@
                     },
                     "replies": [],
                     "accountId": "680affa5ce12f2f72916f67e",
-                    "scheduleAt": "2026-08-28T06:51:18.358Z"
+                    "scheduleAt": "2026-09-10T04:20:30.683Z"
                   }
                 }
               }
@@ -2610,6 +2644,24 @@
                       "status": "pending"
                     }
                   ],
+                  "additionalInfo": {
+                    "isAiGenerated": false,
+                    "isDraft": false,
+                    "isAutoAddMusic": false,
+                    "collaborators": [],
+                    "music": {
+                      "id": "7602104441417107457",
+                      "artist": "CHAYRA",
+                      "name": "Mudik Raya",
+                      "thumbnail": "https://p16-sg.tiktokcdn.com/aweme/100x100/tos-alisg-v-2774/oYAl1dJBDECv7BjbCUFAQVZyeBfEpABEEVgntg.jpeg",
+                      "volume": { "video": 50, "music": 100 }
+                    },
+                    "products": [],
+                    "tags": [],
+                    "mentions": [],
+                    "link": "",
+                    "targetCountries": []
+                  },
                   "accountId": "69686c4c41ec8ac5117c8929",
                   "userId": "6879b98097fc8c8a78d1d4c1",
                   "createdAt": "2026-03-28T04:03:59.523Z",
@@ -5308,7 +5360,7 @@
             "description": "",
             "content": {
               "application/json": {
-                "example": { "templateId": "6a912e6c8133bfb870b220d3" }
+                "example": { "_id": "6a912e6c8133bfb870b220d3" }
               }
             }
           }
@@ -7299,6 +7351,14 @@
         },
         "required": ["title", "description", "url"]
       },
+      "ScheduleAdditionalInfoMusicVolume": {
+        "type": "object",
+        "properties": {
+          "video": { "type": "number", "example": 50 },
+          "music": { "type": "number", "example": 100 }
+        },
+        "required": ["video", "music"]
+      },
       "ScheduleAdditionalInfoMusic": {
         "type": "object",
         "properties": {
@@ -7311,9 +7371,12 @@
           "thumbnail": {
             "type": "string",
             "example": "https://p16-sg.tiktokcdn.com/aweme/100x100/tos-alisg-v-2774/ocTKEQKXXDCpsoAcArF9BZpABtfgwBEQEVfxCE.jpeg"
+          },
+          "volume": {
+            "$ref": "#/components/schemas/ScheduleAdditionalInfoMusicVolume"
           }
         },
-        "required": ["id", "artist", "name", "thumbnail"]
+        "required": ["id", "artist", "name", "thumbnail", "volume"]
       },
       "ScheduleAdditionalProduct": {
         "type": "object",
@@ -7440,7 +7503,7 @@
           "scheduleAt": {
             "format": "date-time",
             "type": "string",
-            "example": "2026-08-28T06:51:18.355Z"
+            "example": "2026-09-10T04:20:30.671Z"
           },
           "templateId": {
             "type": "string",
@@ -7489,7 +7552,7 @@
           "scheduleAt": {
             "format": "date-time",
             "type": "string",
-            "example": "2026-08-28T06:51:18.355Z"
+            "example": "2026-09-10T04:20:30.675Z"
           },
           "templateId": {
             "type": "string",

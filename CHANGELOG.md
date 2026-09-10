@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.14] - 2026-09-10
+
+### Added
+
+- **Repliz Schedule**: Added `volume` (`video`, `music`) object field to `additionalInfo.music`.
+- Updated OpenAPI specification (`api.json`) schemas, request examples, and response examples to include `additionalInfo.music.volume`.
+
 ## [1.0.13] - 2026-08-28
 
 ### Added
