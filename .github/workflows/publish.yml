@@ -25,24 +25,28 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Check if version already published
-        id: check
-        run: |
-          PACKAGE_VERSION=$(node -p "require('./package.json').version")
-          echo "version=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
-          PUBLISHED=$(npm view n8n-nodes-repliz@$PACKAGE_VERSION version 2>/dev/null || echo "")
-          if [ "$PUBLISHED" = "$PACKAGE_VERSION" ]; then
-            echo "skip=true" >> $GITHUB_OUTPUT
-            echo "Version $PACKAGE_VERSION already published, skipping."
-          else
-            echo "skip=false" >> $GITHUB_OUTPUT
-            echo "Version $PACKAGE_VERSION not yet published, will publish."
-          fi
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Publish to NPM
-        if: steps.check.outputs.skip == 'false'
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # =========================================================================
+      # Automated publish to NPM is disabled (publish is performed manually via CLI).
+      # See PUBLISHING.md for manual publishing instructions.
+      # =========================================================================
+      # - name: Check if version already published
+      #   id: check
+      #   run: |
+      #     PACKAGE_VERSION=$(node -p "require('./package.json').version")
+      #     echo "version=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
+      #     PUBLISHED=$(npm view n8n-nodes-repliz@$PACKAGE_VERSION version 2>/dev/null || echo "")
+      #     if [ "$PUBLISHED" = "$PACKAGE_VERSION" ]; then
+      #       echo "skip=true" >> $GITHUB_OUTPUT
+      #       echo "Version $PACKAGE_VERSION already published, skipping."
+      #     else
+      #       echo "skip=false" >> $GITHUB_OUTPUT
+      #       echo "Version $PACKAGE_VERSION not yet published, will publish."
+      #     fi
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      #
+      # - name: Publish to NPM
+      #   if: steps.check.outputs.skip == 'false'
+      #   run: npm publish --access public
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -74,7 +74,7 @@ Create and manage reusable automation templates. Operations: Get All, Create, Ge
 
 **Repliz Research** `Gold+`
 Discover and analyze social media content and profiles from external accounts. Useful for competitor research, trend monitoring, and audience insights.
-Operations: Search Threads Content by Keyword, Search Threads Content by User, Search Threads User.
+Operations: Search Threads Content by Keyword (with sort, mode, media type, date range, and author filters), Search Threads Content by User, Search Threads User.
 
 **Repliz Report** `Gold+`
 View and retry background job execution reports. Operations: Get All, Get, Retry.
@@ -196,6 +196,12 @@ npm link
 # In your n8n directory:
 npm link n8n-nodes-repliz
 ```
+
+---
+
+## Publishing
+
+Untuk panduan cara mempublikasikan versi baru package ke NPM secara manual, silakan baca [PUBLISHING.md](PUBLISHING.md).
 
 ---
 
