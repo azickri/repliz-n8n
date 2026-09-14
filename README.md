@@ -157,12 +157,13 @@ The **Create** and **Update** operations on `Repliz Schedule` accept several JSO
 ]
 ```
 
-**Additional Info** — Tags, mentions, music, products, and collaborators:
+**Additional Info** — Tags, mentions, music, products, collaborators, and Instagram share-to-feed option:
 
 ```json
 {
   "isAiGenerated": false,
   "isDraft": false,
+  "isShareToFeed": false,
   "tags": ["marketing"],
   "mentions": ["replizofficial"],
   "collaborators": [],

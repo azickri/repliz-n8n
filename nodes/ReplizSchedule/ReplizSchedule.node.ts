@@ -224,6 +224,20 @@ export class ReplizSchedule implements INodeType {
         description: 'The type of post to publish',
       },
       {
+        displayName: 'Share to Feed (Instagram)',
+        name: 'isShareToFeed',
+        type: 'boolean',
+        displayOptions: {
+          show: {
+            operation: ['create', 'update'],
+            postType: ['video'],
+          },
+        },
+        default: false,
+        description:
+          'Whether to share the video to Instagram feed. Specifically applies to Instagram schedules with post type video.',
+      },
+      {
         displayName: 'Template ID',
         name: 'templateId',
         type: 'string',
@@ -257,7 +271,7 @@ export class ReplizSchedule implements INodeType {
         default:
           '{"isAiGenerated":false,"isDraft":false,"isAutoAddMusic":false,"link":"","targetCountries":[],"tags":[],"mentions":[],"collaborators":[],"products":[],"music":{}}',
         description:
-          'Extra metadata: isAutoAddMusic, link, targetCountries, tags, mentions, collaborators, music (with volume: video, music), products',
+          'Extra metadata: isAutoAddMusic, isShareToFeed (Instagram video), link, targetCountries, tags, mentions, collaborators, music (with volume: video, music), products',
       },
       {
         displayName: 'Replies (JSON)',
@@ -341,11 +355,20 @@ export class ReplizSchedule implements INodeType {
           const additionalInfo =
             typeof additionalInfoRaw === 'string'
               ? JSON.parse(additionalInfoRaw)
-              : additionalInfoRaw;
+              : additionalInfoRaw || {};
           const replies =
             typeof repliesRaw === 'string'
               ? JSON.parse(repliesRaw)
               : repliesRaw;
+
+          if (type === 'video') {
+            const isShareToFeed = this.getNodeParameter(
+              'isShareToFeed',
+              i,
+              false,
+            ) as boolean;
+            additionalInfo.isShareToFeed = isShareToFeed;
+          }
 
           const body: any = {
             scheduleAt,
