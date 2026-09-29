@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.18] - 2026-09-29
+
+### Added
+
+- **Repliz Account WhatsApp** node (`API Account WhatsApp` Gold+), connecting WhatsApp via QR code session:
+  - `Create Session`: Create a new WhatsApp session (`POST /public/account/whatsapp/session`).
+  - `Get Session`: Get session status and the latest QR code (`GET /public/account/whatsapp/session`).
+  - `Get Channels`: Retrieve available WhatsApp accounts, channels, and groups for a session (`GET /public/account/whatsapp/channel`).
+  - `Connect`: Connect a WhatsApp account, channel, or group (`POST /public/account/whatsapp/connect`).
+  - `Reconnect`: Re-authenticate an existing WhatsApp account (`POST /public/account/whatsapp/connect/{accountId}`).
+- Added WhatsApp endpoints and `BodyConnectWhatsAppDTO` schema to `api.json`.
+- Documented the WhatsApp QR code connection flow in `README.md`.
+
 ## [1.0.17] - 2026-09-14
 
 ### Added

@@ -8,7 +8,7 @@ Repliz is a social media management platform that centralizes comment moderation
 
 ## Nodes
 
-This package provides 19 nodes, each mapped to a specific Repliz API group:
+This package provides 20 nodes, each mapped to a specific Repliz API group:
 
 ### Account Management
 
@@ -38,6 +38,9 @@ Connect and authenticate Shopee shops. Operations: Authorize, Connect, Reconnect
 
 **Repliz Account Twitter** `Gold+`
 Connect and authenticate Twitter/X accounts. Operations: Authorize, Connect, Reconnect.
+
+**Repliz Account WhatsApp** `Gold+`
+Connect and authenticate WhatsApp accounts, channels, and groups via QR code. Operations: Create Session, Get Session, Get Channels, Connect, Reconnect.
 
 ---
 
@@ -178,6 +181,15 @@ The **Create** and **Update** operations on `Repliz Schedule` accept several JSO
   "link": ""
 }
 ```
+
+### WhatsApp — QR Code Connection Flow
+
+WhatsApp uses a QR code session instead of an OAuth redirect. Build the flow with `Repliz Account WhatsApp`:
+
+1. **Create Session** — creates a new session and returns `{ "token": "..." }`. This session token is used by every following step.
+2. **Get Session** — poll this (e.g. `Wait` + `IF` loop) with the session token to get the latest `qrcode` (base64 PNG) until `isConnected` is `true`. Scan the QR code from WhatsApp > Linked Devices. Use n8n's `Convert to File` node to turn `qrcode` into an image.
+3. **Get Channels** — list the accounts, channels, and groups available in the session. Each item includes `id` and `token`.
+4. **Connect** / **Reconnect** — pass the chosen item's `id` as `Channel ID` and the session token as `Session Token`. Use Reconnect with the existing Repliz `Account ID` to re-authenticate an account.
 
 ---
 
