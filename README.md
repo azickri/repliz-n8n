@@ -40,7 +40,7 @@ Connect and authenticate Shopee shops. Operations: Authorize, Connect, Reconnect
 Connect and authenticate Twitter/X accounts. Operations: Authorize, Connect, Reconnect.
 
 **Repliz Account WhatsApp** `Gold+`
-Connect and authenticate WhatsApp accounts, channels, and groups via QR code. Operations: Create Session, Get Session, Get Channels, Connect, Reconnect.
+Connect and authenticate WhatsApp accounts via QR code. Operations: Create Session, Get Session, Connect, Reconnect.
 
 ---
 
@@ -95,7 +95,7 @@ Operations: Get Statistics, Get All Files, Get File, Delete File, Initialize Upl
 ### Addons
 
 **Repliz Addon** `Premium+`
-Access premium platform features. Operations: Get Addon Allocation, Get TikTok Trending Music, Get Shopee Products, Get Link Metadata.
+Access premium platform features. Operations: Get Addon Allocation, Get TikTok Trending Music, Get Shopee Products, Get WhatsApp Channels, Get Link Metadata.
 
 ---
 
@@ -182,14 +182,26 @@ The **Create** and **Update** operations on `Repliz Schedule` accept several JSO
 }
 ```
 
+**WhatsApp Channel** — WhatsApp schedules only (Text, Image, Video). Pass an item from `Repliz Addon` → **Get WhatsApp Channels** to post to that channel or group; it is sent as `additionalInfo.channel`. Leave it `{}` to post as a WhatsApp Status. To post to several channels or groups, create one schedule per item (e.g. `Split Out` the `docs` field first).
+
+```json
+{
+  "id": "120363413774168194@newsletter",
+  "name": "Boom",
+  "picture": "https://pps.whatsapp.net/...",
+  "type": "channel"
+}
+```
+
 ### WhatsApp — QR Code Connection Flow
 
 WhatsApp uses a QR code session instead of an OAuth redirect. Build the flow with `Repliz Account WhatsApp`:
 
 1. **Create Session** — creates a new session and returns `{ "token": "..." }`. This session token is used by every following step.
-2. **Get Session** — poll this (e.g. `Wait` + `IF` loop) with the session token to get the latest `qrcode` (base64 PNG) until `isConnected` is `true`. Scan the QR code from WhatsApp > Linked Devices. Use n8n's `Convert to File` node to turn `qrcode` into an image.
-3. **Get Channels** — list the accounts, channels, and groups available in the session. Each item includes `id` and `token`.
-4. **Connect** / **Reconnect** — pass the chosen item's `id` as `Channel ID` and the session token as `Session Token`. Use Reconnect with the existing Repliz `Account ID` to re-authenticate an account.
+2. **Get Session** (loop) — call it with the session token, then `IF` `isConnected` is `true` go to step 3, otherwise `Wait` a few seconds and run Get Session again. Each run returns the latest `qrcode` (base64 PNG) to scan from WhatsApp > Linked Devices; use n8n's `Convert to File` node to turn it into an image. Cap the number of loops and start a new session if it never connects.
+3. **Connect** / **Reconnect** — pass the session token. Connect returns `{ "accountId": "..." }`. Reconnect re-authenticates an existing Repliz `Account ID`; the scanned WhatsApp number must be the same one.
+
+Channels and groups are not connected as separate accounts. To post to one, use the **WhatsApp Channel** field of `Repliz Schedule` (see above).
 
 ---
 

@@ -17,7 +17,7 @@ export class ReplizAddon implements INodeType {
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"]}}',
-		description: 'Access premium Repliz addons: TikTok trending music, Shopee products, and link metadata (Premium+)',
+		description: 'Access premium Repliz addons: TikTok trending music, Shopee products, WhatsApp channels, and link metadata (Premium+)',
 		defaults: { name: 'Repliz Addon' },
 		inputs: ['main'],
 		outputs: ['main'],
@@ -32,6 +32,7 @@ export class ReplizAddon implements INodeType {
 					{ name: 'Get Addon Allocation', value: 'getAddon', description: 'Retrieve current account addon allocation (accounts, operators, storage, twitter)', action: 'Get addon allocation' },
 					{ name: 'Get TikTok Trending Music', value: 'getTrendingMusic', description: 'Retrieve trending music tracks from TikTok by genre and country', action: 'Get TikTok trending music' },
 					{ name: 'Get Shopee Products', value: 'getShopeeProducts', description: 'Fetch product listings from a connected Shopee shop', action: 'Get Shopee products' },
+					{ name: 'Get WhatsApp Channels', value: 'getWhatsAppChannels', description: 'Retrieve the channels and groups of a connected WhatsApp account, used as the schedule WhatsApp Channel', action: 'Get WhatsApp channels' },
 					{ name: 'Get Link Metadata', value: 'getLinkMetadata', description: 'Extract preview metadata (title, description, image) from a URL', action: 'Get link metadata' },
 				],
 				default: 'getAddon',
@@ -90,6 +91,16 @@ export class ReplizAddon implements INodeType {
 				default: '',
 				description: 'Pagination cursor from a previous response to fetch the next page',
 			},
+			// WhatsApp Channels
+			{
+				displayName: 'Account ID',
+				name: 'accountId',
+				type: 'string',
+				required: true,
+				displayOptions: { show: { operation: ['getWhatsAppChannels'] } },
+				default: '',
+				description: 'The Repliz account ID of the connected WhatsApp account',
+			},
 			// Link Metadata
 			{
 				displayName: 'URL',
@@ -119,16 +130,19 @@ export class ReplizAddon implements INodeType {
 					const genre = this.getNodeParameter('genre', i) as string;
 					const countryCode = this.getNodeParameter('countryCode', i) as string;
 					const dateRange = this.getNodeParameter('dateRange', i) as string;
-					responseData = await replizApiRequest.call(this, 'GET', '/public/tiktok/music', {}, { genre, countryCode, dateRange });
+					responseData = await replizApiRequest.call(this, 'GET', '/public/addon/tiktok/music', {}, { genre, countryCode, dateRange });
 				} else if (operation === 'getShopeeProducts') {
 					const accountId = this.getNodeParameter('accountId', i) as string;
 					const nextToken = this.getNodeParameter('nextToken', i) as string;
 					const qs: any = { accountId };
 					if (nextToken) qs.nextToken = nextToken;
-					responseData = await replizApiRequest.call(this, 'GET', '/public/shopee/product', {}, qs);
+					responseData = await replizApiRequest.call(this, 'GET', '/public/addon/shopee/product', {}, qs);
+				} else if (operation === 'getWhatsAppChannels') {
+					const accountId = this.getNodeParameter('accountId', i) as string;
+					responseData = await replizApiRequest.call(this, 'GET', '/public/addon/whatsapp/channel', {}, { accountId });
 				} else if (operation === 'getLinkMetadata') {
 					const url = this.getNodeParameter('url', i) as string;
-					responseData = await replizApiRequest.call(this, 'GET', '/public/link/metadata', {}, { url });
+					responseData = await replizApiRequest.call(this, 'GET', '/public/addon/link/metadata', {}, { url });
 				}
 
 				returnData.push(...this.helpers.returnJsonArray(responseData));

@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.19] - 2026-10-05
+
+### Added
+
+- **Repliz Addon**: `Get WhatsApp Channels` operation (`GET /public/addon/whatsapp/channel`) to list the channels and groups of a connected WhatsApp account.
+- **Repliz Schedule**: `WhatsApp Channel (JSON)` field (`additionalInfo.channel`) to post to a WhatsApp channel or group. Leave it empty to post as a WhatsApp Status.
+
+### Changed
+
+- **Repliz Account WhatsApp**: Connection flow is now `Create Session` → loop `Get Session` until `isConnected` → `Connect` / `Reconnect`. The connected account is the WhatsApp number; channels and groups are chosen per schedule.
+  - `Connect` (`POST /public/account/whatsapp/connect`) and `Reconnect` (`POST /public/account/whatsapp/connect/{accountId}`) only take the session token. `Connect` returns `{ accountId }`.
+- **Repliz Addon**: Endpoints moved under `/public/addon`: `/public/addon/tiktok/music`, `/public/addon/shopee/product`, `/public/addon/link/metadata`.
+- Regenerated `api.json` from the Repliz public API.
+
+### Removed
+
+- **Repliz Account WhatsApp**: `Get Channels` operation (`GET /public/account/whatsapp/channel`) and the `Channel ID` parameter of `Connect` / `Reconnect`.
+
 ## [1.0.18] - 2026-09-29
 
 ### Added

@@ -238,6 +238,20 @@ export class ReplizSchedule implements INodeType {
           'Whether to share the video to Instagram feed. Specifically applies to Instagram schedules with post type video.',
       },
       {
+        displayName: 'WhatsApp Channel (JSON)',
+        name: 'channelJson',
+        type: 'json',
+        displayOptions: {
+          show: {
+            operation: ['create', 'update'],
+            postType: ['text', 'image', 'video'],
+          },
+        },
+        default: '{}',
+        description:
+          'Specifically applies to WhatsApp schedules. The channel or group to post to, as returned by Repliz Addon > Get WhatsApp Channels: { "id": "...", "name": "...", "picture": "...", "type": "channel"|"group" }. Sent as additionalInfo.channel. Leave {} to post as WhatsApp Status.',
+      },
+      {
         displayName: 'Template ID',
         name: 'templateId',
         type: 'string',
@@ -368,6 +382,24 @@ export class ReplizSchedule implements INodeType {
               false,
             ) as boolean;
             additionalInfo.isShareToFeed = isShareToFeed;
+          }
+
+          if (['text', 'image', 'video'].includes(type)) {
+            const channelRaw = this.getNodeParameter('channelJson', i, '{}');
+            const channel =
+              typeof channelRaw === 'string'
+                ? JSON.parse(channelRaw || '{}')
+                : channelRaw;
+            if (channel?.id) {
+              additionalInfo.channel = {
+                id: channel.id,
+                name: channel.name || '',
+                picture: channel.picture || '',
+                type:
+                  channel.type ||
+                  (channel.id.endsWith('@g.us') ? 'group' : 'channel'),
+              };
+            }
           }
 
           const body: any = {
