@@ -8,7 +8,7 @@ Repliz is a social media management platform that centralizes comment moderation
 
 ## Nodes
 
-This package provides 20 nodes, each mapped to a specific Repliz API group:
+This package provides 21 nodes, each mapped to a specific Repliz API group:
 
 ### Account Management
 
@@ -42,6 +42,9 @@ Connect and authenticate Twitter/X accounts. Operations: Authorize, Connect, Rec
 **Repliz Account WhatsApp** `Gold+`
 Connect and authenticate WhatsApp accounts via QR code. Operations: Create Session, Get Session, Connect, Reconnect.
 
+**Repliz Account Telegram** `Gold+`
+Connect and authenticate Telegram accounts via QR code, including two-step verification. Operations: Create Session, Get Session, Send Password, Connect, Reconnect.
+
 ---
 
 ### Comment & Chat
@@ -57,7 +60,7 @@ Manage live chat conversations and messages. Operations: Get All, Get, Get Messa
 ### Content, Scheduling & Automation
 
 **Repliz Content** `Gold+`
-Retrieve and interact with published social media content. Operations: Get All, Get, Delete, Get Comments, Create Comment, Delete Comment, Like Comment, Get Statistics, Message Comment Author.
+Retrieve and interact with published social media content. Operations: Get All, Get, Delete, Get Comments, Create Comment, Delete Comment, Like Comment, Get Statistics, Message Comment Author. For WhatsApp and Telegram accounts, Get All needs a `Channel ID` from `Repliz Addon`.
 
 **Repliz Schedule** `Premium+`
 Create and manage scheduled posts across platforms.
@@ -95,7 +98,7 @@ Operations: Get Statistics, Get All Files, Get File, Delete File, Initialize Upl
 ### Addons
 
 **Repliz Addon** `Premium+`
-Access premium platform features. Operations: Get Addon Allocation, Get TikTok Trending Music, Get Shopee Products, Get WhatsApp Channels, Get Link Metadata.
+Access premium platform features. Operations: Get Addon Allocation, Get TikTok Trending Music, Get Shopee Products, Get WhatsApp Channels, Get Telegram Channels, Get Link Metadata.
 
 ---
 
@@ -182,7 +185,7 @@ The **Create** and **Update** operations on `Repliz Schedule` accept several JSO
 }
 ```
 
-**WhatsApp Channel** — WhatsApp schedules only (Text, Image, Video). Pass an item from `Repliz Addon` → **Get WhatsApp Channels** to post to that channel or group; it is sent as `additionalInfo.channel`. Leave it `{}` to post as a WhatsApp Status. To post to several channels or groups, create one schedule per item (e.g. `Split Out` the `docs` field first).
+**WhatsApp / Telegram Channel** — WhatsApp and Telegram schedules only (Text, Image, Video). Pass an item from `Repliz Addon` → **Get WhatsApp Channels** or **Get Telegram Channels** to post to that channel or group; it is sent as `additionalInfo.channel`. Leave it `{}` to post as a WhatsApp Status or Telegram Story. To post to several channels or groups, create one schedule per item (e.g. `Split Out` the `docs` field first). Keep `type` for Telegram: its channel and group IDs (`-100...`) look the same.
 
 ```json
 {
@@ -201,7 +204,18 @@ WhatsApp uses a QR code session instead of an OAuth redirect. Build the flow wit
 2. **Get Session** (loop) — call it with the session token, then `IF` `isConnected` is `true` go to step 3, otherwise `Wait` a few seconds and run Get Session again. Each run returns the latest `qrcode` (base64 PNG) to scan from WhatsApp > Linked Devices; use n8n's `Convert to File` node to turn it into an image. Cap the number of loops and start a new session if it never connects.
 3. **Connect** / **Reconnect** — pass the session token. Connect returns `{ "accountId": "..." }`. Reconnect re-authenticates an existing Repliz `Account ID`; the scanned WhatsApp number must be the same one.
 
-Channels and groups are not connected as separate accounts. To post to one, use the **WhatsApp Channel** field of `Repliz Schedule` (see above).
+Channels and groups are not connected as separate accounts. To post to one, use the **WhatsApp / Telegram Channel** field of `Repliz Schedule` (see above).
+
+### Telegram — QR Code Connection Flow
+
+Telegram follows the same session flow with `Repliz Account Telegram`, plus a password step for accounts with two-step verification:
+
+1. **Create Session** — returns `{ "token": "..." }`, the session token for every following step.
+2. **Get Session** (loop) — same loop as WhatsApp until `isConnected` is `true`. Scan the `qrcode` from Telegram > Settings > Devices > Link Desktop Device; it changes every 30 seconds.
+3. **Send Password** — only when Get Session returns `isPasswordRequired: true`. Send the account's two-step verification password (`passwordHint` is its hint), then keep looping Get Session. A wrong password returns `400`.
+4. **Connect** / **Reconnect** — pass the session token. Connect returns `{ "accountId": "..." }`; Reconnect needs the same Telegram account as the existing Repliz `Account ID`.
+
+Like WhatsApp, Telegram channels and groups are chosen per schedule with the **WhatsApp / Telegram Channel** field.
 
 ---
 

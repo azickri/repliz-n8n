@@ -238,7 +238,7 @@ export class ReplizSchedule implements INodeType {
           'Whether to share the video to Instagram feed. Specifically applies to Instagram schedules with post type video.',
       },
       {
-        displayName: 'WhatsApp Channel (JSON)',
+        displayName: 'WhatsApp / Telegram Channel (JSON)',
         name: 'channelJson',
         type: 'json',
         displayOptions: {
@@ -249,7 +249,7 @@ export class ReplizSchedule implements INodeType {
         },
         default: '{}',
         description:
-          'Specifically applies to WhatsApp schedules. The channel or group to post to, as returned by Repliz Addon > Get WhatsApp Channels: { "id": "...", "name": "...", "picture": "...", "type": "channel"|"group" }. Sent as additionalInfo.channel. Leave {} to post as WhatsApp Status.',
+          'Specifically applies to WhatsApp and Telegram schedules. The channel or group to post to, as returned by Repliz Addon > Get WhatsApp Channels / Get Telegram Channels: { "id": "...", "name": "...", "picture": "...", "type": "channel"|"group" }. "type" is required for Telegram. Sent as additionalInfo.channel. Leave {} to post as WhatsApp Status / Telegram Story.',
       },
       {
         displayName: 'Template ID',
@@ -391,13 +391,21 @@ export class ReplizSchedule implements INodeType {
                 ? JSON.parse(channelRaw || '{}')
                 : channelRaw;
             if (channel?.id) {
+              // WhatsApp ids carry their type, Telegram channel and group ids look the same
+              let channelType = channel.type;
+              if (!channelType && channel.id.endsWith('@g.us')) channelType = 'group';
+              if (!channelType && channel.id.endsWith('@newsletter')) channelType = 'channel';
+              if (!channelType) {
+                throw new Error(
+                  'Channel "type" ("channel" or "group") is required for Telegram channels',
+                );
+              }
+
               additionalInfo.channel = {
                 id: channel.id,
                 name: channel.name || '',
                 picture: channel.picture || '',
-                type:
-                  channel.type ||
-                  (channel.id.endsWith('@g.us') ? 'group' : 'channel'),
+                type: channelType,
               };
             }
           }

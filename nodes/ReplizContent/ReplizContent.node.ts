@@ -38,6 +38,7 @@ export class ReplizContent implements INodeType {
 			{ displayName: 'Content ID', name: 'contentId', type: 'string', required: true, displayOptions: { show: { operation: ['get', 'delete', 'getComments', 'createComment', 'deleteComment', 'likeComment', 'getStatistics', 'messageComment'] } }, default: '', description: 'The unique identifier of the content item' },
 			// Get All
 			{ displayName: 'Content Type', name: 'contentType', type: 'string', displayOptions: { show: { operation: ['getAll'] } }, default: '', placeholder: 'e.g. video, image', description: 'Filter content by type (optional)' },
+			{ displayName: 'Channel ID', name: 'channelId', type: 'string', displayOptions: { show: { operation: ['getAll'] } }, default: '', placeholder: 'e.g. 120363413774168194@newsletter', description: 'Required for WhatsApp and Telegram accounts: the channel to read posts from, from Repliz Addon > Get WhatsApp Channels / Get Telegram Channels' },
 			{ displayName: 'Next Token', name: 'nextToken', type: 'string', displayOptions: { show: { operation: ['getAll', 'getComments'] } }, default: '', description: 'Pagination cursor token from previous response' },
 			// Get Comments
 			{ displayName: 'Comment ID Filter', name: 'commentIdFilter', type: 'string', displayOptions: { show: { operation: ['getComments'] } }, default: '', description: 'Filter comments by a specific comment ID (optional)' },
@@ -93,9 +94,11 @@ export class ReplizContent implements INodeType {
 
 				if (operation === 'getAll') {
 					const contentType = this.getNodeParameter('contentType', i) as string;
+					const channelId = this.getNodeParameter('channelId', i, '') as string;
 					const nextToken = this.getNodeParameter('nextToken', i) as string;
 					const qs: any = { accountId };
 					if (contentType) qs.type = contentType;
+					if (channelId) qs.channelId = channelId;
 					if (nextToken) qs.nextToken = nextToken;
 					responseData = await replizApiRequest.call(this, 'GET', '/public/content', {}, qs);
 				} else if (operation === 'get') {

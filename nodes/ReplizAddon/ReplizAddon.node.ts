@@ -17,7 +17,7 @@ export class ReplizAddon implements INodeType {
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"]}}',
-		description: 'Access premium Repliz addons: TikTok trending music, Shopee products, WhatsApp channels, and link metadata (Premium+)',
+		description: 'Access premium Repliz addons: TikTok trending music, Shopee products, WhatsApp and Telegram channels, and link metadata (Premium+)',
 		defaults: { name: 'Repliz Addon' },
 		inputs: ['main'],
 		outputs: ['main'],
@@ -32,7 +32,8 @@ export class ReplizAddon implements INodeType {
 					{ name: 'Get Addon Allocation', value: 'getAddon', description: 'Retrieve current account addon allocation (accounts, operators, storage, twitter)', action: 'Get addon allocation' },
 					{ name: 'Get TikTok Trending Music', value: 'getTrendingMusic', description: 'Retrieve trending music tracks from TikTok by genre and country', action: 'Get TikTok trending music' },
 					{ name: 'Get Shopee Products', value: 'getShopeeProducts', description: 'Fetch product listings from a connected Shopee shop', action: 'Get Shopee products' },
-					{ name: 'Get WhatsApp Channels', value: 'getWhatsAppChannels', description: 'Retrieve the channels and groups of a connected WhatsApp account, used as the schedule WhatsApp Channel', action: 'Get WhatsApp channels' },
+					{ name: 'Get WhatsApp Channels', value: 'getWhatsAppChannels', description: 'Retrieve the channels and groups of a connected WhatsApp account, used as the schedule Channel', action: 'Get WhatsApp channels' },
+					{ name: 'Get Telegram Channels', value: 'getTelegramChannels', description: 'Retrieve the channels and groups of a connected Telegram account, used as the schedule Channel', action: 'Get Telegram channels' },
 					{ name: 'Get Link Metadata', value: 'getLinkMetadata', description: 'Extract preview metadata (title, description, image) from a URL', action: 'Get link metadata' },
 				],
 				default: 'getAddon',
@@ -101,6 +102,16 @@ export class ReplizAddon implements INodeType {
 				default: '',
 				description: 'The Repliz account ID of the connected WhatsApp account',
 			},
+			// Telegram Channels
+			{
+				displayName: 'Account ID',
+				name: 'accountId',
+				type: 'string',
+				required: true,
+				displayOptions: { show: { operation: ['getTelegramChannels'] } },
+				default: '',
+				description: 'The Repliz account ID of the connected Telegram account',
+			},
 			// Link Metadata
 			{
 				displayName: 'URL',
@@ -140,6 +151,9 @@ export class ReplizAddon implements INodeType {
 				} else if (operation === 'getWhatsAppChannels') {
 					const accountId = this.getNodeParameter('accountId', i) as string;
 					responseData = await replizApiRequest.call(this, 'GET', '/public/addon/whatsapp/channel', {}, { accountId });
+				} else if (operation === 'getTelegramChannels') {
+					const accountId = this.getNodeParameter('accountId', i) as string;
+					responseData = await replizApiRequest.call(this, 'GET', '/public/addon/telegram/channel', {}, { accountId });
 				} else if (operation === 'getLinkMetadata') {
 					const url = this.getNodeParameter('url', i) as string;
 					responseData = await replizApiRequest.call(this, 'GET', '/public/addon/link/metadata', {}, { url });

@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.20] - 2026-10-12
+
+### Added
+
+- **Repliz Account Telegram** node (`API Account Telegram` Gold+), connecting Telegram via QR code session:
+  - `Create Session`: Create a new Telegram session (`POST /public/account/telegram/session`).
+  - `Get Session`: Get session status and the latest QR code (`GET /public/account/telegram/session`).
+  - `Send Password`: Send the two-step verification password when `isPasswordRequired` is true (`POST /public/account/telegram/session/password`).
+  - `Connect`: Connect a Telegram account (`POST /public/account/telegram/connect`).
+  - `Reconnect`: Re-authenticate an existing Telegram account (`POST /public/account/telegram/connect/{accountId}`).
+- **Repliz Addon**: `Get Telegram Channels` operation (`GET /public/addon/telegram/channel`) to list the channels and groups of a connected Telegram account.
+- **Repliz Content**: `Channel ID` filter on `Get All` (`channelId`), required to read posts of a WhatsApp or Telegram channel.
+
+### Changed
+
+- **Repliz Schedule**: `WhatsApp Channel (JSON)` is now `WhatsApp / Telegram Channel (JSON)` (`additionalInfo.channel`). Leave it empty to post as a WhatsApp Status or Telegram Story. `type` is required for Telegram channels.
+- Updated `api.json` with the Telegram endpoints, `channelId` on `GET /public/content`, and automation carousel cards (`ConfigOpeningElement`).
+
 ## [1.0.19] - 2026-10-05
 
 ### Added
