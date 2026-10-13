@@ -45,6 +45,9 @@ export class ReplizContent implements INodeType {
 			// Create Comment
 			{ displayName: 'Text', name: 'text', type: 'string', required: true, typeOptions: { rows: 3 }, displayOptions: { show: { operation: ['createComment'] } }, default: '', description: 'The text of the comment to post' },
 			{ displayName: 'Reply To Comment ID', name: 'replyToCommentId', type: 'string', displayOptions: { show: { operation: ['createComment'] } }, default: '', description: 'Optional: ID of the comment to reply to' },
+			{ displayName: 'Image URL', name: 'imageUrl', type: 'string', displayOptions: { show: { operation: ['createComment'] } }, default: '', description: 'Optional: public URL of an image sent along with the text. Supported on Facebook, Threads, TikTok, LinkedIn and X (Twitter), ignored on other platforms.' },
+			{ displayName: 'Image MIME Type', name: 'imageMimeType', type: 'string', displayOptions: { show: { operation: ['createComment'] } }, default: '', placeholder: 'e.g. image/jpeg, image/png', description: 'The MIME type of the image. Required when Image URL is set.' },
+			{ displayName: 'Image Thumbnail URL', name: 'imageThumbnailUrl', type: 'string', displayOptions: { show: { operation: ['createComment'] } }, default: '', description: 'Optional: smaller preview of the image shown in Repliz' },
 			// Delete Comment / Like Comment
 			{ displayName: 'Comment ID', name: 'commentId', type: 'string', required: true, displayOptions: { show: { operation: ['deleteComment', 'likeComment'] } }, default: '', description: 'The unique identifier of the comment' },
 			// Message Comment Author
@@ -119,8 +122,14 @@ export class ReplizContent implements INodeType {
 					const contentId = this.getNodeParameter('contentId', i) as string;
 					const text = this.getNodeParameter('text', i) as string;
 					const replyToCommentId = this.getNodeParameter('replyToCommentId', i) as string;
+					const imageUrl = this.getNodeParameter('imageUrl', i) as string;
 					const body: any = { accountId, text };
 					if (replyToCommentId) body.commentId = replyToCommentId;
+					if (imageUrl) {
+						body.image = { url: imageUrl, mimetype: this.getNodeParameter('imageMimeType', i) as string };
+						const thumbnail = this.getNodeParameter('imageThumbnailUrl', i) as string;
+						if (thumbnail) body.image.thumbnail = thumbnail;
+					}
 					responseData = await replizApiRequest.call(this, 'POST', `/public/content/${contentId}/comment`, body);
 				} else if (operation === 'deleteComment') {
 					const contentId = this.getNodeParameter('contentId', i) as string;

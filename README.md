@@ -50,7 +50,7 @@ Connect and authenticate Telegram accounts via QR code, including two-step verif
 ### Comment & Chat
 
 **Repliz Comment** `Standard+`
-Manage and moderate comments collected by Repliz. Operations: Get All, Get, Delete, Reply, Update Status.
+Manage and moderate comments collected by Repliz. Operations: Get All, Get, Delete, Reply, Update Status. Reply can send an image along with the text (`Image URL` and `Image MIME Type`) on Facebook, Threads, TikTok, LinkedIn, and X (Twitter).
 
 **Repliz Chat** `Gold+`
 Manage live chat conversations and messages. Operations: Get All, Get, Get Messages, Send Message, Mark as Read.
@@ -60,7 +60,7 @@ Manage live chat conversations and messages. Operations: Get All, Get, Get Messa
 ### Content, Scheduling & Automation
 
 **Repliz Content** `Gold+`
-Retrieve and interact with published social media content. Operations: Get All, Get, Delete, Get Comments, Create Comment, Delete Comment, Like Comment, Get Statistics, Message Comment Author. For WhatsApp and Telegram accounts, Get All needs a `Channel ID` from `Repliz Addon`.
+Retrieve and interact with published social media content. Operations: Get All, Get, Delete, Get Comments, Create Comment, Delete Comment, Like Comment, Get Statistics, Message Comment Author. For WhatsApp and Telegram accounts, Get All needs a `Channel ID` from `Repliz Addon`. Create Comment can send an image along with the text on Facebook, Threads, TikTok, LinkedIn, and X (Twitter).
 
 **Repliz Schedule** `Premium+`
 Create and manage scheduled posts across platforms.

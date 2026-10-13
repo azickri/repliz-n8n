@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.21] - 2026-10-13
+
+### Added
+
+- **Repliz Comment**: `Image URL`, `Image MIME Type`, and `Image Thumbnail URL` on `Reply` to send an image along with the reply text (`image` on `POST /public/comment/{commentId}`).
+- **Repliz Content**: The same image fields on `Create Comment` (`image` on `POST /public/content/{contentId}/comment`).
+- Images are sent on Facebook, Threads, TikTok, LinkedIn, and X (Twitter), and ignored on other platforms.
+
+### Changed
+
+- Automation configs (`Repliz Automation`, `Repliz Template Automation`, and `Update Automation` on `Repliz Account`) accept `reply.image` (`{ url, mimetype, thumbnail? }`) to send an image with every automated reply on Facebook, Threads, TikTok, and LinkedIn.
+- Automation configs accept `reply.isIncludeLiveComment` and `message.isIncludeLiveComment` to also reply to, or DM, comments on an Instagram Live. Off when left out, so Live comments are skipped by default. A DM is only sent while the Live is on air.
+- Updated `api.json` with `image` on `BodyCreateCommentDTO`, `BodyReplyCommentDTO`, and `ConfigAutomationReply`, and `isIncludeLiveComment` on `ConfigAutomationReply` and `ConfigAutomationMessage`.
+
 ## [1.0.20] - 2026-10-12
 
 ### Added

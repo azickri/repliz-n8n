@@ -105,6 +105,32 @@ export class ReplizComment implements INodeType {
 				default: '',
 				description: 'The text to send as a reply to the comment',
 			},
+			{
+				displayName: 'Image URL',
+				name: 'imageUrl',
+				type: 'string',
+				displayOptions: { show: { operation: ['reply'] } },
+				default: '',
+				description:
+					'Optional: public URL of an image sent along with the reply text. Supported on Facebook, Threads, TikTok, LinkedIn and X (Twitter), ignored on other platforms.',
+			},
+			{
+				displayName: 'Image MIME Type',
+				name: 'imageMimeType',
+				type: 'string',
+				displayOptions: { show: { operation: ['reply'] } },
+				default: '',
+				placeholder: 'e.g. image/jpeg, image/png',
+				description: 'The MIME type of the image. Required when Image URL is set.',
+			},
+			{
+				displayName: 'Image Thumbnail URL',
+				name: 'imageThumbnailUrl',
+				type: 'string',
+				displayOptions: { show: { operation: ['reply'] } },
+				default: '',
+				description: 'Optional: smaller preview of the image shown in Repliz',
+			},
 			// Update Status
 			{
 				displayName: 'Status',
@@ -156,7 +182,14 @@ export class ReplizComment implements INodeType {
 				} else if (operation === 'reply') {
 					const commentId = this.getNodeParameter('commentId', i) as string;
 					const text = this.getNodeParameter('text', i) as string;
-					responseData = await replizApiRequest.call(this, 'POST', `/public/comment/${commentId}`, { text });
+					const imageUrl = this.getNodeParameter('imageUrl', i) as string;
+					const body: any = { text };
+					if (imageUrl) {
+						body.image = { url: imageUrl, mimetype: this.getNodeParameter('imageMimeType', i) as string };
+						const thumbnail = this.getNodeParameter('imageThumbnailUrl', i) as string;
+						if (thumbnail) body.image.thumbnail = thumbnail;
+					}
+					responseData = await replizApiRequest.call(this, 'POST', `/public/comment/${commentId}`, body);
 				} else if (operation === 'updateStatus') {
 					const commentId = this.getNodeParameter('commentId', i) as string;
 					const status = this.getNodeParameter('status', i) as string;
