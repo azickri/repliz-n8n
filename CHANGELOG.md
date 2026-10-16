@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.22] - 2026-10-16
+
+### Added
+
+- **Repliz Account Pinterest** node (`API Account Pinterest` Gold+), connecting Pinterest via OAuth:
+  - `Authorize`: Get the Pinterest OAuth authorization URL (`GET /public/account/pinterest/authorize`).
+  - `Connect`: Connect a Pinterest account (`POST /public/account/pinterest/connect`).
+  - `Reconnect`: Re-authenticate an existing Pinterest account (`POST /public/account/pinterest/connect/{accountId}`).
+- **Repliz Addon**: `Get Pinterest Boards` operation (`GET /public/addon/pinterest/board`) to list the boards of a connected Pinterest account.
+- **Repliz Content**: `Channel ID` on `Get All` also takes a Pinterest board ID, to read only that board's pins.
+
+### Changed
+
+- **Repliz Schedule**: `WhatsApp / Telegram Channel (JSON)` is now `WhatsApp / Telegram Channel / Pinterest Board (JSON)` (`additionalInfo.channel`) and is also shown for `Album`. A Pinterest schedule needs a board with `"type": "board"`. `link` in `Additional Info (JSON)` is the pin's destination URL, and `Title` the pin title.
+- **Repliz Account**: `Platform Types` filter on `Get All` now also lists Shopee, X (Twitter), WhatsApp, Telegram, and Pinterest.
+- Updated `api.json` with the Pinterest endpoints, the `board` channel type and `link` in `ScheduleAdditionalInfo`, and Pinterest statistics on `GET /public/account/{accountId}/statistic` and `GET /public/content/{contentId}/statistic`.
+
 ## [1.0.21] - 2026-10-13
 
 ### Added

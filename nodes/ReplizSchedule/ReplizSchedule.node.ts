@@ -186,7 +186,7 @@ export class ReplizSchedule implements INodeType {
         type: 'string',
         displayOptions: { show: { operation: ['create', 'update'] } },
         default: '',
-        description: 'Optional title for the post (used for videos)',
+        description: 'Optional title for the post (used by YouTube videos and as the Pinterest pin title, max 100 characters)',
       },
       {
         displayName: 'Description / Caption',
@@ -238,18 +238,18 @@ export class ReplizSchedule implements INodeType {
           'Whether to share the video to Instagram feed. Specifically applies to Instagram schedules with post type video.',
       },
       {
-        displayName: 'WhatsApp / Telegram Channel (JSON)',
+        displayName: 'WhatsApp / Telegram Channel / Pinterest Board (JSON)',
         name: 'channelJson',
         type: 'json',
         displayOptions: {
           show: {
             operation: ['create', 'update'],
-            postType: ['text', 'image', 'video'],
+            postType: ['text', 'image', 'video', 'album'],
           },
         },
         default: '{}',
         description:
-          'Specifically applies to WhatsApp and Telegram schedules. The channel or group to post to, as returned by Repliz Addon > Get WhatsApp Channels / Get Telegram Channels: { "id": "...", "name": "...", "picture": "...", "type": "channel"|"group" }. "type" is required for Telegram. Sent as additionalInfo.channel. Leave {} to post as WhatsApp Status / Telegram Story.',
+          'Specifically applies to WhatsApp, Telegram and Pinterest schedules. The channel, group or board to post to, as returned by Repliz Addon > Get WhatsApp Channels / Get Telegram Channels / Get Pinterest Boards: { "id": "...", "name": "...", "picture": "...", "type": "channel"|"group"|"board" }. "type" is required for Telegram and Pinterest. Sent as additionalInfo.channel. Leave {} to post as WhatsApp Status / Telegram Story; Pinterest always needs a board.',
       },
       {
         displayName: 'Template ID',
@@ -285,7 +285,7 @@ export class ReplizSchedule implements INodeType {
         default:
           '{"isAiGenerated":false,"isDraft":false,"isAutoAddMusic":false,"link":"","targetCountries":[],"tags":[],"mentions":[],"collaborators":[],"products":[],"music":{}}',
         description:
-          'Extra metadata: isAutoAddMusic, isShareToFeed (Instagram video), link, targetCountries, tags, mentions, collaborators, music (with volume: video, music), products',
+          'Extra metadata: isAutoAddMusic, isShareToFeed (Instagram video), link (Pinterest destination URL), targetCountries, tags, mentions, collaborators, music (with volume: video, music), products',
       },
       {
         displayName: 'Replies (JSON)',
@@ -384,20 +384,20 @@ export class ReplizSchedule implements INodeType {
             additionalInfo.isShareToFeed = isShareToFeed;
           }
 
-          if (['text', 'image', 'video'].includes(type)) {
+          if (['text', 'image', 'video', 'album'].includes(type)) {
             const channelRaw = this.getNodeParameter('channelJson', i, '{}');
             const channel =
               typeof channelRaw === 'string'
                 ? JSON.parse(channelRaw || '{}')
                 : channelRaw;
             if (channel?.id) {
-              // WhatsApp ids carry their type, Telegram channel and group ids look the same
+              // WhatsApp ids carry their type, Telegram channel and group ids and Pinterest board ids don't
               let channelType = channel.type;
               if (!channelType && channel.id.endsWith('@g.us')) channelType = 'group';
               if (!channelType && channel.id.endsWith('@newsletter')) channelType = 'channel';
               if (!channelType) {
                 throw new Error(
-                  'Channel "type" ("channel" or "group") is required for Telegram channels',
+                  'Channel "type" ("channel", "group" or "board") is required for Telegram channels and Pinterest boards',
                 );
               }
 

@@ -17,7 +17,7 @@ export class ReplizAddon implements INodeType {
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"]}}',
-		description: 'Access premium Repliz addons: TikTok trending music, Shopee products, WhatsApp and Telegram channels, and link metadata (Premium+)',
+		description: 'Access premium Repliz addons: TikTok trending music, Shopee products, WhatsApp and Telegram channels, Pinterest boards, and link metadata (Premium+)',
 		defaults: { name: 'Repliz Addon' },
 		inputs: ['main'],
 		outputs: ['main'],
@@ -34,6 +34,7 @@ export class ReplizAddon implements INodeType {
 					{ name: 'Get Shopee Products', value: 'getShopeeProducts', description: 'Fetch product listings from a connected Shopee shop', action: 'Get Shopee products' },
 					{ name: 'Get WhatsApp Channels', value: 'getWhatsAppChannels', description: 'Retrieve the channels and groups of a connected WhatsApp account, used as the schedule Channel', action: 'Get WhatsApp channels' },
 					{ name: 'Get Telegram Channels', value: 'getTelegramChannels', description: 'Retrieve the channels and groups of a connected Telegram account, used as the schedule Channel', action: 'Get Telegram channels' },
+					{ name: 'Get Pinterest Boards', value: 'getPinterestBoards', description: 'Retrieve the boards of a connected Pinterest account, used as the schedule Board', action: 'Get Pinterest boards' },
 					{ name: 'Get Link Metadata', value: 'getLinkMetadata', description: 'Extract preview metadata (title, description, image) from a URL', action: 'Get link metadata' },
 				],
 				default: 'getAddon',
@@ -112,6 +113,16 @@ export class ReplizAddon implements INodeType {
 				default: '',
 				description: 'The Repliz account ID of the connected Telegram account',
 			},
+			// Pinterest Boards
+			{
+				displayName: 'Account ID',
+				name: 'accountId',
+				type: 'string',
+				required: true,
+				displayOptions: { show: { operation: ['getPinterestBoards'] } },
+				default: '',
+				description: 'The Repliz account ID of the connected Pinterest account',
+			},
 			// Link Metadata
 			{
 				displayName: 'URL',
@@ -154,6 +165,9 @@ export class ReplizAddon implements INodeType {
 				} else if (operation === 'getTelegramChannels') {
 					const accountId = this.getNodeParameter('accountId', i) as string;
 					responseData = await replizApiRequest.call(this, 'GET', '/public/addon/telegram/channel', {}, { accountId });
+				} else if (operation === 'getPinterestBoards') {
+					const accountId = this.getNodeParameter('accountId', i) as string;
+					responseData = await replizApiRequest.call(this, 'GET', '/public/addon/pinterest/board', {}, { accountId });
 				} else if (operation === 'getLinkMetadata') {
 					const url = this.getNodeParameter('url', i) as string;
 					responseData = await replizApiRequest.call(this, 'GET', '/public/addon/link/metadata', {}, { url });

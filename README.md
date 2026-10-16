@@ -45,6 +45,9 @@ Connect and authenticate WhatsApp accounts via QR code. Operations: Create Sessi
 **Repliz Account Telegram** `Gold+`
 Connect and authenticate Telegram accounts via QR code, including two-step verification. Operations: Create Session, Get Session, Send Password, Connect, Reconnect.
 
+**Repliz Account Pinterest** `Gold+`
+Connect and authenticate Pinterest accounts. Operations: Authorize, Connect, Reconnect. Boards are not separate accounts: pick one per schedule.
+
 ---
 
 ### Comment & Chat
@@ -98,7 +101,7 @@ Operations: Get Statistics, Get All Files, Get File, Delete File, Initialize Upl
 ### Addons
 
 **Repliz Addon** `Premium+`
-Access premium platform features. Operations: Get Addon Allocation, Get TikTok Trending Music, Get Shopee Products, Get WhatsApp Channels, Get Telegram Channels, Get Link Metadata.
+Access premium platform features. Operations: Get Addon Allocation, Get TikTok Trending Music, Get Shopee Products, Get WhatsApp Channels, Get Telegram Channels, Get Pinterest Boards, Get Link Metadata.
 
 ---
 
@@ -185,7 +188,7 @@ The **Create** and **Update** operations on `Repliz Schedule` accept several JSO
 }
 ```
 
-**WhatsApp / Telegram Channel** — WhatsApp and Telegram schedules only (Text, Image, Video). Pass an item from `Repliz Addon` → **Get WhatsApp Channels** or **Get Telegram Channels** to post to that channel or group; it is sent as `additionalInfo.channel`. Leave it `{}` to post as a WhatsApp Status or Telegram Story. To post to several channels or groups, create one schedule per item (e.g. `Split Out` the `docs` field first). Keep `type` for Telegram: its channel and group IDs (`-100...`) look the same.
+**WhatsApp / Telegram Channel / Pinterest Board** — For WhatsApp and Telegram (Text, Image, Video), pass an item from `Repliz Addon` → **Get WhatsApp Channels** or **Get Telegram Channels** to post to that channel or group; it is sent as `additionalInfo.channel`. Leave it `{}` to post as a WhatsApp Status or Telegram Story. To post to several channels or groups, create one schedule per item (e.g. `Split Out` the `docs` field first). Keep `type` for Telegram: its channel and group IDs (`-100...`) look the same.
 
 ```json
 {
@@ -193,6 +196,17 @@ The **Create** and **Update** operations on `Repliz Schedule` accept several JSO
   "name": "Boom",
   "picture": "https://pps.whatsapp.net/...",
   "type": "channel"
+}
+```
+
+**Pinterest Board** — Pinterest schedules (Image, Video, Album) always need a board. Pass an item from `Repliz Addon` → **Get Pinterest Boards** in the same **WhatsApp / Telegram Channel / Pinterest Board** field, with `"type": "board"`; create one schedule per board. The **Title** is the pin title (max 100 characters), the caption max 800 characters, `medias[0].alt` the alt text, and `link` in **Additional Info** the destination URL the pin opens. An album is a carousel of 2 to 5 images.
+
+```json
+{
+  "id": "1006921296753698211",
+  "name": "Social Media Tips",
+  "picture": "https://i.pinimg.com/400x300/...",
+  "type": "board"
 }
 ```
 
@@ -204,7 +218,7 @@ WhatsApp uses a QR code session instead of an OAuth redirect. Build the flow wit
 2. **Get Session** (loop) — call it with the session token, then `IF` `isConnected` is `true` go to step 3, otherwise `Wait` a few seconds and run Get Session again. Each run returns the latest `qrcode` (base64 PNG) to scan from WhatsApp > Linked Devices; use n8n's `Convert to File` node to turn it into an image. Cap the number of loops and start a new session if it never connects.
 3. **Connect** / **Reconnect** — pass the session token. Connect returns `{ "accountId": "..." }`. Reconnect re-authenticates an existing Repliz `Account ID`; the scanned WhatsApp number must be the same one.
 
-Channels and groups are not connected as separate accounts. To post to one, use the **WhatsApp / Telegram Channel** field of `Repliz Schedule` (see above).
+Channels and groups are not connected as separate accounts. To post to one, use the **WhatsApp / Telegram Channel / Pinterest Board** field of `Repliz Schedule` (see above).
 
 ### Telegram — QR Code Connection Flow
 
@@ -215,7 +229,7 @@ Telegram follows the same session flow with `Repliz Account Telegram`, plus a pa
 3. **Send Password** — only when Get Session returns `isPasswordRequired: true`. Send the account's two-step verification password (`passwordHint` is its hint), then keep looping Get Session. A wrong password returns `400`.
 4. **Connect** / **Reconnect** — pass the session token. Connect returns `{ "accountId": "..." }`; Reconnect needs the same Telegram account as the existing Repliz `Account ID`.
 
-Like WhatsApp, Telegram channels and groups are chosen per schedule with the **WhatsApp / Telegram Channel** field.
+Like WhatsApp, Telegram channels and groups are chosen per schedule with the **WhatsApp / Telegram Channel / Pinterest Board** field.
 
 ---
 
