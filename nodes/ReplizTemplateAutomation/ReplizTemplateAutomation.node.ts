@@ -128,7 +128,7 @@ export class ReplizTemplateAutomation implements INodeType {
         default:
           '{"delete":{},"reply":{},"like":{},"message":{},"story":{},"chat":{}}',
         description:
-          'Configuration rules object (delete, reply, like, message, story, chat)',
+          'Configuration rules object (delete, reply, like, message, story, chat). Keywords in message, story and chat (Instagram and Facebook) can answer with buttons: give a keyword.values item "type": "opening" and its own "opening" object, and send the "id" Repliz returns on it back unchanged when updating. See <a href="https://docs.repliz.com/api/guides/automation-config#keyword-with-buttons" target="_blank">Keyword with Buttons</a>',
       },
     ],
   };

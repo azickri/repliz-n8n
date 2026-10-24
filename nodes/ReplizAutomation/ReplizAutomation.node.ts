@@ -57,7 +57,8 @@ export class ReplizAutomation implements INodeType {
 				required: true,
 				displayOptions: { show: { operation: ['create', 'update'] } },
 				default: '{"delete":{},"reply":{},"like":{},"message":{},"story":{}}',
-				description: 'Configuration rules object (delete, reply, like, message, story)',
+				description:
+					'Configuration rules object (delete, reply, like, message, story). Keywords in message and story can answer with buttons: give a keyword.values item "type": "opening" and its own "opening" object, and send the "id" Repliz returns on it back unchanged when updating. See <a href="https://docs.repliz.com/api/guides/automation-config#keyword-with-buttons" target="_blank">Keyword with Buttons</a>',
 			},
 		],
 	};

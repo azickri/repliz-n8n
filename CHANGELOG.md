@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- **Repliz Automation**, **Repliz Account** and **Repliz Template Automation**: in `Automation Config (JSON)` and `Template Config (JSON)`, each item in `message.keyword.values`, `story.keyword.values` and `chat.keyword.values` can take `"type": "opening"` with its own `opening` flow, to answer that keyword with buttons. `chat` buttons work on Facebook and Instagram. Repliz sets the keyword's `id` and button payloads on save; send `id` back unchanged on update.
+- The description of `Automation Config (JSON)` and `Template Config (JSON)` explains keywords with buttons and links to [Keyword with Buttons](https://docs.repliz.com/api/guides/automation-config#keyword-with-buttons).
+- Updated `api.json` with `ConfigMessageKeyword` and `ConfigMessageKeywordValue` on `ConfigAutomationMessage`, `ConfigAutomationStory` and `ConfigAutomationChat`, and the `payload` note on `ConfigOpeningButton`.
+
 ## [1.0.22] - 2026-10-16
 
 ### Added
