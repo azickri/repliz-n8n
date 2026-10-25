@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Repliz Schedule**: Added `Privacy (YouTube)` (`additionalInfo.privacy`) field with `Public`, `Unlisted` and `Private`, shown for post type `video` and applied to YouTube schedules. Defaults to `Public`.
 - Updated `api.json` with `privacy` on `ScheduleAdditionalInfo` and a `Post with Additional Info Privacy (YouTube)` example, and `README.md` with the new field.
+- **Repliz Schedule**: Added `Trial Reel (Instagram)` (`additionalInfo.trialParams.graduationStrategy`) field with `Off`, `Manual` (`MANUAL`) and `Automatic (Performance)` (`SS_PERFORMANCE`), shown for post type `video` and applied to Instagram schedules. A trial reel is shown to non-followers first. Defaults to `Off`.
+- Updated `api.json` with `trialParams` on `ScheduleAdditionalInfo` (`ScheduleAdditionalInfoTrialParams`) and a `Post with Additional Info Trial Params (Instagram)` example, and `README.md` with the new field.
 
 ### Changed
 

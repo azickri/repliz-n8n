@@ -166,7 +166,7 @@ The **Create** and **Update** operations on `Repliz Schedule` accept several JSO
 ]
 ```
 
-**Additional Info** — Tags, mentions, music, products, collaborators, Instagram share-to-feed option, and YouTube privacy:
+**Additional Info** — Tags, mentions, music, products, collaborators, Instagram share-to-feed and trial reel options, and YouTube privacy:
 
 ```json
 {
@@ -174,6 +174,7 @@ The **Create** and **Update** operations on `Repliz Schedule` accept several JSO
   "isDraft": false,
   "isShareToFeed": false,
   "privacy": "public",
+  "trialParams": { "graduationStrategy": "" },
   "tags": ["marketing"],
   "mentions": ["replizofficial"],
   "collaborators": [],
@@ -212,6 +213,8 @@ The **Create** and **Update** operations on `Repliz Schedule` accept several JSO
 ```
 
 **YouTube Privacy** — For YouTube videos, the **Privacy (YouTube)** field sets who can watch the video: `Public` (default), `Unlisted` (only people with the link), or `Private` (only the channel owner). It is sent as `additionalInfo.privacy`. Private videos are not listed in Repliz Content, so their automation and statistics do not run.
+
+**Instagram Trial Reel** — For Instagram videos (Reels), the **Trial Reel (Instagram)** field posts the Reel as a trial reel, shown to non-followers first: `Manual` (`MANUAL`, you share it with your followers from the Instagram app) or `Automatic (Performance)` (`SS_PERFORMANCE`, Instagram shares it with your followers if it performs well). It is sent as `additionalInfo.trialParams.graduationStrategy`. `Off` (default) posts a regular Reel.
 
 ### WhatsApp — QR Code Connection Flow
 

@@ -257,6 +257,25 @@ export class ReplizSchedule implements INodeType {
           'Who can watch the video. Specifically applies to YouTube schedules with post type video. Unlisted videos can be watched only by link, private videos only by the channel owner. Private videos are not listed in Repliz Content, so their automation and statistics do not run.',
       },
       {
+        displayName: 'Trial Reel (Instagram)',
+        name: 'graduationStrategy',
+        type: 'options',
+        displayOptions: {
+          show: {
+            operation: ['create', 'update'],
+            postType: ['video'],
+          },
+        },
+        options: [
+          { name: 'Off', value: '' },
+          { name: 'Manual', value: 'MANUAL' },
+          { name: 'Automatic (Performance)', value: 'SS_PERFORMANCE' },
+        ],
+        default: '',
+        description:
+          'Post the Reel as a trial reel, shown to non-followers first. Specifically applies to Instagram schedules with post type video. Manual: you share it with your followers from the Instagram app. Automatic (Performance): Instagram shares it with your followers if it performs well. Sent as additionalInfo.trialParams.graduationStrategy.',
+      },
+      {
         displayName: 'WhatsApp / Telegram Channel / Pinterest Board (JSON)',
         name: 'channelJson',
         type: 'json',
@@ -304,7 +323,7 @@ export class ReplizSchedule implements INodeType {
         default:
           '{"isAiGenerated":false,"isDraft":false,"isAutoAddMusic":false,"link":"","targetCountries":[],"tags":[],"mentions":[],"collaborators":[],"products":[],"music":{}}',
         description:
-          'Extra metadata: isAutoAddMusic, isShareToFeed (Instagram video), privacy (YouTube video: public, unlisted or private), link (Pinterest destination URL), targetCountries, tags, mentions, collaborators, music (with volume: video, music), products',
+          'Extra metadata: isAutoAddMusic, isShareToFeed (Instagram video), privacy (YouTube video: public, unlisted or private), trialParams (Instagram video: { "graduationStrategy": "MANUAL"|"SS_PERFORMANCE" }), link (Pinterest destination URL), targetCountries, tags, mentions, collaborators, music (with volume: video, music), products',
       },
       {
         displayName: 'Replies (JSON)',
@@ -408,6 +427,13 @@ export class ReplizSchedule implements INodeType {
               'public',
             ) as string;
             additionalInfo.privacy = privacy;
+
+            const graduationStrategy = this.getNodeParameter(
+              'graduationStrategy',
+              i,
+              '',
+            ) as string;
+            additionalInfo.trialParams = { graduationStrategy };
           }
 
           if (['text', 'image', 'video', 'album'].includes(type)) {
