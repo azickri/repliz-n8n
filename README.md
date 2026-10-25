@@ -166,13 +166,14 @@ The **Create** and **Update** operations on `Repliz Schedule` accept several JSO
 ]
 ```
 
-**Additional Info** — Tags, mentions, music, products, collaborators, and Instagram share-to-feed option:
+**Additional Info** — Tags, mentions, music, products, collaborators, Instagram share-to-feed option, and YouTube privacy:
 
 ```json
 {
   "isAiGenerated": false,
   "isDraft": false,
   "isShareToFeed": false,
+  "privacy": "public",
   "tags": ["marketing"],
   "mentions": ["replizofficial"],
   "collaborators": [],
@@ -209,6 +210,8 @@ The **Create** and **Update** operations on `Repliz Schedule` accept several JSO
   "type": "board"
 }
 ```
+
+**YouTube Privacy** — For YouTube videos, the **Privacy (YouTube)** field sets who can watch the video: `Public` (default), `Unlisted` (only people with the link), or `Private` (only the channel owner). It is sent as `additionalInfo.privacy`. Private videos are not listed in Repliz Content, so their automation and statistics do not run.
 
 ### WhatsApp — QR Code Connection Flow
 

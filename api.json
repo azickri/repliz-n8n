@@ -2050,6 +2050,7 @@
                       "isDraft": false,
                       "isAutoAddMusic": false,
                       "isShareToFeed": false,
+                      "privacy": "public",
                       "collaborators": [],
                       "music": {
                         "id": "",
@@ -2090,6 +2091,7 @@
                       "isDraft": false,
                       "isAutoAddMusic": false,
                       "isShareToFeed": false,
+                      "privacy": "public",
                       "collaborators": [],
                       "music": {
                         "id": "",
@@ -2130,6 +2132,7 @@
                       "isDraft": false,
                       "isAutoAddMusic": false,
                       "isShareToFeed": false,
+                      "privacy": "public",
                       "collaborators": [],
                       "music": {
                         "id": "",
@@ -2170,6 +2173,7 @@
                       "isDraft": false,
                       "isAutoAddMusic": false,
                       "isShareToFeed": false,
+                      "privacy": "public",
                       "collaborators": [],
                       "music": {
                         "id": "",
@@ -2216,6 +2220,7 @@
                       "isDraft": false,
                       "isAutoAddMusic": false,
                       "isShareToFeed": false,
+                      "privacy": "public",
                       "collaborators": [],
                       "music": {
                         "id": "",
@@ -2260,6 +2265,7 @@
                       "isDraft": false,
                       "isAutoAddMusic": false,
                       "isShareToFeed": false,
+                      "privacy": "public",
                       "collaborators": [],
                       "music": {
                         "id": "",
@@ -2300,6 +2306,7 @@
                       "isDraft": false,
                       "isAutoAddMusic": false,
                       "isShareToFeed": false,
+                      "privacy": "public",
                       "collaborators": [],
                       "music": {
                         "id": "",
@@ -2332,6 +2339,7 @@
                       "isDraft": false,
                       "isAutoAddMusic": false,
                       "isShareToFeed": false,
+                      "privacy": "public",
                       "collaborators": [],
                       "music": {
                         "id": "",
@@ -2395,6 +2403,7 @@
                       "isDraft": false,
                       "isAutoAddMusic": false,
                       "isShareToFeed": false,
+                      "privacy": "public",
                       "collaborators": [],
                       "music": {
                         "id": "",
@@ -2436,6 +2445,7 @@
                       "isDraft": false,
                       "isAutoAddMusic": false,
                       "isShareToFeed": false,
+                      "privacy": "public",
                       "collaborators": ["replizofficial"],
                       "music": {
                         "id": "",
@@ -2476,6 +2486,7 @@
                       "isAiGenerated": false,
                       "isDraft": false,
                       "isAutoAddMusic": false,
+                      "privacy": "public",
                       "collaborators": [],
                       "music": {
                         "id": "7602104441417107457",
@@ -2514,6 +2525,7 @@
                       "isAiGenerated": false,
                       "isDraft": false,
                       "isAutoAddMusic": false,
+                      "privacy": "public",
                       "collaborators": [],
                       "music": {
                         "id": "",
@@ -2566,6 +2578,7 @@
                       "isDraft": false,
                       "isAutoAddMusic": false,
                       "isShareToFeed": false,
+                      "privacy": "public",
                       "collaborators": [],
                       "music": {
                         "id": "",
@@ -2576,6 +2589,47 @@
                       },
                       "products": [],
                       "tags": ["AI YouTube", "AI Trend 2026"],
+                      "mentions": [],
+                      "targetCountries": []
+                    },
+                    "replies": [],
+                    "accountId": "680affa5ce12f2f72916f67e",
+                    "scheduleAt": "2026-10-16T15:42:33.113Z"
+                  }
+                },
+                "additionalInfoPrivacy": {
+                  "summary": "Post with Additional Info Privacy (YouTube)",
+                  "value": {
+                    "title": "Repliz Tutorial",
+                    "description": "Hola! This is example for post unlisted YouTube video",
+                    "topic": "",
+                    "type": "video",
+                    "medias": [
+                      {
+                        "alt": "",
+                        "customThumbnail": false,
+                        "type": "video",
+                        "thumbnail": "https://storage.repliz.com/thumbnail.png",
+                        "url": "https://storage.repliz.com/video.mp4"
+                      }
+                    ],
+                    "meta": { "title": "", "description": "", "url": "" },
+                    "additionalInfo": {
+                      "isAiGenerated": false,
+                      "isDraft": false,
+                      "isAutoAddMusic": false,
+                      "isShareToFeed": false,
+                      "privacy": "unlisted",
+                      "collaborators": [],
+                      "music": {
+                        "id": "",
+                        "artist": "",
+                        "name": "",
+                        "thumbnail": "",
+                        "volume": { "video": 50, "music": 100 }
+                      },
+                      "products": [],
+                      "tags": [],
                       "mentions": [],
                       "targetCountries": []
                     },
@@ -2606,6 +2660,7 @@
                       "isDraft": false,
                       "isAutoAddMusic": false,
                       "isShareToFeed": false,
+                      "privacy": "public",
                       "collaborators": [],
                       "music": {
                         "id": "",
@@ -2646,6 +2701,7 @@
                       "isDraft": false,
                       "isAutoAddMusic": false,
                       "isShareToFeed": false,
+                      "privacy": "public",
                       "collaborators": [],
                       "music": {
                         "id": "",
@@ -2693,6 +2749,7 @@
                       "isDraft": false,
                       "isAutoAddMusic": false,
                       "isShareToFeed": false,
+                      "privacy": "public",
                       "collaborators": [],
                       "music": {
                         "id": "",
@@ -8246,6 +8303,11 @@
           "isDraft": { "type": "boolean", "example": false },
           "isAutoAddMusic": { "type": "boolean", "example": false },
           "isShareToFeed": { "type": "boolean", "example": false },
+          "privacy": {
+            "type": "string",
+            "enum": ["public", "unlisted", "private"],
+            "example": "public"
+          },
           "collaborators": {
             "example": ["replizofficial", "azickri.ai"],
             "type": "array",

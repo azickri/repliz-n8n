@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Repliz Schedule**: Added `Privacy (YouTube)` (`additionalInfo.privacy`) field with `Public`, `Unlisted` and `Private`, shown for post type `video` and applied to YouTube schedules. Defaults to `Public`.
+- Updated `api.json` with `privacy` on `ScheduleAdditionalInfo` and a `Post with Additional Info Privacy (YouTube)` example, and `README.md` with the new field.
+
 ### Changed
 
 - **Repliz Automation**, **Repliz Account** and **Repliz Template Automation**: in `Automation Config (JSON)` and `Template Config (JSON)`, each item in `message.keyword.values`, `story.keyword.values` and `chat.keyword.values` can take `"type": "opening"` with its own `opening` flow, to answer that keyword with buttons. `chat` buttons work on Facebook and Instagram. Repliz sets the keyword's `id` and button payloads on save; send `id` back unchanged on update.
