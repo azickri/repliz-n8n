@@ -276,6 +276,35 @@ export class ReplizSchedule implements INodeType {
           'Post the Reel as a trial reel, shown to non-followers first. Specifically applies to Instagram schedules with post type video. Manual: you share it with your followers from the Instagram app. Automatic (Performance): Instagram shares it with your followers if it performs well. Sent as additionalInfo.trialParams.graduationStrategy.',
       },
       {
+        displayName: 'Text Attachment (Threads)',
+        name: 'textAttachment',
+        type: 'string',
+        typeOptions: { rows: 6 },
+        displayOptions: {
+          show: {
+            operation: ['create', 'update'],
+            postType: ['text'],
+          },
+        },
+        default: '',
+        description:
+          'A long text, up to 10,000 characters, attached under the post and opened like an article. Specifically applies to Threads schedules with post type text, on the main post only. Posted as plain text. Leave empty for no attachment. Sent as additionalInfo.textAttachment.text.',
+      },
+      {
+        displayName: 'Text Attachment Link (Threads)',
+        name: 'textAttachmentLink',
+        type: 'string',
+        displayOptions: {
+          show: {
+            operation: ['create', 'update'],
+            postType: ['text'],
+          },
+        },
+        default: '',
+        description:
+          'Optional link shown at the end of the text attachment. A Threads post can have at most 5 links, counting the ones in the caption. Sent as additionalInfo.textAttachment.link.',
+      },
+      {
         displayName: 'WhatsApp / Telegram Channel / Pinterest Board (JSON)',
         name: 'channelJson',
         type: 'json',
@@ -323,7 +352,7 @@ export class ReplizSchedule implements INodeType {
         default:
           '{"isAiGenerated":false,"isDraft":false,"isAutoAddMusic":false,"link":"","targetCountries":[],"tags":[],"mentions":[],"collaborators":[],"products":[],"music":{}}',
         description:
-          'Extra metadata: isAutoAddMusic, isShareToFeed (Instagram video), privacy (YouTube video: public, unlisted or private), trialParams (Instagram video: { "graduationStrategy": "MANUAL"|"SS_PERFORMANCE" }), link (Pinterest destination URL), targetCountries, tags, mentions, collaborators, music (with volume: video, music), products',
+          'Extra metadata: isAutoAddMusic, isShareToFeed (Instagram video), privacy (YouTube video: public, unlisted or private), trialParams (Instagram video: { "graduationStrategy": "MANUAL"|"SS_PERFORMANCE" }), link (Pinterest destination URL), textAttachment (Threads text: { "text": "...", "link": "..." }), targetCountries, tags, mentions, collaborators, music (with volume: video, music), products',
       },
       {
         displayName: 'Replies (JSON)',
@@ -434,6 +463,25 @@ export class ReplizSchedule implements INodeType {
               '',
             ) as string;
             additionalInfo.trialParams = { graduationStrategy };
+          }
+
+          if (type === 'text') {
+            const textAttachment = this.getNodeParameter(
+              'textAttachment',
+              i,
+              '',
+            ) as string;
+            if (textAttachment) {
+              const textAttachmentLink = this.getNodeParameter(
+                'textAttachmentLink',
+                i,
+                '',
+              ) as string;
+              additionalInfo.textAttachment = {
+                text: textAttachment,
+                link: textAttachmentLink,
+              };
+            }
           }
 
           if (['text', 'image', 'video', 'album'].includes(type)) {

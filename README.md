@@ -216,6 +216,8 @@ The **Create** and **Update** operations on `Repliz Schedule` accept several JSO
 
 **Instagram Trial Reel** — For Instagram videos (Reels), the **Trial Reel (Instagram)** field posts the Reel as a trial reel, shown to non-followers first: `Manual` (`MANUAL`, you share it with your followers from the Instagram app) or `Automatic (Performance)` (`SS_PERFORMANCE`, Instagram shares it with your followers if it performs well). It is sent as `additionalInfo.trialParams.graduationStrategy`. `Off` (default) posts a regular Reel.
 
+**Threads Text Attachment** — For Threads text posts, the **Text Attachment (Threads)** field attaches a long text, up to 10,000 characters, under the post. It opens like an article, so the post can say more than the 500-character caption. **Text Attachment Link (Threads)** adds an optional link at its end. They are sent as `additionalInfo.textAttachment.text` and `additionalInfo.textAttachment.link`, on the main post only, and the text is posted without styles. Leave the text empty for no attachment.
+
 ### WhatsApp — QR Code Connection Flow
 
 WhatsApp uses a QR code session instead of an OAuth redirect. Build the flow with `Repliz Account WhatsApp`:
