@@ -15,6 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated `api.json` with `trialParams` on `ScheduleAdditionalInfo` (`ScheduleAdditionalInfoTrialParams`) and a `Post with Additional Info Trial Params (Instagram)` example, and `README.md` with the new field.
 - **Repliz Schedule**: Added `Text Attachment (Threads)` (`additionalInfo.textAttachment.text`) and `Text Attachment Link (Threads)` (`additionalInfo.textAttachment.link`) fields, shown for post type `text` and applied to Threads schedules. The text, up to 10,000 characters, is attached under the post and opens like an article. Left empty, no attachment is sent.
 - Updated `api.json` from the Public API: `textAttachment` on `ScheduleAdditionalInfo` (`ScheduleAdditionalInfoTextAttachment`), a `Post with Additional Info Text Attachment (Threads)` example, and the field descriptions now shown on every request. Updated `README.md` with the new fields.
+- **Repliz Schedule**: each item of `Replies (JSON)` takes `delay`, the minutes it waits after the post before it, so the replies of a Threads or X thread can go out spread over time. `0` or left out posts it right away, as before. A `delay` can't be less than the one of the reply before it, and all of them together can't exceed `1440` (24 hours).
+- **Repliz Schedule**: `Retry` on a thread whose main post is published but a reply failed posts only that reply and the ones after it. `Update` and `Retry` fail while a reply is still waiting for its `delay`.
+- Updated `api.json` with `delay` on `ScheduleReply`, and `README.md` with a `Replies` example that uses it.
+- **Repliz Schedule**: each Threads `text` reply in `Replies (JSON)` can take its own `textAttachment` (`{ "text": "...", "link": "..." }`), like `Text Attachment (Threads)` of the main post. X ignores it.
+- Updated `api.json` with `textAttachment` on `ScheduleReply`, and `README.md` with a reply that has one.
 
 ### Changed
 

@@ -69,7 +69,8 @@ export class ReplizSchedule implements INodeType {
           {
             name: 'Retry',
             value: 'retry',
-            description: 'Retry a failed scheduled post',
+            description:
+              'Retry a failed scheduled post, or only the failed reply of a thread whose main post is published',
             action: 'Retry a schedule',
           },
         ],
@@ -288,7 +289,7 @@ export class ReplizSchedule implements INodeType {
         },
         default: '',
         description:
-          'A long text, up to 10,000 characters, attached under the post and opened like an article. Specifically applies to Threads schedules with post type text, on the main post only. Posted as plain text. Leave empty for no attachment. Sent as additionalInfo.textAttachment.text.',
+          'A long text, up to 10,000 characters, attached under the post and opened like an article. Specifically applies to Threads schedules with post type text, on the main post. A text reply can have its own in Replies (JSON). Posted as plain text. Leave empty for no attachment. Sent as additionalInfo.textAttachment.text.',
       },
       {
         displayName: 'Text Attachment Link (Threads)',
@@ -361,7 +362,7 @@ export class ReplizSchedule implements INodeType {
         displayOptions: { show: { operation: ['create', 'update'] } },
         default: '[]',
         description:
-          'Array of auto-reply comment objects to post after publishing: [{ "type": "text", "description": "..." }]',
+          'Array of reply posts for a Threads or X thread, in order: [{ "type": "text", "description": "...", "delay": 100, "textAttachment": { "text": "...", "link": "" } }]. delay is the minutes a reply waits after the post before it (0 or left out posts it right away). It can\'t be less than the delay of the reply before it, and all delays together can\'t exceed 1440 (24 hours). textAttachment is optional, for Threads text replies only: a long text, up to 10,000 characters, attached under the reply like an article.',
       },
     ],
   };

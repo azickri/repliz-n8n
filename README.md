@@ -155,16 +155,28 @@ The **Create** and **Update** operations on `Repliz Schedule` accept several JSO
 ]
 ```
 
-**Replies** — Array of auto-comments to post after publishing:
+**Replies** — Array of auto-comments to post after publishing, for Threads and X. `delay` is the minutes a reply waits after the post before it, `0` or left out posts it right away. A `delay` can't be less than the one of the reply before it, and all of them together can't exceed `1440` (24 hours):
 
 ```json
 [
   {
     "type": "text",
-    "description": "Thanks for watching!"
+    "description": "Thanks for watching!",
+    "delay": 0
+  },
+  {
+    "type": "text",
+    "description": "Missed the post? Here it is again.",
+    "delay": 100,
+    "textAttachment": {
+      "text": "The full story, up to 10,000 characters, attached under this reply on Threads.",
+      "link": "https://repliz.com"
+    }
   }
 ]
 ```
+
+A Threads `text` reply can carry its own `textAttachment`, like `additionalInfo.textAttachment` of the main post. X ignores it.
 
 **Additional Info** — Tags, mentions, music, products, collaborators, Instagram share-to-feed and trial reel options, and YouTube privacy:
 
