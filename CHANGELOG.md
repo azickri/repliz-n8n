@@ -20,6 +20,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated `api.json` with `delay` on `ScheduleReply`, and `README.md` with a `Replies` example that uses it.
 - **Repliz Schedule**: each Threads `text` reply in `Replies (JSON)` can take its own `textAttachment` (`{ "text": "...", "link": "..." }`), like `Text Attachment (Threads)` of the main post. X ignores it.
 - Updated `api.json` with `textAttachment` on `ScheduleReply`, and `README.md` with a reply that has one.
+- **Repliz Schedule**: `isAiGenerated` in `Additional Info (JSON)` also applies to Threads, for every post type, adding Threads' AI info label to the post and every reply of the thread. The field's description lists the platforms that read it.
+- Updated `api.json` with the new `isAiGenerated` description.
 
 ### Changed
 
