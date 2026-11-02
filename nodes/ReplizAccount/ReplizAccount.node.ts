@@ -24,7 +24,7 @@ export class ReplizAccount implements INodeType {
 					{ name: 'Get All', value: 'getAll', description: 'Retrieve all connected accounts', action: 'Get all accounts' },
 					{ name: 'Count', value: 'count', description: 'Get account usage statistics per platform', action: 'Count accounts' },
 					{ name: 'Get', value: 'get', description: 'Retrieve detailed info of a specific account', action: 'Get an account' },
-					{ name: 'Get Statistics', value: 'getStatistic', description: 'Retrieve statistics for a specific account', action: 'Get account statistics' },
+					{ name: 'Get Statistics', value: 'getStatistic', description: 'Retrieve statistics for a specific account (Instagram, Threads, TikTok, Pinterest, YouTube)', action: 'Get account statistics' },
 					{ name: 'Update Automation', value: 'updateAutomation', description: 'Update content automation settings for a connected account', action: 'Update account automation' },
 					{ name: 'Delete', value: 'delete', description: 'Disconnect and remove an account', action: 'Delete an account' },
 				],
@@ -83,6 +83,18 @@ export class ReplizAccount implements INodeType {
 						default: '',
 						description: 'Search accounts by name or username',
 					},
+					{
+						displayName: 'Status',
+						name: 'status',
+						type: 'options',
+						options: [
+							{ name: 'All', value: '' },
+							{ name: 'Connected', value: 'connected' },
+							{ name: 'Disconnected', value: 'disconnected' },
+						],
+						default: '',
+						description: 'Only connected accounts, or only disconnected ones that have to be reconnected first',
+					},
 				],
 			},
 			// Get / Delete / Get Statistics / Update Automation
@@ -124,6 +136,7 @@ export class ReplizAccount implements INodeType {
 					const qs: any = {};
 					if (filters.types?.length) qs.types = filters.types;
 					if (filters.search) qs.search = filters.search;
+					if (filters.status) qs.status = filters.status;
 
 					if (returnAll) {
 						responseData = await replizApiRequestAllItems.call(this, 'GET', '/public/account', {}, qs);
