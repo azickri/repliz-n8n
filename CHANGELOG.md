@@ -23,8 +23,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Repliz Schedule**: `isAiGenerated` in `Additional Info (JSON)` also applies to Threads, for every post type, adding Threads' AI info label to the post and every reply of the thread. The field's description lists the platforms that read it.
 - Updated `api.json` with the new `isAiGenerated` description.
 - **Repliz Account**: `Get All` has a `Status` filter with `All`, `Connected` and `Disconnected` (`status`), to list only the accounts Repliz can use or only the ones that have to be reconnected.
-- **Repliz Account**: `Get Statistics` supports YouTube channels: lifetime subscribers, views and videos, plus the last 28 days of YouTube Analytics (views, watch time, average view duration, subscribers gained and lost, likes, dislikes, comments, shares) as `summary` and per day in `metrics`.
+- **Repliz Account**: `Get Statistics` supports YouTube channels: lifetime subscribers, views, videos and likes (`likesCount`), plus the last 28 days of YouTube Analytics (views, watch time, average view duration, subscribers gained and lost, likes, dislikes, comments, shares) as `summary` and per day in `metrics`. If YouTube Analytics fails, the node fails with YouTube's error.
 - Updated `api.json` with `status` on `GET /public/account` and a `YouTube` example on `GET /public/account/{accountId}/statistic`.
+- **Repliz Content**: `Get Statistics` of a YouTube video returns `insight` from YouTube Analytics: watch time, average view duration, average percentage viewed, subscribers gained and lost, and shares since upload, daily views and watch time of the last 28 days (`metrics`), and views per traffic source (`trafficSources`). If YouTube Analytics fails, the node fails with YouTube's error.
+- Updated `api.json` with a YouTube `insight` example and description on `GET /public/content/{contentId}/statistic`.
 
 ### Changed
 
