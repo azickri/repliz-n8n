@@ -27,6 +27,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated `api.json` with `status` on `GET /public/account` and a `YouTube` example on `GET /public/account/{accountId}/statistic`.
 - **Repliz Content**: `Get Statistics` of a YouTube video returns `insight` from YouTube Analytics: watch time, average view duration, average percentage viewed, subscribers gained and lost, and shares since upload, daily views and watch time of the last 28 days (`metrics`), and views per traffic source (`trafficSources`). If YouTube Analytics fails, the node fails with YouTube's error.
 - Updated `api.json` with a YouTube `insight` example and description on `GET /public/content/{contentId}/statistic`.
+- **Repliz Account**: `Get Statistics` of an Instagram account covers the last 30 days instead of the last 24 hours, which were mostly `0`. It also returns `followersCount`, `followingCount`, `mediaCount`, `newFollows`, `unfollows`, the daily reach in `metrics`, and the followers' age, gender, country and city (`audienceAges`, `audienceGenders`, `audienceCountries`, `audienceCities`, as 0-1 shares). Instagram only gives follows and demographics for accounts with at least 100 followers.
+- **Repliz Content**: `Get Statistics` of an Instagram post returns `mediaProductType` (`FEED`, `REELS` or `STORY`) and the metrics of that type: `follows`, `profileVisits` and `profileActivity` for posts, `averageWatchTime`, `watchTime` (seconds) and `skipRate` for reels, and `replies` and `navigation` for stories. Stories no longer fail.
+- Updated `api.json` with the new Instagram examples and descriptions on `GET /public/account/{accountId}/statistic` and `GET /public/content/{contentId}/statistic`.
+- **Repliz Account**: `Get Statistics` of a Threads profile with at least 100 followers returns the followers' age, gender, country and city (`audienceAges`, `audienceGenders`, `audienceCountries`, `audienceCities`, as 0-1 shares). Below 100 followers they are empty.
+- **Repliz Account**: `Get Statistics` of a TikTok account covers the last 30 days up to yesterday instead of TikTok's default range.
+- **Repliz Account** and **Repliz Content**: the YouTube Analytics numbers of `Get Statistics` are cached for 6 hours, so they can be up to 6 hours old. The channel's and video's own counts stay live.
+- Updated `api.json` with a Threads audience example and the Threads, TikTok and YouTube cache descriptions.
 
 ### Changed
 
