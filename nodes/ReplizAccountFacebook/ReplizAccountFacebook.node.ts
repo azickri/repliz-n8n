@@ -33,6 +33,7 @@ export class ReplizAccountFacebook implements INodeType {
 			{ displayName: 'Redirect URL', name: 'redirect', type: 'string', required: true, displayOptions: { show: { operation: ['authorize'] } }, default: '', description: 'The URL to redirect to after OAuth authorization' },
 			// Get Pages
 			{ displayName: 'Access Token', name: 'token', type: 'string', typeOptions: { password: true }, required: true, displayOptions: { show: { operation: ['getPage'] } }, default: '', description: 'Facebook access token to list available pages' },
+			{ displayName: 'Next Token', name: 'nextToken', type: 'string', displayOptions: { show: { operation: ['getPage'] } }, default: '', description: 'Pagination cursor from a previous response to fetch the next pages. Leave empty for the first page; an empty nextToken in the response means there are no more pages.' },
 			// Exchange
 			{ displayName: 'Authorization Code', name: 'code', type: 'string', required: true, displayOptions: { show: { operation: ['exchange'] } }, default: '', description: 'The authorization code returned by Facebook OAuth callback' },
 			// Connect
@@ -59,7 +60,10 @@ export class ReplizAccountFacebook implements INodeType {
 					responseData = await replizApiRequest.call(this, 'GET', '/public/account/facebook/authorize', {}, { redirect });
 				} else if (operation === 'getPage') {
 					const token = this.getNodeParameter('token', i) as string;
-					responseData = await replizApiRequest.call(this, 'GET', '/public/account/facebook/page', {}, { token });
+					const nextToken = this.getNodeParameter('nextToken', i) as string;
+					const qs: any = { token };
+					if (nextToken) qs.nextToken = nextToken;
+					responseData = await replizApiRequest.call(this, 'GET', '/public/account/facebook/page', {}, qs);
 				} else if (operation === 'exchange') {
 					const code = this.getNodeParameter('code', i) as string;
 					responseData = await replizApiRequest.call(this, 'POST', '/public/account/facebook/exchange', { code });

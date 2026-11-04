@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Repliz Account Facebook**: `Get Pages` has a `Next Token` field (`nextToken`). Facebook returns Pages in batches; when the response has a non-empty `nextToken`, run it again with that value to get the next Pages.
+- Updated `api.json` with `nextToken` on `GET /public/account/facebook/page`.
 - **Repliz Contact** (new node, Standard+): the contacts Repliz creates from everyone who comments on or messages your accounts, as a light CRM. Operations: `Get All` (filter by stage, tag, follow-up, accounts and search), `Count` (per stage, plus due follow-ups), `Get Tags`, `Get`, `Get by Comment`, `Get by Chat`, `Update` (stage, tags and note; fields left out keep their value), `Set Follow-up` (with an optional drafted `Follow-up Message`), `Remove Follow-up` and `Delete`. Follow-ups are reminders in Repliz and send nothing to the contact.
 - Updated `api.json` with the Contact API (`/public/contact`).
 - **Repliz Schedule**: Added `Privacy (YouTube)` (`additionalInfo.privacy`) field with `Public`, `Unlisted` and `Private`, shown for post type `video` and applied to YouTube schedules. Defaults to `Public`.
