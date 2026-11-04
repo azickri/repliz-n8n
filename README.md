@@ -55,6 +55,9 @@ Connect and authenticate Pinterest accounts. Operations: Authorize, Connect, Rec
 **Repliz Comment** `Standard+`
 Manage and moderate comments collected by Repliz. Operations: Get All, Get, Delete, Reply, Update Status. Reply can send an image along with the text (`Image URL` and `Image MIME Type`) on Facebook, Threads, TikTok, LinkedIn, and X (Twitter).
 
+**Repliz Contact** `Standard+`
+Manage the contacts Repliz creates from everyone who comments on or messages your accounts: a light CRM with a funnel stage (`new`, `contacted`, `interested`, `won`, `lost`), tags, a note and a follow-up reminder. Operations: Get All, Count, Get Tags, Get, Get by Comment, Get by Chat, Update, Set Follow-up, Remove Follow-up, Delete. Update only changes the fields you add; Update and the follow-up operations return the contact afterwards.
+
 **Repliz Chat** `Gold+`
 Manage live chat conversations and messages. Operations: Get All, Get, Get Messages, Send Message, Mark as Read.
 

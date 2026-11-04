@@ -38,6 +38,7 @@
       "dist/nodes/ReplizAccountTelegram/ReplizAccountTelegram.node.js",
       "dist/nodes/ReplizAccountPinterest/ReplizAccountPinterest.node.js",
       "dist/nodes/ReplizComment/ReplizComment.node.js",
+      "dist/nodes/ReplizContact/ReplizContact.node.js",
       "dist/nodes/ReplizChat/ReplizChat.node.js",
       "dist/nodes/ReplizContent/ReplizContent.node.js",
       "dist/nodes/ReplizSchedule/ReplizSchedule.node.js",

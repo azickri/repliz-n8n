@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Repliz Contact** (new node, Standard+): the contacts Repliz creates from everyone who comments on or messages your accounts, as a light CRM. Operations: `Get All` (filter by stage, tag, follow-up, accounts and search), `Count` (per stage, plus due follow-ups), `Get Tags`, `Get`, `Get by Comment`, `Get by Chat`, `Update` (stage, tags and note; fields left out keep their value), `Set Follow-up` (with an optional drafted `Follow-up Message`), `Remove Follow-up` and `Delete`. Follow-ups are reminders in Repliz and send nothing to the contact.
+- Updated `api.json` with the Contact API (`/public/contact`).
 - **Repliz Schedule**: Added `Privacy (YouTube)` (`additionalInfo.privacy`) field with `Public`, `Unlisted` and `Private`, shown for post type `video` and applied to YouTube schedules. Defaults to `Public`.
 - Updated `api.json` with `privacy` on `ScheduleAdditionalInfo` and a `Post with Additional Info Privacy (YouTube)` example, and `README.md` with the new field.
 - **Repliz Schedule**: Added `Trial Reel (Instagram)` (`additionalInfo.trialParams.graduationStrategy`) field with `Off`, `Manual` (`MANUAL`) and `Automatic (Performance)` (`SS_PERFORMANCE`), shown for post type `video` and applied to Instagram schedules. A trial reel is shown to non-followers first. Defaults to `Off`.
