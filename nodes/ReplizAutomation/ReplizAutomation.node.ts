@@ -58,7 +58,7 @@ export class ReplizAutomation implements INodeType {
 				displayOptions: { show: { operation: ['create', 'update'] } },
 				default: '{"delete":{},"reply":{},"like":{},"message":{},"story":{}}',
 				description:
-					'Configuration rules object (delete, reply, like, message, story). Keywords in message and story can answer with buttons: give a keyword.values item "type": "opening" and its own "opening" object, and send the "id" Repliz returns on it back unchanged when updating. See <a href="https://docs.repliz.com/api/guides/automation-config#keyword-with-buttons" target="_blank">Keyword with Buttons</a>',
+					'Configuration rules object (delete, reply, like, message, story). Keywords in message and story can answer with buttons: give a keyword.values item "type": "opening" and its own "opening" object, and send the "id" Repliz returns on it back unchanged when updating. Set opening.webUrl.isTrackLink to true to send the links of an opening as rplz.link short links and count their clicks. See <a href="https://docs.repliz.com/api/guides/automation-config#keyword-with-buttons" target="_blank">Keyword with Buttons</a>',
 			},
 		],
 	};

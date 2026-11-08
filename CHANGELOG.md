@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Repliz Automation**, **Repliz Account** and **Repliz Template Automation**: an opening's Follow-up Message takes `isTrackLink` (`opening.webUrl.isTrackLink`). With `true`, the links of its buttons and cards are sent as `rplz.link` short links, so their clicks, and who clicked, show up in Repliz under Report → Link Clicks. Instagram and Facebook only.
+- Updated `api.json` with `isTrackLink` on `ConfigOpeningWebUrl`.
 - **Repliz Account Facebook**: `Get Pages` has a `Next Token` field (`nextToken`). Facebook returns Pages in batches; when the response has a non-empty `nextToken`, run it again with that value to get the next Pages.
 - Updated `api.json` with `nextToken` on `GET /public/account/facebook/page`.
 - **Repliz Contact** (new node, Standard+): the contacts Repliz creates from everyone who comments on or messages your accounts, as a light CRM. Operations: `Get All` (filter by stage, tag, follow-up, accounts and search), `Count` (per stage, plus due follow-ups), `Get Tags`, `Get`, `Get by Comment`, `Get by Chat`, `Update` (stage, tags and note; fields left out keep their value), `Set Follow-up` (with an optional drafted `Follow-up Message`), `Remove Follow-up` and `Delete`. Follow-ups are reminders in Repliz and send nothing to the contact.
