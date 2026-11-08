@@ -104,7 +104,7 @@ Operations: Get Statistics, Get All Files, Get File, Delete File, Initialize Upl
 ### Addons
 
 **Repliz Addon** `Premium+`
-Access premium platform features. Operations: Get Addon Allocation, Get TikTok Trending Music, Get Shopee Products, Get WhatsApp Channels, Get Telegram Channels, Get Pinterest Boards, Get Link Metadata.
+Access premium platform features. Operations: Get Addon Allocation, Get TikTok Trending Music, Get Shopee Products, Get WhatsApp Channels, Get Telegram Channels, Get Pinterest Boards, Create Pinterest Board, Update Pinterest Board, Delete Pinterest Board, Get Link Metadata. A new board is public, and Create Pinterest Board returns it ready to use as the schedule board. Deleting a board deletes every pin in it on Pinterest.
 
 ---
 
@@ -216,7 +216,7 @@ A Threads `text` reply can carry its own `textAttachment`, like `additionalInfo.
 }
 ```
 
-**Pinterest Board** — Pinterest schedules (Image, Video, Album) always need a board. Pass an item from `Repliz Addon` → **Get Pinterest Boards** in the same **WhatsApp / Telegram Channel / Pinterest Board** field, with `"type": "board"`; create one schedule per board. The **Title** is the pin title (max 100 characters), the caption max 800 characters, `medias[0].alt` the alt text, and `link` in **Additional Info** the destination URL the pin opens. An album is a carousel of 2 to 5 images.
+**Pinterest Board** — Pinterest schedules (Image, Video, Album) always need a board. Pass an item from `Repliz Addon` → **Get Pinterest Boards** (or the result of **Create Pinterest Board**) in the same **WhatsApp / Telegram Channel / Pinterest Board** field, with `"type": "board"`; create one schedule per board. The **Title** is the pin title (max 100 characters), the caption max 800 characters, `medias[0].alt` the alt text, and `link` in **Additional Info** the destination URL the pin opens. An album is a carousel of 2 to 5 images.
 
 ```json
 {

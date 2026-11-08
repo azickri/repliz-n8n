@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Repliz Addon**: `Create Pinterest Board`, `Update Pinterest Board` and `Delete Pinterest Board` manage the boards of a connected Pinterest account without opening Pinterest. A new board is public, and `Create Pinterest Board` returns it ready to pass as the schedule board. `Update Pinterest Board` keeps the fields you leave out; an empty `Description` clears it. `Delete Pinterest Board` also deletes every pin in the board, and schedules that still post to it fail.
+- **Repliz Addon**: `Get Pinterest Boards` also returns each board's `description` and `pinCount`.
+- Updated `api.json` with `POST /public/addon/pinterest/board`, `PUT` and `DELETE /public/addon/pinterest/board/{boardId}` (`BodyCreateUpdatePinterestBoardDTO`), and `description` and `pinCount` on `GET /public/addon/pinterest/board`.
 - **Repliz Automation**, **Repliz Account** and **Repliz Template Automation**: an opening's Follow-up Message takes `isTrackLink` (`opening.webUrl.isTrackLink`). With `true`, the links of its buttons and cards are sent as `rplz.link` short links, so their clicks, and who clicked, show up in Repliz under Report → Link Clicks. Instagram and Facebook only.
 - Updated `api.json` with `isTrackLink` on `ConfigOpeningWebUrl`.
 - **Repliz Account Facebook**: `Get Pages` has a `Next Token` field (`nextToken`). Facebook returns Pages in batches; when the response has a non-empty `nextToken`, run it again with that value to get the next Pages.

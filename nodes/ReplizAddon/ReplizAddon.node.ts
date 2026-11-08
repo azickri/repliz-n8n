@@ -17,7 +17,7 @@ export class ReplizAddon implements INodeType {
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"]}}',
-		description: 'Access premium Repliz addons: TikTok trending music, Shopee products, WhatsApp and Telegram channels, Pinterest boards, and link metadata (Premium+)',
+		description: 'Access premium Repliz addons: TikTok trending music, Shopee products, WhatsApp and Telegram channels, Pinterest boards (get, create, update, delete), and link metadata (Premium+)',
 		defaults: { name: 'Repliz Addon' },
 		inputs: ['main'],
 		outputs: ['main'],
@@ -35,6 +35,9 @@ export class ReplizAddon implements INodeType {
 					{ name: 'Get WhatsApp Channels', value: 'getWhatsAppChannels', description: 'Retrieve the channels and groups of a connected WhatsApp account, used as the schedule Channel', action: 'Get WhatsApp channels' },
 					{ name: 'Get Telegram Channels', value: 'getTelegramChannels', description: 'Retrieve the channels and groups of a connected Telegram account, used as the schedule Channel', action: 'Get Telegram channels' },
 					{ name: 'Get Pinterest Boards', value: 'getPinterestBoards', description: 'Retrieve the boards of a connected Pinterest account, used as the schedule Board', action: 'Get Pinterest boards' },
+					{ name: 'Create Pinterest Board', value: 'createPinterestBoard', description: 'Create a public board on a connected Pinterest account, ready to use as the schedule Board', action: 'Create a Pinterest board' },
+					{ name: 'Update Pinterest Board', value: 'updatePinterestBoard', description: 'Rename a Pinterest board or change its description', action: 'Update a Pinterest board' },
+					{ name: 'Delete Pinterest Board', value: 'deletePinterestBoard', description: 'Delete a Pinterest board together with every pin in it', action: 'Delete a Pinterest board' },
 					{ name: 'Get Link Metadata', value: 'getLinkMetadata', description: 'Extract preview metadata (title, description, image) from a URL', action: 'Get link metadata' },
 				],
 				default: 'getAddon',
@@ -119,9 +122,64 @@ export class ReplizAddon implements INodeType {
 				name: 'accountId',
 				type: 'string',
 				required: true,
-				displayOptions: { show: { operation: ['getPinterestBoards'] } },
+				displayOptions: { show: { operation: ['getPinterestBoards', 'createPinterestBoard', 'updatePinterestBoard', 'deletePinterestBoard'] } },
 				default: '',
 				description: 'The Repliz account ID of the connected Pinterest account',
+			},
+			{
+				displayName: 'Board ID',
+				name: 'boardId',
+				type: 'string',
+				required: true,
+				displayOptions: { show: { operation: ['updatePinterestBoard', 'deletePinterestBoard'] } },
+				default: '',
+				placeholder: '1006921296753698211',
+				description: 'The `id` of the board from Get Pinterest Boards',
+			},
+			{
+				displayName: 'Board Name',
+				name: 'boardName',
+				type: 'string',
+				required: true,
+				displayOptions: { show: { operation: ['createPinterestBoard'] } },
+				default: '',
+				placeholder: 'Social Media Tips',
+				description: 'Name of the board, up to 100 characters. Pinterest rejects a name already used by another board of the account.',
+			},
+			{
+				displayName: 'Board Description',
+				name: 'boardDescription',
+				type: 'string',
+				typeOptions: { rows: 3 },
+				displayOptions: { show: { operation: ['createPinterestBoard'] } },
+				default: '',
+				description: 'Optional description of the board, up to 800 characters',
+			},
+			{
+				displayName: 'Update Fields',
+				name: 'boardUpdateFields',
+				type: 'collection',
+				placeholder: 'Add Field',
+				default: {},
+				displayOptions: { show: { operation: ['updatePinterestBoard'] } },
+				description: 'Fields left out keep their current value. Pins and schedules of the board stay as they are.',
+				options: [
+					{
+						displayName: 'Name',
+						name: 'name',
+						type: 'string',
+						default: '',
+						description: 'The new board name, up to 100 characters',
+					},
+					{
+						displayName: 'Description',
+						name: 'description',
+						type: 'string',
+						typeOptions: { rows: 3 },
+						default: '',
+						description: 'The new description, up to 800 characters. Leave empty to clear it.',
+					},
+				],
 			},
 			// Link Metadata
 			{
@@ -168,6 +226,30 @@ export class ReplizAddon implements INodeType {
 				} else if (operation === 'getPinterestBoards') {
 					const accountId = this.getNodeParameter('accountId', i) as string;
 					responseData = await replizApiRequest.call(this, 'GET', '/public/addon/pinterest/board', {}, { accountId });
+				} else if (operation === 'createPinterestBoard') {
+					const accountId = this.getNodeParameter('accountId', i) as string;
+					const name = this.getNodeParameter('boardName', i) as string;
+					const description = this.getNodeParameter('boardDescription', i) as string;
+					responseData = await replizApiRequest.call(this, 'POST', '/public/addon/pinterest/board', { accountId, name, description });
+				} else if (operation === 'updatePinterestBoard') {
+					const accountId = this.getNodeParameter('accountId', i) as string;
+					const boardId = this.getNodeParameter('boardId', i) as string;
+					const fields = this.getNodeParameter('boardUpdateFields', i) as { name?: string; description?: string };
+					const boards = await replizApiRequest.call(this, 'GET', '/public/addon/pinterest/board', {}, { accountId });
+					const current = (boards.docs || []).find((item: any) => item.id == boardId);
+					if (!current) throw new Error(`Board ${boardId} not found on this Pinterest account`);
+					const board = {
+						...current,
+						name: fields.name || current.name,
+						description: fields.description ?? current.description ?? '',
+					};
+					await replizApiRequest.call(this, 'PUT', `/public/addon/pinterest/board/${boardId}`, { accountId, name: board.name, description: board.description });
+					responseData = board;
+				} else if (operation === 'deletePinterestBoard') {
+					const accountId = this.getNodeParameter('accountId', i) as string;
+					const boardId = this.getNodeParameter('boardId', i) as string;
+					await replizApiRequest.call(this, 'DELETE', `/public/addon/pinterest/board/${boardId}`, {}, { accountId });
+					responseData = { success: true, boardId };
 				} else if (operation === 'getLinkMetadata') {
 					const url = this.getNodeParameter('url', i) as string;
 					responseData = await replizApiRequest.call(this, 'GET', '/public/addon/link/metadata', {}, { url });
