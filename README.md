@@ -59,14 +59,14 @@ Manage and moderate comments collected by Repliz. Operations: Get All, Get, Dele
 Manage the contacts Repliz creates from everyone who comments on or messages your accounts: a light CRM with a funnel stage (`new`, `contacted`, `interested`, `won`, `lost`), tags, a note and a follow-up reminder. Operations: Get All, Count, Get Tags, Get, Get by Comment, Get by Chat, Update, Set Follow-up, Remove Follow-up, Delete. Update only changes the fields you add; Update and the follow-up operations return the contact afterwards.
 
 **Repliz Chat** `Gold+`
-Manage live chat conversations and messages. Operations: Get All, Get, Get Messages, Send Message, Mark as Read.
+Manage live chat conversations and messages. Operations: Get All, Get, Get Messages, Send Message, Mark as Read. On Facebook and Instagram, Send Message can also send buttons (`web_url` or `postback`), a carousel of cards, or quick replies. A tapped postback button reaches your Repliz webhook as a `postback` event and a tapped quick reply as a `chat` event, both with the value in `message.payload`.
 
 ---
 
 ### Content, Scheduling & Automation
 
 **Repliz Content** `Gold+`
-Retrieve and interact with published social media content. Operations: Get All, Get, Delete, Get Comments, Create Comment, Delete Comment, Like Comment, Get Statistics, Message Comment Author. For WhatsApp and Telegram accounts, Get All needs a `Channel ID` from `Repliz Addon`. Create Comment can send an image along with the text on Facebook, Threads, TikTok, LinkedIn, and X (Twitter).
+Retrieve and interact with published social media content. Operations: Get All, Get, Delete, Get Comments, Create Comment, Delete Comment, Like Comment, Get Statistics, Message Comment Author. For WhatsApp and Telegram accounts, Get All needs a `Channel ID` from `Repliz Addon`. Create Comment can send an image along with the text on Facebook, Threads, TikTok, LinkedIn, and X (Twitter). Message Comment Author can send the same Button, Carousel and Quick Reply messages as Repliz Chat.
 
 **Repliz Schedule** `Premium+`
 Create and manage scheduled posts across platforms.

@@ -52,3 +52,24 @@ export async function replizApiRequestAllItems(
 
 	return results;
 }
+
+export function replizButtons(items: any[]): IDataObject[] {
+	return (items || []).map((btn: any) =>
+		btn.type === 'postback'
+			? { type: 'postback', title: btn.title, payload: btn.payload }
+			: { type: 'web_url', title: btn.title, url: btn.url },
+	);
+}
+
+export function replizQuickReply(text: string, items: any[]): IDataObject {
+	return {
+		text,
+		buttons: (items || []).map((item: any) => ({ title: item.title, payload: item.payload })),
+	};
+}
+
+export function replizCarousel(raw: unknown): IDataObject {
+	const value = typeof raw === 'string' ? JSON.parse(raw || '[]') : raw;
+	const elements = Array.isArray(value) ? value : (value as IDataObject)?.elements;
+	return { elements: elements || [] };
+}

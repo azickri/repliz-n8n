@@ -1,5 +1,5 @@
 import { IExecuteFunctions, INodeExecutionData, INodeType, INodeTypeDescription } from 'n8n-workflow';
-import { replizApiRequest, replizApiRequestAllItems } from '../GenericFunctions';
+import { replizApiRequest, replizApiRequestAllItems, replizButtons, replizCarousel, replizQuickReply } from '../GenericFunctions';
 
 export class ReplizChat implements INodeType {
 	description: INodeTypeDescription = {
@@ -63,9 +63,11 @@ export class ReplizChat implements INodeType {
 					{ name: 'Audio', value: 'audio' },
 					{ name: 'Document', value: 'document' },
 					{ name: 'Button', value: 'button' },
+					{ name: 'Carousel', value: 'carousel' },
+					{ name: 'Quick Reply', value: 'quick_reply' },
 				],
 				default: 'text',
-				description: 'Type of message to send',
+				description: 'Type of message to send. Button, Carousel and Quick Reply work on Facebook and Instagram only',
 			},
 			{ displayName: 'Text', name: 'text', type: 'string', typeOptions: { rows: 3 }, displayOptions: { show: { operation: ['sendMessage'], messageType: ['text', 'image', 'video', 'audio', 'document'] } }, default: '', description: 'The text content of the message' },
 			{ displayName: 'Media URL', name: 'mediaUrl', type: 'string', displayOptions: { show: { operation: ['sendMessage'], messageType: ['image', 'video', 'audio', 'document'] } }, default: '', description: 'URL of the media file to send' },
@@ -90,10 +92,30 @@ export class ReplizChat implements INodeType {
 						{ displayName: 'Type', name: 'type', type: 'options', options: [{ name: 'Web URL', value: 'web_url' }, { name: 'Postback', value: 'postback' }], default: 'web_url' },
 						{ displayName: 'Title', name: 'title', type: 'string', default: '', description: 'Label displayed on the button' },
 						{ displayName: 'URL', name: 'url', type: 'string', default: '', description: 'The URL to open when the button is clicked (for web_url type)' },
+						{ displayName: 'Payload', name: 'payload', type: 'string', default: '', description: 'For postback type: your own value, up to 1000 characters. When the button is tapped, your Repliz webhook gets a postback event with it in message.payload' },
 					],
 				}],
-				description: 'List of buttons to display in the message',
+				description: 'List of 1 to 3 buttons to display in the message',
 			},
+			{ displayName: 'Quick Reply Text', name: 'quickReplyText', type: 'string', typeOptions: { rows: 3 }, displayOptions: { show: { operation: ['sendMessage'], messageType: ['quick_reply'] } }, default: '', description: 'Message text shown above the quick replies' },
+			{
+				displayName: 'Quick Replies',
+				name: 'quickReplies',
+				type: 'fixedCollection',
+				typeOptions: { multipleValues: true },
+				displayOptions: { show: { operation: ['sendMessage'], messageType: ['quick_reply'] } },
+				default: {},
+				options: [{
+					displayName: 'Quick Reply',
+					name: 'quickReplyItems',
+					values: [
+						{ displayName: 'Title', name: 'title', type: 'string', default: '', description: 'Label of the quick reply, up to 20 characters. It is also the text the person sends when tapping it' },
+						{ displayName: 'Payload', name: 'payload', type: 'string', default: '', description: 'Your own value, up to 1000 characters, sent back in message.payload' },
+					],
+				}],
+				description: 'Facebook and Instagram only. 1 to 13 quick replies. A tapped quick reply is sent to your Repliz webhook as a chat event with its payload in message.payload',
+			},
+			{ displayName: 'Cards (JSON)', name: 'carouselElements', type: 'json', displayOptions: { show: { operation: ['sendMessage'], messageType: ['carousel'] } }, default: '[\n  {\n    "title": "Ebook Content Creator",\n    "subtitle": "Bangun aset digital!",\n    "image": "https://storage.repliz.com/image.png",\n    "url": "https://repliz.com",\n    "buttons": [\n      { "type": "postback", "title": "Order Now", "payload": "ORDER_EBOOK" },\n      { "type": "web_url", "title": "Read More", "url": "https://repliz.com" }\n    ]\n  }\n]', description: 'Facebook and Instagram only. 1 to 10 cards, sent as carousel.elements. Each card: { "title", "subtitle"?, "image"?, "url"?, "buttons"?: up to 3 of { "type": "web_url", "title", "url" } or { "type": "postback", "title", "payload" } }. Title and subtitle are cut to 80 characters, and a card needs at least one of subtitle, image or buttons.' },
 		],
 	};
 
@@ -159,8 +181,13 @@ export class ReplizChat implements INodeType {
 						const img = this.getNodeParameter('buttonImageUrl', i) as string;
 						if (img) btnObj.image = img;
 						const buttonsData = this.getNodeParameter('buttons.buttonItems', i, []) as any[];
-						btnObj.buttons = buttonsData.map((btn: any) => ({ type: btn.type, title: btn.title, url: btn.url }));
+						btnObj.buttons = replizButtons(buttonsData);
 						body.button = btnObj;
+					} else if (messageType === 'carousel') {
+						body.carousel = replizCarousel(this.getNodeParameter('carouselElements', i));
+					} else if (messageType === 'quick_reply') {
+						const quickReplies = this.getNodeParameter('quickReplies.quickReplyItems', i, []) as any[];
+						body.quickReply = replizQuickReply(this.getNodeParameter('quickReplyText', i) as string, quickReplies);
 					}
 
 					responseData = await replizApiRequest.call(this, 'POST', `/public/chat/${chatId}/message`, body);
