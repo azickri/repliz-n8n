@@ -17,7 +17,7 @@ export class ReplizAddon implements INodeType {
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"]}}',
-		description: 'Access premium Repliz addons: TikTok trending music, Shopee products, WhatsApp and Telegram channels, Pinterest boards (get, create, update, delete), and link metadata (Premium+)',
+		description: 'Access premium Repliz addons: TikTok trending music, Shopee products, WhatsApp and Telegram channels, Pinterest boards (get, create, update, delete), Instagram profile, and link metadata (Premium+)',
 		defaults: { name: 'Repliz Addon' },
 		inputs: ['main'],
 		outputs: ['main'],
@@ -38,6 +38,7 @@ export class ReplizAddon implements INodeType {
 					{ name: 'Create Pinterest Board', value: 'createPinterestBoard', description: 'Create a public board on a connected Pinterest account, ready to use as the schedule Board', action: 'Create a Pinterest board' },
 					{ name: 'Update Pinterest Board', value: 'updatePinterestBoard', description: 'Rename a Pinterest board or change its description', action: 'Update a Pinterest board' },
 					{ name: 'Delete Pinterest Board', value: 'deletePinterestBoard', description: 'Delete a Pinterest board together with every pin in it', action: 'Delete a Pinterest board' },
+					{ name: 'Get Instagram Profile', value: 'getInstagramProfile', description: 'Retrieve the profile of an Instagram user who messaged the account, including whether they follow it', action: 'Get an Instagram profile' },
 					{ name: 'Get Link Metadata', value: 'getLinkMetadata', description: 'Extract preview metadata (title, description, image) from a URL', action: 'Get link metadata' },
 				],
 				default: 'getAddon',
@@ -181,6 +182,26 @@ export class ReplizAddon implements INodeType {
 					},
 				],
 			},
+			// Instagram Profile
+			{
+				displayName: 'Account ID',
+				name: 'accountId',
+				type: 'string',
+				required: true,
+				displayOptions: { show: { operation: ['getInstagramProfile'] } },
+				default: '',
+				description: 'The Repliz account ID of the connected Instagram account',
+			},
+			{
+				displayName: 'Sender ID',
+				name: 'senderId',
+				type: 'string',
+				required: true,
+				displayOptions: { show: { operation: ['getInstagramProfile'] } },
+				default: '',
+				placeholder: '6793729447315239',
+				description: 'Instagram-scoped ID of the user, the `senderId` of a chat from Repliz Chat. Instagram only returns users who have sent a message to the account; anyone else fails with the error from Instagram.',
+			},
 			// Link Metadata
 			{
 				displayName: 'URL',
@@ -250,6 +271,10 @@ export class ReplizAddon implements INodeType {
 					const boardId = this.getNodeParameter('boardId', i) as string;
 					await replizApiRequest.call(this, 'DELETE', `/public/addon/pinterest/board/${boardId}`, {}, { accountId });
 					responseData = { success: true, boardId };
+				} else if (operation === 'getInstagramProfile') {
+					const accountId = this.getNodeParameter('accountId', i) as string;
+					const senderId = this.getNodeParameter('senderId', i) as string;
+					responseData = await replizApiRequest.call(this, 'GET', '/public/addon/instagram/profile', {}, { accountId, senderId });
 				} else if (operation === 'getLinkMetadata') {
 					const url = this.getNodeParameter('url', i) as string;
 					responseData = await replizApiRequest.call(this, 'GET', '/public/addon/link/metadata', {}, { url });

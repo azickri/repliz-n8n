@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Repliz Addon**: `Get Instagram Profile` returns the profile of an Instagram user who has messaged a connected Instagram account: `name`, `username`, `picture`, `followerCount`, `isFollower` (the user follows the account) and `isFollowing` (the account follows the user). Pass the `Sender ID`, the `senderId` of a chat from Repliz Chat, for example to only send a link to followers. Instagram only returns users who have sent a message to the account; anyone else fails with the error from Instagram.
+- Updated `api.json` with `GET /public/addon/instagram/profile`.
 - **Repliz Chat**: `Send Message` has two new message types, `Carousel` (`Cards (JSON)`, 1 to 10 cards sent as `carousel.elements`, each with up to 3 buttons) and `Quick Reply` (`Quick Reply Text` and 1 to 13 `Quick Replies` with a title and payload). Facebook and Instagram only.
 - **Repliz Chat** and **Repliz Content**: a `Postback` button now has a `Payload` field, sent as `payload`. Before, Repliz only accepted `web_url` buttons, so a postback button was rejected. When the person taps it, your Repliz webhook gets a `postback` event with the value in `message.payload`. A tapped quick reply arrives as a `chat` event with its value in `message.payload`.
 - **Repliz Content**: `Message Comment Author` has the same `Carousel` and `Quick Reply` message types as Repliz Chat. `Message Text` is not shown for `Carousel`.

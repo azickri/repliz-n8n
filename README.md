@@ -104,7 +104,7 @@ Operations: Get Statistics, Get All Files, Get File, Delete File, Initialize Upl
 ### Addons
 
 **Repliz Addon** `Premium+`
-Access premium platform features. Operations: Get Addon Allocation, Get TikTok Trending Music, Get Shopee Products, Get WhatsApp Channels, Get Telegram Channels, Get Pinterest Boards, Create Pinterest Board, Update Pinterest Board, Delete Pinterest Board, Get Link Metadata. A new board is public, and Create Pinterest Board returns it ready to use as the schedule board. Deleting a board deletes every pin in it on Pinterest.
+Access premium platform features. Operations: Get Addon Allocation, Get TikTok Trending Music, Get Shopee Products, Get WhatsApp Channels, Get Telegram Channels, Get Pinterest Boards, Create Pinterest Board, Update Pinterest Board, Delete Pinterest Board, Get Instagram Profile, Get Link Metadata. A new board is public, and Create Pinterest Board returns it ready to use as the schedule board. Deleting a board deletes every pin in it on Pinterest. Get Instagram Profile takes the `senderId` of an Instagram chat and returns `isFollower` (the user follows the account) and `isFollowing` (the account follows the user), only for users who have messaged the account.
 
 ---
 
