@@ -69,6 +69,7 @@ export class ReplizChat implements INodeType {
 				default: 'text',
 				description: 'Type of message to send. Button, Carousel and Quick Reply work on Facebook and Instagram only',
 			},
+			{ displayName: 'Reply To Message ID', name: 'replyToMessageId', type: 'string', displayOptions: { show: { operation: ['sendMessage'] } }, default: '', description: 'The messageId (not _id) of a message in this chat, from Get Messages, to send this message as a reply that quotes it. TikTok replies are Text only. Leave empty for a normal message.' },
 			{ displayName: 'Text', name: 'text', type: 'string', typeOptions: { rows: 3 }, displayOptions: { show: { operation: ['sendMessage'], messageType: ['text', 'image', 'video', 'audio', 'document'] } }, default: '', description: 'The text content of the message' },
 			{ displayName: 'Media URL', name: 'mediaUrl', type: 'string', displayOptions: { show: { operation: ['sendMessage'], messageType: ['image', 'video', 'audio', 'document'] } }, default: '', description: 'URL of the media file to send' },
 			{ displayName: 'MIME Type', name: 'mimeType', type: 'string', displayOptions: { show: { operation: ['sendMessage'], messageType: ['image', 'video', 'audio', 'document'] } }, default: '', placeholder: 'e.g. image/jpeg, video/mp4', description: 'The MIME type of the media file' },
@@ -189,6 +190,9 @@ export class ReplizChat implements INodeType {
 						const quickReplies = this.getNodeParameter('quickReplies.quickReplyItems', i, []) as any[];
 						body.quickReply = replizQuickReply(this.getNodeParameter('quickReplyText', i) as string, quickReplies);
 					}
+
+					const replyToMessageId = this.getNodeParameter('replyToMessageId', i, '') as string;
+					if (replyToMessageId) body.replyToMessageId = replyToMessageId;
 
 					responseData = await replizApiRequest.call(this, 'POST', `/public/chat/${chatId}/message`, body);
 				} else if (operation === 'markRead') {

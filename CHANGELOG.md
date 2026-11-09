@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Repliz Chat**: `Send Message` has a `Reply To Message ID` field (`replyToMessageId`). Put the `messageId` of a message in the chat, from `Get Messages`, to send the message as a reply that shows it quoted. Works with every message type on Facebook, Instagram and Telegram; TikTok replies are `Text` only. A `messageId` that isn't in the chat fails with `message to reply not found`. Messages from `Get Messages` and the `chat` webhook event that reply to another one have `quoted`, a copy of the message they answer.
+- Updated `api.json` with `replyToMessageId` on `BodySendMessageDTO`, a `Reply to a Message` example, the `message to reply not found` response, and `quoted` in the `GET /public/chat/{chatId}/message` example.
 - **Repliz Addon**: `Get Instagram Profile` returns the profile of an Instagram user who has messaged a connected Instagram account: `name`, `username`, `picture`, `followerCount`, `isFollower` (the user follows the account) and `isFollowing` (the account follows the user). Pass the `Sender ID`, the `senderId` of a chat from Repliz Chat, for example to only send a link to followers. Instagram only returns users who have sent a message to the account; anyone else fails with the error from Instagram.
 - Updated `api.json` with `GET /public/addon/instagram/profile`.
 - **Repliz Chat**: `Send Message` has two new message types, `Carousel` (`Cards (JSON)`, 1 to 10 cards sent as `carousel.elements`, each with up to 3 buttons) and `Quick Reply` (`Quick Reply Text` and 1 to 13 `Quick Replies` with a title and payload). Facebook and Instagram only.
