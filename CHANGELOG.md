@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Repliz Account**: tags group the accounts of one brand or client. New operations `Get Tags` (every tag with how many accounts have it in total and per platform), `Update Tags` (replace the tags of one account, at most 10 of up to 30 characters; empty removes them all), `Rename Tag` (rename a tag on every account, merging it into an existing tag of that name) and `Remove Tag` (remove a tag from every account; the accounts stay). `Get All` has a `Tags` filter (comma-separated) and returns each account's `tags`.
+- Updated `api.json` with `GET`, `PUT` and `DELETE /public/account/tag`, `PUT /public/account/{accountId}/tag` (`BodyUpdateTagAccountDTO`, `BodyRenameTagAccountDTO`) and the `tags` filter on `GET /public/account`.
 - **Repliz Account** and **Repliz Template Automation**: the automation config takes `storyMention`, a DM to people who mention the Instagram account in their own story, with `type` `text`, `ai` or `opening` and the usual `delay`. A mention has no text, so there are no keyword replies. It is optional, and an update that leaves it out keeps the saved setting.
 - **Repliz Report**: `Report Type` accepts `mention` for the story mention DMs, which `Retry` sends again with the account's current `storyMention`.
 - Updated `api.json` with `ConfigAutomationStoryMention`, `storyMention` on `BodyUpdateAutomationAccountDTO` and `ConfigAutomationTemplate`, and `mention` in the `type` filter of `GET /public/report`.

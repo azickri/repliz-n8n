@@ -26,6 +26,10 @@ export class ReplizAccount implements INodeType {
 					{ name: 'Get', value: 'get', description: 'Retrieve detailed info of a specific account', action: 'Get an account' },
 					{ name: 'Get Statistics', value: 'getStatistic', description: 'Retrieve statistics for a specific account (Instagram, Threads, TikTok, Pinterest, YouTube)', action: 'Get account statistics' },
 					{ name: 'Update Automation', value: 'updateAutomation', description: 'Update content automation settings for a connected account', action: 'Update account automation' },
+					{ name: 'Get Tags', value: 'getTags', description: 'Retrieve every tag used to group accounts, with how many accounts have it per platform', action: 'Get account tags' },
+					{ name: 'Update Tags', value: 'updateTags', description: 'Replace every tag of a connected account', action: 'Update account tags' },
+					{ name: 'Rename Tag', value: 'renameTag', description: 'Rename a tag on every account that has it', action: 'Rename an account tag' },
+					{ name: 'Remove Tag', value: 'removeTag', description: 'Remove a tag from every account that has it', action: 'Remove an account tag' },
 					{ name: 'Delete', value: 'delete', description: 'Disconnect and remove an account', action: 'Delete an account' },
 				],
 				default: 'getAll',
@@ -95,6 +99,14 @@ export class ReplizAccount implements INodeType {
 						default: '',
 						description: 'Only connected accounts, or only disconnected ones that have to be reconnected first',
 					},
+					{
+						displayName: 'Tags',
+						name: 'tags',
+						type: 'string',
+						default: '',
+						placeholder: 'Brand A, Brand B',
+						description: 'Comma-separated tags. Only accounts with at least one of them are returned, case-insensitive.',
+					},
 				],
 			},
 			// Get / Delete / Get Statistics / Update Automation
@@ -103,9 +115,40 @@ export class ReplizAccount implements INodeType {
 				name: 'accountId',
 				type: 'string',
 				required: true,
-				displayOptions: { show: { operation: ['get', 'delete', 'getStatistic', 'updateAutomation'] } },
+				displayOptions: { show: { operation: ['get', 'delete', 'getStatistic', 'updateAutomation', 'updateTags'] } },
 				default: '',
 				description: 'The unique identifier of the account',
+			},
+			// Update Tags
+			{
+				displayName: 'Tags',
+				name: 'tags',
+				type: 'string',
+				displayOptions: { show: { operation: ['updateTags'] } },
+				default: '',
+				placeholder: 'Brand A, Jakarta',
+				description: 'Comma-separated list of every tag of the account, replacing the current tags. At most 10, of up to 30 characters each. Leave empty to remove all tags. A tag another account already has takes its spelling.',
+			},
+			// Rename Tag / Remove Tag
+			{
+				displayName: 'Tag',
+				name: 'tag',
+				type: 'string',
+				required: true,
+				displayOptions: { show: { operation: ['renameTag', 'removeTag'] } },
+				default: '',
+				placeholder: 'Brand A',
+				description: 'The tag to change, case-insensitive. Fails when no account has it.',
+			},
+			{
+				displayName: 'New Name',
+				name: 'name',
+				type: 'string',
+				required: true,
+				displayOptions: { show: { operation: ['renameTag'] } },
+				default: '',
+				placeholder: 'Brand Alpha',
+				description: 'The new name, up to 30 characters. When another tag already has this name, the two are merged.',
 			},
 			// Update Automation Config
 			{
@@ -137,6 +180,7 @@ export class ReplizAccount implements INodeType {
 					if (filters.types?.length) qs.types = filters.types;
 					if (filters.search) qs.search = filters.search;
 					if (filters.status) qs.status = filters.status;
+					if (filters.tags) qs.tags = String(filters.tags).split(',').map((s: string) => s.trim()).filter(Boolean);
 
 					if (returnAll) {
 						responseData = await replizApiRequestAllItems.call(this, 'GET', '/public/account', {}, qs);
@@ -158,6 +202,22 @@ export class ReplizAccount implements INodeType {
 					const configRaw = this.getNodeParameter('configJson', i);
 					const config = typeof configRaw === 'string' ? JSON.parse(configRaw) : configRaw;
 					responseData = await replizApiRequest.call(this, 'PUT', `/public/account/${accountId}/automation`, config);
+				} else if (operation === 'getTags') {
+					responseData = await replizApiRequest.call(this, 'GET', '/public/account/tag');
+				} else if (operation === 'updateTags') {
+					const accountId = this.getNodeParameter('accountId', i) as string;
+					const tags = String(this.getNodeParameter('tags', i) || '').split(',').map((s: string) => s.trim()).filter(Boolean);
+					await replizApiRequest.call(this, 'PUT', `/public/account/${accountId}/tag`, { tags });
+					responseData = { success: true, accountId, tags };
+				} else if (operation === 'renameTag') {
+					const tag = this.getNodeParameter('tag', i) as string;
+					const name = this.getNodeParameter('name', i) as string;
+					await replizApiRequest.call(this, 'PUT', '/public/account/tag', { tag, name });
+					responseData = { success: true, tag, name };
+				} else if (operation === 'removeTag') {
+					const tag = this.getNodeParameter('tag', i) as string;
+					await replizApiRequest.call(this, 'DELETE', '/public/account/tag', {}, { tag });
+					responseData = { success: true, tag };
 				} else if (operation === 'delete') {
 					const accountId = this.getNodeParameter('accountId', i) as string;
 					responseData = await replizApiRequest.call(this, 'DELETE', `/public/account/${accountId}`);
