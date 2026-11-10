@@ -38,7 +38,7 @@ export class ReplizReport implements INodeType {
 				default: {},
 				displayOptions: { show: { operation: ['getAll'] } },
 				options: [
-					{ displayName: 'Report Type', name: 'type', type: 'string', default: '', description: 'Filter by report job type' },
+					{ displayName: 'Report Type', name: 'type', type: 'string', default: '', description: 'Filter by automation module: delete, reply, like, message, chat, story, or mention (a DM to an Instagram story mention)' },
 					{ displayName: 'Status', name: 'status', type: 'string', default: '', description: 'Filter by report execution status' },
 					{ displayName: 'Account IDs', name: 'accountIds', type: 'string', default: '', placeholder: 'id1,id2', description: 'Comma-separated list of account IDs' },
 					{ displayName: 'Search', name: 'search', type: 'string', default: '', description: 'Search term filter' },

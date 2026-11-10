@@ -128,7 +128,7 @@ export class ReplizTemplateAutomation implements INodeType {
         default:
           '{"delete":{},"reply":{},"like":{},"message":{},"story":{},"chat":{}}',
         description:
-          'Configuration rules object (delete, reply, like, message, story, chat). Keywords in message, story and chat (Instagram and Facebook) can answer with buttons: give a keyword.values item "type": "opening" and its own "opening" object, and send the "id" Repliz returns on it back unchanged when updating. Set opening.webUrl.isTrackLink to true to send the links of an opening as rplz.link short links and count their clicks. See <a href="https://docs.repliz.com/api/guides/automation-config#keyword-with-buttons" target="_blank">Keyword with Buttons</a>',
+          'Configuration rules object (delete, reply, like, message, story, chat, storyMention). Keywords in message, story and chat (Instagram and Facebook) can answer with buttons: give a keyword.values item "type": "opening" and its own "opening" object, and send the "id" Repliz returns on it back unchanged when updating. Set opening.webUrl.isTrackLink to true to send the links of an opening as rplz.link short links and count their clicks. See <a href="https://docs.repliz.com/api/guides/automation-config#keyword-with-buttons" target="_blank">Keyword with Buttons</a>. Add "storyMention" (Instagram only, optional) to DM people who mention the account in their own story: { isActive, type: "text" | "ai" | "opening", text, prompt, opening, delay }, without keyword or condition. Left out, the saved setting is kept. See <a href="https://docs.repliz.com/api/guides/automation-config#_7-story-mention-module" target="_blank">Story Mention Module</a>.',
       },
     ],
   };
