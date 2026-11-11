@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Repliz Schedule**: new Post Type `Document (LinkedIn PDF)` (`document`). Put one `{ "type": "document", "url": "<PDF URL>" }` in `Medias (JSON)`, a PDF of up to 100 MB and 300 pages, and fill in `Title`, which LinkedIn shows on the document and a Document needs (`title should not be empty`). LinkedIn only: other platforms fail with `document is only supported on LinkedIn` when saving. LinkedIn processes the file first, so the post can go out up to about two minutes after its time.
+- Updated `api.json` with `document` in the `type` of `BodyCreateSchedulePublicDTO` and `BodyUpdateSchedulePublicDTO`, `document` in `ScheduleMedia.type`, and a `Post Document (LinkedIn)` example.
+
 - **Repliz Chat**: new operation `Send Action` with `Action` `Typing On` or `Typing Off` to show or hide the typing indicator, or `Mark Seen` to show the person their messages as seen, which also clears the unread count of the chat in Repliz. Works on Facebook, Instagram, TikTok and Telegram. The indicator shows for about 20 seconds on Facebook and Instagram and 5 seconds on TikTok and Telegram, or until a message is sent. TikTok has no `Typing Off` and fails with `typing_off is not supported on tiktok`. Returns `success`, `chatId` and `action`.
 - **Repliz Chat**: messages of the account (`isFromMe: true`) from `Get Messages` get `status` `read` once the person has seen them, on Facebook, Instagram, TikTok and Telegram, and so does `lastMessage.status` from `Get All` and `Get`. Your Repliz webhook gets a `read` event with the chat and the `messageIds` that just turned `read`.
 - Updated `api.json` with `POST /public/chat/{chatId}/action` (`BodySenderActionDTO`).

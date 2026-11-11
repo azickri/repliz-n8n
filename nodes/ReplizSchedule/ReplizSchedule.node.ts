@@ -187,7 +187,7 @@ export class ReplizSchedule implements INodeType {
         type: 'string',
         displayOptions: { show: { operation: ['create', 'update'] } },
         default: '',
-        description: 'Optional title for the post (used by YouTube videos and as the Pinterest pin title, max 100 characters)',
+        description: 'Optional title for the post (used by YouTube videos, as the Pinterest pin title, and as the title of a LinkedIn Document, where it is required; max 100 characters)',
       },
       {
         displayName: 'Description / Caption',
@@ -220,6 +220,7 @@ export class ReplizSchedule implements INodeType {
           { name: 'Album', value: 'album' },
           { name: 'Link', value: 'link' },
           { name: 'Story', value: 'story' },
+          { name: 'Document (LinkedIn PDF)', value: 'document' },
         ],
         default: 'text',
         description: 'The type of post to publish',
@@ -334,7 +335,7 @@ export class ReplizSchedule implements INodeType {
         displayOptions: { show: { operation: ['create', 'update'] } },
         default: '[]',
         description:
-          'Array of media objects. Each item: { "type": "image"|"video", "url": "...", "thumbnail": "...", "alt": "..." }',
+          'Array of media objects. Each item: { "type": "image"|"video"|"document", "url": "...", "thumbnail": "...", "alt": "..." }. A LinkedIn Document takes one { "type": "document", "url": "<PDF URL>" }.',
       },
       {
         displayName: 'Link Meta (JSON)',

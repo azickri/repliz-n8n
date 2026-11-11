@@ -72,7 +72,7 @@ Retrieve and interact with published social media content. Operations: Get All, 
 Create and manage scheduled posts across platforms.
 Operations: Get All, Get, Create, Update, Delete, Delete Many, Retry.
 
-Supported post types: Text, Image, Video, Reel, Album, Link, Story.
+Supported post types: Text, Image, Video, Reel, Album, Link, Story, Document (a PDF, LinkedIn only, with a required Title).
 
 **Repliz Automation** `Gold+`
 Create and manage content automation rules. Operations: Get All, Create, Get, Update, Delete.
