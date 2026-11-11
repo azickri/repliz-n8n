@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Repliz Comment Sync**: new node with `Get All`, `Create`, `Update Status` (pause or resume) and `Delete`. It runs the automation on a post's old comments, including the ones from before the account was connected, on comments the platform never sent, and on pending inbox comments the automation never ran on. Top-level comments only, at least 5 minutes old, paced per platform. Instagram, Facebook, Threads, TikTok, YouTube and LinkedIn. `Create` returns `listenerId`; one sync per post (`409`), limited per plan (`403`).
+- **Repliz Comment**: a comment delivered twice, for example when Meta retries a webhook, is no longer saved or answered twice.
+- Updated `api.json` with `GET` and `POST /public/listener`, `PUT /public/listener/{listenerId}/status` and `DELETE /public/listener/{listenerId}` (`BodyCreateListenerDTO`, `BodyUpdateStatusListenerDTO`).
+
 - **Repliz Schedule**: new field `First Comment` (`additionalInfo.firstComment`), a comment the account posts on its own post right after it is published, on Facebook, Instagram, LinkedIn, YouTube and TikTok, not on a Story or a TikTok draft. TikTok takes up to 150 characters, LinkedIn 1,250 and Instagram 2,200. Repliz posts it about 15 seconds after the post and tries once more a minute later; `Get` returns `firstCommentId`, or `firstCommentErrorMessage` if it failed.
 - **Repliz Schedule**: new switches `Turn Off Comments (TikTok)` (`additionalInfo.isCommentDisabled`, Image, Video and Album), `Turn Off Duet (TikTok)` (`additionalInfo.isDuetDisabled`, Video) and `Turn Off Stitch (TikTok)` (`additionalInfo.isStitchDisabled`, Video). All are ignored for a draft.
 - Updated `api.json` with `firstComment`, `isCommentDisabled`, `isDuetDisabled` and `isStitchDisabled` on `ScheduleAdditionalInfo`, and two examples.

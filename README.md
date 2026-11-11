@@ -77,6 +77,9 @@ Supported post types: Text, Image, Video, Reel, Album, Link, Story, Document (a 
 **Repliz Automation** `Gold+`
 Create and manage content automation rules. Operations: Get All, Create, Get, Update, Delete.
 
+**Repliz Comment Sync** `Gold+`
+Run the automation on a post's old and missed comments. Operations: Get All, Create, Update Status (pause or resume), Delete.
+
 **Repliz Template Automation** `Gold+`
 Create and manage reusable automation templates. Operations: Get All, Create, Get, Update, Delete.
 

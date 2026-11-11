@@ -47,6 +47,7 @@
       "dist/nodes/ReplizAddon/ReplizAddon.node.js",
       "dist/nodes/ReplizReport/ReplizReport.node.js",
       "dist/nodes/ReplizAutomation/ReplizAutomation.node.js",
+      "dist/nodes/ReplizCommentSync/ReplizCommentSync.node.js",
       "dist/nodes/ReplizTemplateAutomation/ReplizTemplateAutomation.node.js"
     ]
   },
