@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Repliz Chat**: new operation `Send Action` with `Action` `Typing On` or `Typing Off` to show or hide the typing indicator, or `Mark Seen` to show the person their messages as seen, which also clears the unread count of the chat in Repliz. Works on Facebook, Instagram, TikTok and Telegram. The indicator shows for about 20 seconds on Facebook and Instagram and 5 seconds on TikTok and Telegram, or until a message is sent. TikTok has no `Typing Off` and fails with `typing_off is not supported on tiktok`. Returns `success`, `chatId` and `action`.
+- **Repliz Chat**: messages of the account (`isFromMe: true`) from `Get Messages` get `status` `read` once the person has seen them, on Facebook, Instagram, TikTok and Telegram, and so does `lastMessage.status` from `Get All` and `Get`. Your Repliz webhook gets a `read` event with the chat and the `messageIds` that just turned `read`.
+- Updated `api.json` with `POST /public/chat/{chatId}/action` (`BodySenderActionDTO`).
+
 - **Repliz Account**: tags group the accounts of one brand or client. New operations `Get Tags` (every tag with how many accounts have it in total and per platform), `Update Tags` (replace the tags of one account, at most 10 of up to 30 characters; empty removes them all), `Rename Tag` (rename a tag on every account, merging it into an existing tag of that name) and `Remove Tag` (remove a tag from every account; the accounts stay). `Get All` has a `Tags` filter (comma-separated) and returns each account's `tags`.
 - Updated `api.json` with `GET`, `PUT` and `DELETE /public/account/tag`, `PUT /public/account/{accountId}/tag` (`BodyUpdateTagAccountDTO`, `BodyRenameTagAccountDTO`) and the `tags` filter on `GET /public/account`.
 - **Repliz Account** and **Repliz Template Automation**: the automation config takes `storyMention`, a DM to people who mention the Instagram account in their own story, with `type` `text`, `ai` or `opening` and the usual `delay`. A mention has no text, so there are no keyword replies. It is optional, and an update that leaves it out keeps the saved setting.

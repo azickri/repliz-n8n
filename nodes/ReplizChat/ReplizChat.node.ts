@@ -26,6 +26,7 @@ export class ReplizChat implements INodeType {
 					{ name: 'Get Messages', value: 'getMessages', description: 'Retrieve message history of a chat', action: 'Get chat messages' },
 					{ name: 'Send Message', value: 'sendMessage', description: 'Send a message to a conversation', action: 'Send a message' },
 					{ name: 'Mark as Read', value: 'markRead', description: 'Mark all messages in a chat as read', action: 'Mark chat as read' },
+					{ name: 'Send Action', value: 'sendAction', description: 'Show or hide the typing indicator, or show the person their messages as seen', action: 'Send a chat action' },
 				],
 				default: 'getAll',
 			},
@@ -45,8 +46,23 @@ export class ReplizChat implements INodeType {
 					{ displayName: 'Search', name: 'search', type: 'string', default: '', description: 'Search chats by sender name' },
 				],
 			},
-			// Get / Get Messages / Send Message / Mark Read
-			{ displayName: 'Chat ID', name: 'chatId', type: 'string', required: true, displayOptions: { show: { operation: ['get', 'getMessages', 'sendMessage', 'markRead'] } }, default: '', description: 'The unique identifier of the chat' },
+			// Get / Get Messages / Send Message / Mark Read / Send Action
+			{ displayName: 'Chat ID', name: 'chatId', type: 'string', required: true, displayOptions: { show: { operation: ['get', 'getMessages', 'sendMessage', 'markRead', 'sendAction'] } }, default: '', description: 'The unique identifier of the chat' },
+			// Send Action
+			{
+				displayName: 'Action',
+				name: 'senderAction',
+				type: 'options',
+				required: true,
+				displayOptions: { show: { operation: ['sendAction'] } },
+				options: [
+					{ name: 'Typing On', value: 'typing_on', description: 'Show the typing indicator: about 20 seconds on Facebook and Instagram, 5 seconds on TikTok and Telegram, or until a message is sent' },
+					{ name: 'Typing Off', value: 'typing_off', description: 'Hide the typing indicator. Not available on TikTok.' },
+					{ name: 'Mark Seen', value: 'mark_seen', description: 'Show the person their messages as seen, and clear the unread count of the chat in Repliz' },
+				],
+				default: 'typing_on',
+				description: 'The sender action to send. Works on Facebook, Instagram, TikTok and Telegram.',
+			},
 			// Get Messages
 			{ displayName: 'Return All', name: 'returnAll', type: 'boolean', displayOptions: { show: { operation: ['getMessages'] } }, default: false, description: 'Whether to return all messages or only up to a limit' },
 			// Send Message
@@ -198,6 +214,11 @@ export class ReplizChat implements INodeType {
 				} else if (operation === 'markRead') {
 					const chatId = this.getNodeParameter('chatId', i) as string;
 					responseData = await replizApiRequest.call(this, 'POST', `/public/chat/${chatId}/read`);
+				} else if (operation === 'sendAction') {
+					const chatId = this.getNodeParameter('chatId', i) as string;
+					const action = this.getNodeParameter('senderAction', i) as string;
+					await replizApiRequest.call(this, 'POST', `/public/chat/${chatId}/action`, { action });
+					responseData = { success: true, chatId, action };
 				}
 
 				returnData.push(...this.helpers.returnJsonArray(responseData));
