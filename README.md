@@ -72,7 +72,7 @@ Retrieve and interact with published social media content. Operations: Get All, 
 Create and manage scheduled posts across platforms.
 Operations: Get All, Get, Create, Update, Delete, Delete Many, Retry.
 
-Supported post types: Text, Image, Video, Reel, Album, Link, Story, Document (a PDF, LinkedIn only, with a required Title).
+Supported post types: Text, Image, Video, Reel, Album, Link, Story, Document (a PDF, LinkedIn only, with a required Title). `First Comment` posts a comment on the post right after it goes out (Facebook, Instagram, LinkedIn, YouTube, TikTok), and `Turn Off Comments` / `Turn Off Duet` / `Turn Off Stitch` switch those off on TikTok.
 
 **Repliz Automation** `Gold+`
 Create and manage content automation rules. Operations: Get All, Create, Get, Update, Delete.

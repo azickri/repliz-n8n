@@ -226,6 +226,63 @@ export class ReplizSchedule implements INodeType {
         description: 'The type of post to publish',
       },
       {
+        displayName: 'First Comment',
+        name: 'firstComment',
+        type: 'string',
+        typeOptions: { rows: 3 },
+        displayOptions: {
+          show: {
+            operation: ['create', 'update'],
+            postType: ['text', 'image', 'video', 'reel', 'album', 'link', 'document'],
+          },
+        },
+        default: '',
+        description:
+          'A comment the account posts on its own post right after it is published. Facebook, Instagram, LinkedIn, YouTube and TikTok, not on a Story or a TikTok draft. TikTok takes up to 150 characters, LinkedIn 1,250, Instagram 2,200. Leave empty for no comment. Sent as additionalInfo.firstComment.',
+      },
+      {
+        displayName: 'Turn Off Comments (TikTok)',
+        name: 'isCommentDisabled',
+        type: 'boolean',
+        displayOptions: {
+          show: {
+            operation: ['create', 'update'],
+            postType: ['image', 'video', 'album'],
+          },
+        },
+        default: false,
+        description:
+          'Whether to turn off comments on the post. Specifically applies to TikTok schedules, ignored for a draft. Sent as additionalInfo.isCommentDisabled.',
+      },
+      {
+        displayName: 'Turn Off Duet (TikTok)',
+        name: 'isDuetDisabled',
+        type: 'boolean',
+        displayOptions: {
+          show: {
+            operation: ['create', 'update'],
+            postType: ['video'],
+          },
+        },
+        default: false,
+        description:
+          'Whether to turn off Duet for the video. Specifically applies to TikTok schedules with post type video, ignored for a draft. Sent as additionalInfo.isDuetDisabled.',
+      },
+      {
+        displayName: 'Turn Off Stitch (TikTok)',
+        name: 'isStitchDisabled',
+        type: 'boolean',
+        displayOptions: {
+          show: {
+            operation: ['create', 'update'],
+            postType: ['video'],
+          },
+        },
+        default: false,
+        description:
+          'Whether to turn off Stitch for the video. Specifically applies to TikTok schedules with post type video, ignored for a draft. Sent as additionalInfo.isStitchDisabled.',
+      },
+      {
         displayName: 'Share to Feed (Instagram)',
         name: 'isShareToFeed',
         type: 'boolean',
@@ -354,7 +411,7 @@ export class ReplizSchedule implements INodeType {
         default:
           '{"isAiGenerated":false,"isDraft":false,"isAutoAddMusic":false,"link":"","targetCountries":[],"tags":[],"mentions":[],"collaborators":[],"products":[],"music":{}}',
         description:
-          'Extra metadata: isAiGenerated (AI label: TikTok and YouTube video, Facebook reel, Pinterest, Threads post and its replies), isAutoAddMusic, isShareToFeed (Instagram video), privacy (YouTube video: public, unlisted or private), trialParams (Instagram video: { "graduationStrategy": "MANUAL"|"SS_PERFORMANCE" }), link (Pinterest destination URL), textAttachment (Threads text: { "text": "...", "link": "..." }), targetCountries, tags, mentions, collaborators, music (with volume: video, music), products',
+          'Extra metadata: isAiGenerated (AI label: TikTok and YouTube video, Facebook reel, Pinterest, Threads post and its replies), isAutoAddMusic, firstComment, isCommentDisabled, isDuetDisabled and isStitchDisabled (TikTok), set by their own fields above, isShareToFeed (Instagram video), privacy (YouTube video: public, unlisted or private), trialParams (Instagram video: { "graduationStrategy": "MANUAL"|"SS_PERFORMANCE" }), link (Pinterest destination URL), textAttachment (Threads text: { "text": "...", "link": "..." }), targetCountries, tags, mentions, collaborators, music (with volume: video, music), products',
       },
       {
         displayName: 'Replies (JSON)',
@@ -444,7 +501,29 @@ export class ReplizSchedule implements INodeType {
               ? JSON.parse(repliesRaw)
               : repliesRaw;
 
+          const firstComment = this.getNodeParameter('firstComment', i, '') as string;
+          if (firstComment.trim()) additionalInfo.firstComment = firstComment.trim();
+
+          if (['image', 'video', 'album'].includes(type)) {
+            additionalInfo.isCommentDisabled = this.getNodeParameter(
+              'isCommentDisabled',
+              i,
+              false,
+            ) as boolean;
+          }
+
           if (type === 'video') {
+            additionalInfo.isDuetDisabled = this.getNodeParameter(
+              'isDuetDisabled',
+              i,
+              false,
+            ) as boolean;
+            additionalInfo.isStitchDisabled = this.getNodeParameter(
+              'isStitchDisabled',
+              i,
+              false,
+            ) as boolean;
+
             const isShareToFeed = this.getNodeParameter(
               'isShareToFeed',
               i,

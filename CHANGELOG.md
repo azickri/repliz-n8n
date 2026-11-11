@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Repliz Schedule**: new field `First Comment` (`additionalInfo.firstComment`), a comment the account posts on its own post right after it is published, on Facebook, Instagram, LinkedIn, YouTube and TikTok, not on a Story or a TikTok draft. TikTok takes up to 150 characters, LinkedIn 1,250 and Instagram 2,200. Repliz posts it about 15 seconds after the post and tries once more a minute later; `Get` returns `firstCommentId`, or `firstCommentErrorMessage` if it failed.
+- **Repliz Schedule**: new switches `Turn Off Comments (TikTok)` (`additionalInfo.isCommentDisabled`, Image, Video and Album), `Turn Off Duet (TikTok)` (`additionalInfo.isDuetDisabled`, Video) and `Turn Off Stitch (TikTok)` (`additionalInfo.isStitchDisabled`, Video). All are ignored for a draft.
+- Updated `api.json` with `firstComment`, `isCommentDisabled`, `isDuetDisabled` and `isStitchDisabled` on `ScheduleAdditionalInfo`, and two examples.
+
 - **Repliz Schedule**: new Post Type `Document (LinkedIn PDF)` (`document`). Put one `{ "type": "document", "url": "<PDF URL>" }` in `Medias (JSON)`, a PDF of up to 100 MB and 300 pages, and fill in `Title`, which LinkedIn shows on the document and a Document needs (`title should not be empty`). LinkedIn only: other platforms fail with `document is only supported on LinkedIn` when saving. LinkedIn processes the file first, so the post can go out up to about two minutes after its time.
 - Updated `api.json` with `document` in the `type` of `BodyCreateSchedulePublicDTO` and `BodyUpdateSchedulePublicDTO`, `document` in `ScheduleMedia.type`, and a `Post Document (LinkedIn)` example.
 
