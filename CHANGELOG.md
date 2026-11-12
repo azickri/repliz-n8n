@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Repliz Chat**: a message the person edited on Facebook, Instagram or Telegram comes back from `Get Messages` with the new `text` and `isEdited: true`, and your Repliz webhook gets an `edit` event with the chat and the edited message. A Telegram edit used to come as a `chat` event.
+- **Repliz Chat**: on Facebook, messages of the account (`isFromMe: true`) from `Get Messages` get `status` `delivered` once they reach the person's device, before `read`, and so does `lastMessage.status` from `Get All` and `Get`. Your Repliz webhook gets a `delivered` event with the chat and the `messageIds` that just turned `delivered`.
+
 - **Repliz Comment Sync**: new node with `Get All`, `Create`, `Update Status` (pause or resume) and `Delete`. It runs the automation on a post's old comments, including the ones from before the account was connected, on comments the platform never sent, and on pending inbox comments the automation never ran on. Top-level comments only, at least 5 minutes old, paced per platform. Instagram, Facebook, Threads, TikTok, YouTube and LinkedIn. `Create` returns `listenerId`; one sync per post (`409`), limited per plan (`403`).
 - **Repliz Comment**: a comment delivered twice, for example when Meta retries a webhook, is no longer saved or answered twice.
 - Updated `api.json` with `GET` and `POST /public/listener`, `PUT /public/listener/{listenerId}/status` and `DELETE /public/listener/{listenerId}` (`BodyCreateListenerDTO`, `BodyUpdateStatusListenerDTO`).
