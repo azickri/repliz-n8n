@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Repliz Account**: `Get Statistics` works for Facebook Pages: the Page's followers (`followersCount`) and likes (`fanCount`), Meta's totals of the last 28 days (`summary`: views, reach, engagement, profileViews, newFollows, unfollows, videoViews) and the same metrics per day (`metrics`). `summary` is null and `metrics` empty when the Page hasn't granted `read_insights`; a Page connected before November 13, 2026 has to be reconnected once.
+- **Repliz Content**: `Get Statistics` on a Facebook post adds `insight` with the views, reach, clicks and reactions in total (`reaction`) and per type (`reactions`), or null when the Page hasn't granted `read_insights`.
+- Updated `api.json` for `GET /public/account/{accountId}/statistic` (Facebook example) and `GET /public/content/{contentId}/statistic` (Facebook `insight`), and synced their LinkedIn and Pinterest examples.
+
+- **Repliz Research**: new TikTok operations `Search TikTok Hashtags`, `Search TikTok Videos` (filters `Publish Time` and `Sort`), `Search TikTok Photo Posts`, `Search TikTok Content by User`, `List TikTok Comments` and `List TikTok Comment Replies`, with `Next Token` for the next page. They run through TikWM with the TikWM API key saved in Repliz (Setting → TikWM key): without one they fail with `invalid tikwm key`, and when TikWM refuses the request (for example the key is out of quota) they fail with `403` and TikWM's message. Gold+.
+- Updated `api.json` with `GET /public/research/tiktok/hashtag/search`, `/content/video`, `/content/photo`, `/content/user`, `/comment` and `/comment/reply`.
+
 - **Repliz Chat**: a message the person edited on Facebook, Instagram or Telegram comes back from `Get Messages` with the new `text` and `isEdited: true`, and your Repliz webhook gets an `edit` event with the chat and the edited message. A Telegram edit used to come as a `chat` event.
 - **Repliz Chat**: on Facebook, messages of the account (`isFromMe: true`) from `Get Messages` get `status` `delivered` once they reach the person's device, before `read`, and so does `lastMessage.status` from `Get All` and `Get`. Your Repliz webhook gets a `delivered` event with the chat and the `messageIds` that just turned `delivered`.
 

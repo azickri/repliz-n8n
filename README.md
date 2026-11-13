@@ -90,6 +90,7 @@ Create and manage reusable automation templates. Operations: Get All, Create, Ge
 **Repliz Research** `Gold+`
 Discover and analyze social media content and profiles from external accounts. Useful for competitor research, trend monitoring, and audience insights.
 Operations: Search Threads Content by Keyword (with sort, mode, media type, date range, and author filters), Search Threads Content by User, Search Threads User.
+TikTok operations (they run through TikWM, so save your TikWM API key in Repliz under Setting → TikWM key first): Search TikTok Hashtags, Search TikTok Videos (with publish time and sort filters), Search TikTok Photo Posts, Search TikTok Content by User, List TikTok Comments, List TikTok Comment Replies.
 
 **Repliz Report** `Gold+`
 View and retry background job execution reports. Operations: Get All, Get, Retry.

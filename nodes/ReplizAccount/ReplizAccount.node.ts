@@ -24,7 +24,7 @@ export class ReplizAccount implements INodeType {
 					{ name: 'Get All', value: 'getAll', description: 'Retrieve all connected accounts', action: 'Get all accounts' },
 					{ name: 'Count', value: 'count', description: 'Get account usage statistics per platform', action: 'Count accounts' },
 					{ name: 'Get', value: 'get', description: 'Retrieve detailed info of a specific account', action: 'Get an account' },
-					{ name: 'Get Statistics', value: 'getStatistic', description: 'Retrieve statistics for a specific account (Instagram, Threads, TikTok, Pinterest, YouTube)', action: 'Get account statistics' },
+					{ name: 'Get Statistics', value: 'getStatistic', description: 'Retrieve statistics for a specific account (Facebook Page, Instagram, Threads, TikTok, Pinterest, YouTube, LinkedIn organization)', action: 'Get account statistics' },
 					{ name: 'Update Automation', value: 'updateAutomation', description: 'Update content automation settings for a connected account', action: 'Update account automation' },
 					{ name: 'Get Tags', value: 'getTags', description: 'Retrieve every tag used to group accounts, with how many accounts have it per platform', action: 'Get account tags' },
 					{ name: 'Update Tags', value: 'updateTags', description: 'Replace every tag of a connected account', action: 'Update account tags' },

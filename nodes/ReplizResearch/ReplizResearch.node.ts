@@ -6,6 +6,15 @@ import {
 } from 'n8n-workflow';
 import { replizApiRequest } from '../GenericFunctions';
 
+const tiktokOperations = [
+  'searchTikTokHashtag',
+  'searchTikTokVideo',
+  'searchTikTokPhoto',
+  'searchTikTokContentByUser',
+  'listTikTokComments',
+  'listTikTokCommentReplies',
+];
+
 export class ReplizResearch implements INodeType {
   description: INodeTypeDescription = {
     displayName: 'Repliz Research',
@@ -28,6 +37,18 @@ export class ReplizResearch implements INodeType {
         noDataExpression: true,
         options: [
           {
+            name: 'List TikTok Comment Replies',
+            value: 'listTikTokCommentReplies',
+            description: 'List the replies to a comment on a TikTok post (TikWM key)',
+            action: 'List TikTok comment replies',
+          },
+          {
+            name: 'List TikTok Comments',
+            value: 'listTikTokComments',
+            description: 'List the comments of a public TikTok post (TikWM key)',
+            action: 'List TikTok comments',
+          },
+          {
             name: 'Search Threads Content by Keyword',
             value: 'searchThreadsContent',
             description: 'Search Threads posts by a keyword or hashtag',
@@ -46,8 +67,41 @@ export class ReplizResearch implements INodeType {
             description: 'Look up a Threads user profile by username',
             action: 'Search Threads user profile',
           },
+          {
+            name: 'Search TikTok Content by User',
+            value: 'searchTikTokContentByUser',
+            description:
+              'List the public posts of a TikTok user by username (TikWM key)',
+            action: 'Search TikTok content by user',
+          },
+          {
+            name: 'Search TikTok Hashtags',
+            value: 'searchTikTokHashtag',
+            description: 'Search TikTok hashtags by keyword (TikWM key)',
+            action: 'Search TikTok hashtags',
+          },
+          {
+            name: 'Search TikTok Photo Posts',
+            value: 'searchTikTokPhoto',
+            description: 'Search public TikTok photo posts by keyword (TikWM key)',
+            action: 'Search TikTok photo posts',
+          },
+          {
+            name: 'Search TikTok Videos',
+            value: 'searchTikTokVideo',
+            description: 'Search public TikTok videos by keyword (TikWM key)',
+            action: 'Search TikTok videos',
+          },
         ],
         default: 'searchThreadsContent',
+      },
+      {
+        displayName:
+          'TikTok research runs through TikWM with the TikWM API key saved in Repliz (Setting → TikWM key). Without one, the request fails with "invalid tikwm key".',
+        name: 'tikwmNotice',
+        type: 'notice',
+        default: '',
+        displayOptions: { show: { operation: tiktokOperations } },
       },
       // Shared: Account ID
       {
@@ -182,6 +236,107 @@ export class ReplizResearch implements INodeType {
         description:
           'Pagination cursor token from a previous response to fetch the next page of results',
       },
+      // TikTok: keyword searches
+      {
+        displayName: 'Keywords',
+        name: 'keywords',
+        type: 'string',
+        required: true,
+        displayOptions: {
+          show: {
+            operation: [
+              'searchTikTokHashtag',
+              'searchTikTokVideo',
+              'searchTikTokPhoto',
+            ],
+          },
+        },
+        default: '',
+        placeholder: 'e.g. cat',
+        description: 'The keyword to search for on TikTok',
+      },
+      {
+        displayName: 'Filters',
+        name: 'tiktokFilters',
+        type: 'collection',
+        placeholder: 'Add Filter',
+        default: {},
+        displayOptions: { show: { operation: ['searchTikTokVideo'] } },
+        options: [
+          {
+            displayName: 'Publish Time',
+            name: 'publishTime',
+            type: 'options',
+            options: [
+              { name: 'Any Time', value: 0 },
+              { name: 'Last 24 Hours', value: 1 },
+              { name: 'Last 7 Days', value: 7 },
+              { name: 'Last 30 Days', value: 30 },
+              { name: 'Last 90 Days', value: 90 },
+              { name: 'Last 180 Days', value: 180 },
+            ],
+            default: 0,
+            description: 'Only videos published within this period',
+          },
+          {
+            displayName: 'Sort',
+            name: 'sortType',
+            type: 'options',
+            options: [
+              { name: 'Relevance', value: 0 },
+              { name: 'Most Liked', value: 1 },
+              { name: 'Newest', value: 3 },
+            ],
+            default: 0,
+            description: 'Sort videos by relevance, likes, or publish date',
+          },
+        ],
+      },
+      // TikTok: content by user
+      {
+        displayName: 'Username',
+        name: 'uniqueId',
+        type: 'string',
+        required: true,
+        displayOptions: { show: { operation: ['searchTikTokContentByUser'] } },
+        default: '',
+        placeholder: 'e.g. tiktok',
+        description: "The TikTok username whose posts to list (without the '@' prefix)",
+      },
+      // TikTok: comments
+      {
+        displayName: 'Post ID',
+        name: 'videoId',
+        type: 'string',
+        required: true,
+        displayOptions: {
+          show: {
+            operation: ['listTikTokComments', 'listTikTokCommentReplies'],
+          },
+        },
+        default: '',
+        placeholder: 'e.g. 7612965843596479751',
+        description:
+          'The ID of the TikTok post, the "id" from the TikTok search operations',
+      },
+      {
+        displayName: 'Comment ID',
+        name: 'commentId',
+        type: 'string',
+        required: true,
+        displayOptions: { show: { operation: ['listTikTokCommentReplies'] } },
+        default: '',
+        description: 'The ID of the comment whose replies to list',
+      },
+      {
+        displayName: 'Next Token',
+        name: 'nextToken',
+        type: 'string',
+        displayOptions: { show: { operation: tiktokOperations } },
+        default: '',
+        description:
+          'Pagination cursor token from a previous response to fetch the next page of results',
+      },
     ],
   };
 
@@ -192,7 +347,7 @@ export class ReplizResearch implements INodeType {
     for (let i = 0; i < items.length; i++) {
       try {
         const operation = this.getNodeParameter('operation', i) as string;
-        const accountId = this.getNodeParameter('accountId', i) as string;
+        const accountId = this.getNodeParameter('accountId', i, '') as string;
         let responseData: any;
 
         if (operation === 'searchThreadsContent') {
@@ -235,6 +390,39 @@ export class ReplizResearch implements INodeType {
             {},
             { accountId, username },
           );
+        } else if (tiktokOperations.includes(operation)) {
+          const nextToken = this.getNodeParameter('nextToken', i, '') as string;
+          let path = '';
+          const qs: any = {};
+
+          if (operation === 'searchTikTokHashtag') {
+            path = '/public/research/tiktok/hashtag/search';
+            qs.keywords = this.getNodeParameter('keywords', i) as string;
+          } else if (operation === 'searchTikTokVideo') {
+            path = '/public/research/tiktok/content/video';
+            qs.keywords = this.getNodeParameter('keywords', i) as string;
+            const filters = this.getNodeParameter('tiktokFilters', i, {}) as any;
+            if (filters.publishTime !== undefined) {
+              qs.publishTime = filters.publishTime;
+            }
+            if (filters.sortType !== undefined) qs.sortType = filters.sortType;
+          } else if (operation === 'searchTikTokPhoto') {
+            path = '/public/research/tiktok/content/photo';
+            qs.keywords = this.getNodeParameter('keywords', i) as string;
+          } else if (operation === 'searchTikTokContentByUser') {
+            path = '/public/research/tiktok/content/user';
+            qs.uniqueId = this.getNodeParameter('uniqueId', i) as string;
+          } else if (operation === 'listTikTokComments') {
+            path = '/public/research/tiktok/comment';
+            qs.videoId = this.getNodeParameter('videoId', i) as string;
+          } else {
+            path = '/public/research/tiktok/comment/reply';
+            qs.videoId = this.getNodeParameter('videoId', i) as string;
+            qs.commentId = this.getNodeParameter('commentId', i) as string;
+          }
+
+          if (nextToken) qs.nextToken = nextToken;
+          responseData = await replizApiRequest.call(this, 'GET', path, {}, qs);
         }
 
         returnData.push(...this.helpers.returnJsonArray(responseData));
