@@ -8,12 +8,12 @@ Repliz is a social media management platform that centralizes comment moderation
 
 ## Nodes
 
-This package provides 21 nodes, each mapped to a specific Repliz API group:
+This package provides 25 nodes, each mapped to a specific Repliz API group:
 
 ### Account Management
 
 **Repliz Account** `Standard+`
-Manage connected workspace accounts. Operations: Get All, Count, Get, Get Statistics, Update Automation, Delete.
+Manage connected workspace accounts. Operations: Get All, Count, Get, Get Statistics, Update Automation, Delete. Update Automation takes `pause` to pause the DM automation of a chat when the account replies to it by hand, and every AI reply can read knowledge from Repliz Knowledge (`knowledgeIds`) and answer each person only once in a while (`limit`).
 
 **Repliz Account Facebook** `Gold+`
 Connect and authenticate Facebook pages. Operations: Authorize, Get Pages, Exchange Token, Connect, Reconnect.
@@ -59,7 +59,7 @@ Manage and moderate comments collected by Repliz. Operations: Get All, Get, Dele
 Manage the contacts Repliz creates from everyone who comments on or messages your accounts: a light CRM with a funnel stage (`new`, `contacted`, `interested`, `won`, `lost`), tags, a note and a follow-up reminder. Operations: Get All, Count, Get Tags, Get, Get by Comment, Get by Chat, Update, Set Follow-up, Remove Follow-up, Delete. Update only changes the fields you add; Update and the follow-up operations return the contact afterwards.
 
 **Repliz Chat** `Gold+`
-Manage live chat conversations and messages. Operations: Get All, Get, Get Messages, Send Message, Mark as Read, Send Action. Send Action shows or hides the typing indicator, or shows the person their messages as seen (Facebook, Instagram, TikTok, Telegram; TikTok has no Typing Off). Messages of the account get `status` `read` once the person has seen them (on Facebook `delivered` first), and your Repliz webhook gets `read` and `delivered` events. Messages the person edits come back with `isEdited: true` and reach your webhook as an `edit` event. On Facebook and Instagram, Send Message can also send buttons (`web_url` or `postback`), a carousel of cards, or quick replies. A tapped postback button reaches your Repliz webhook as a `postback` event and a tapped quick reply as a `chat` event, both with the value in `message.payload`. Set `Reply To Message ID` to a `messageId` from Get Messages to send the message as a reply that quotes it (TikTok: text only); messages that reply to another have `quoted`.
+Manage live chat conversations and messages. Operations: Get All, Get, Get Messages, Send Message, Mark as Read, Send Action. Send Action shows or hides the typing indicator, or shows the person their messages as seen (Facebook, Instagram, TikTok, Telegram; TikTok has no Typing Off). Messages of the account get `status` `read` once the person has seen them (on Facebook `delivered` first), and your Repliz webhook gets `read` and `delivered` events. Messages the person edits come back with `isEdited: true` and reach your webhook as an `edit` event. On Facebook and Instagram, Send Message can also send buttons (`web_url` or `postback`), a carousel of cards, or quick replies. A tapped postback button reaches your Repliz webhook as a `postback` event and a tapped quick reply as a `chat` event, both with the value in `message.payload`. Set `Reply To Message ID` to a `messageId` from Get Messages to send the message as a reply that quotes it (TikTok: text only); messages that reply to another have `quoted`. Pause Automation stops Reply DM, Reply Story and Reply Story Mention in one chat for 30 minutes to 24 hours or until Resume Automation, so a person can take over; Get and Get All return `pausedUntil`.
 
 ---
 
@@ -72,7 +72,10 @@ Retrieve and interact with published social media content. Operations: Get All, 
 Create and manage scheduled posts across platforms.
 Operations: Get All, Get, Create, Update, Delete, Delete Many, Retry.
 
-Supported post types: Text, Image, Video, Reel, Album, Link, Story, Document (a PDF, LinkedIn only, with a required Title). `First Comment` posts a comment on the post right after it goes out (Facebook, Instagram, LinkedIn, YouTube, TikTok), and `Turn Off Comments` / `Turn Off Duet` / `Turn Off Stitch` switch those off on TikTok.
+Supported post types: Text, Image, Video, Reel, Album, Link, Story, Document (a PDF, LinkedIn only, with a required Title). `First Comment` posts a comment on the post right after it goes out (Facebook, Instagram, LinkedIn, YouTube, TikTok), and `Turn Off Comments` / `Turn Off Duet` / `Turn Off Stitch` switch those off on TikTok. `Quote Post ID (Threads)` makes a Threads post quote another one, by the ID of a post from Repliz Research.
+
+**Repliz Knowledge** `Standard+`
+What the AI replies know about your business: products, prices, shipping, FAQs. Set it up once and put its `_id` in `knowledgeIds` of any AI reply in Repliz Account, Repliz Automation or Repliz Template Automation. Operations: Get All, Get, Create, Update, Delete, Add Source, Get Source, Update Source, Refresh Source, Delete Source. A source is a text, FAQs, one website page, or a PDF, DOCX, TXT or MD file uploaded with Repliz Storage. Sources are read in the background: `status` goes from `process` to `ready` or `error`.
 
 **Repliz Automation** `Gold+`
 Create and manage content automation rules. Operations: Get All, Create, Get, Update, Delete.

@@ -27,6 +27,8 @@ export class ReplizChat implements INodeType {
 					{ name: 'Send Message', value: 'sendMessage', description: 'Send a message to a conversation', action: 'Send a message' },
 					{ name: 'Mark as Read', value: 'markRead', description: 'Mark all messages in a chat as read', action: 'Mark chat as read' },
 					{ name: 'Send Action', value: 'sendAction', description: 'Show or hide the typing indicator, or show the person their messages as seen', action: 'Send a chat action' },
+					{ name: 'Pause Automation', value: 'pause', description: 'Pause Reply DM, Reply Story and Reply Story Mention in a chat so a person can take over', action: 'Pause a chat automation' },
+					{ name: 'Resume Automation', value: 'resume', description: 'Resume the DM automation of a paused chat', action: 'Resume a chat automation' },
 				],
 				default: 'getAll',
 			},
@@ -47,7 +49,22 @@ export class ReplizChat implements INodeType {
 				],
 			},
 			// Get / Get Messages / Send Message / Mark Read / Send Action
-			{ displayName: 'Chat ID', name: 'chatId', type: 'string', required: true, displayOptions: { show: { operation: ['get', 'getMessages', 'sendMessage', 'markRead', 'sendAction'] } }, default: '', description: 'The unique identifier of the chat' },
+			{ displayName: 'Chat ID', name: 'chatId', type: 'string', required: true, displayOptions: { show: { operation: ['get', 'getMessages', 'sendMessage', 'markRead', 'sendAction', 'pause', 'resume'] } }, default: '', description: 'The unique identifier of the chat' },
+			{
+				displayName: 'Pause For',
+				name: 'pauseValue',
+				type: 'options',
+				displayOptions: { show: { operation: ['pause'] } },
+				options: [
+					{ name: '30 Minutes', value: 1800 },
+					{ name: '1 Hour', value: 3600 },
+					{ name: '6 Hours', value: 21600 },
+					{ name: '24 Hours', value: 86400 },
+					{ name: 'Until Resumed', value: 0 },
+				],
+				default: 3600,
+				description: 'How long the DM automation of the chat stays paused. Messages you send still go out. Pausing again replaces the current pause.',
+			},
 			// Send Action
 			{
 				displayName: 'Action',
@@ -219,6 +236,15 @@ export class ReplizChat implements INodeType {
 					const action = this.getNodeParameter('senderAction', i) as string;
 					await replizApiRequest.call(this, 'POST', `/public/chat/${chatId}/action`, { action });
 					responseData = { success: true, chatId, action };
+				} else if (operation === 'pause') {
+					const chatId = this.getNodeParameter('chatId', i) as string;
+					const value = this.getNodeParameter('pauseValue', i) as number;
+					const response = await replizApiRequest.call(this, 'POST', `/public/chat/${chatId}/pause`, { value });
+					responseData = { success: true, chatId, pausedUntil: response.pausedUntil };
+				} else if (operation === 'resume') {
+					const chatId = this.getNodeParameter('chatId', i) as string;
+					const response = await replizApiRequest.call(this, 'POST', `/public/chat/${chatId}/resume`);
+					responseData = { success: true, chatId, pausedUntil: response.pausedUntil };
 				}
 
 				returnData.push(...this.helpers.returnJsonArray(responseData));

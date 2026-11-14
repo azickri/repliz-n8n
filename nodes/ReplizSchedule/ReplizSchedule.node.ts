@@ -364,6 +364,21 @@ export class ReplizSchedule implements INodeType {
           'Optional link shown at the end of the text attachment. A Threads post can have at most 5 links, counting the ones in the caption. Sent as additionalInfo.textAttachment.link.',
       },
       {
+        displayName: 'Quote Post ID (Threads)',
+        name: 'quotePostId',
+        type: 'string',
+        displayOptions: {
+          show: {
+            operation: ['create', 'update'],
+            postType: ['text', 'image', 'video', 'album'],
+          },
+        },
+        default: '',
+        placeholder: '18012345678901234',
+        description:
+          'The ID of a Threads post to quote, from Repliz Research (Search Threads Content by Keyword or by User). The post shows under this one, as Threads shows quotes. Threads only, on the main post, not on replies. Repliz reads the post when the schedule is saved and fails with 400 when the account can\'t read it. Leave empty for no quote. Sent as additionalInfo.quotePost.id.',
+      },
+      {
         displayName: 'WhatsApp / Telegram Channel / Pinterest Board (JSON)',
         name: 'channelJson',
         type: 'json',
@@ -563,6 +578,13 @@ export class ReplizSchedule implements INodeType {
                 link: textAttachmentLink,
               };
             }
+          }
+
+          if (['text', 'image', 'video', 'album'].includes(type)) {
+            const quotePostId = String(
+              this.getNodeParameter('quotePostId', i, '') || '',
+            ).trim();
+            if (quotePostId) additionalInfo.quotePost = { id: quotePostId };
           }
 
           if (['text', 'image', 'video', 'album'].includes(type)) {
