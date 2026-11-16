@@ -316,6 +316,20 @@ export class ReplizSchedule implements INodeType {
           'Who can watch the video. Specifically applies to YouTube schedules with post type video. Unlisted videos can be watched only by link, private videos only by the channel owner. Private videos are not listed in Repliz Content, so their automation and statistics do not run.',
       },
       {
+        displayName: 'Made for Kids (YouTube)',
+        name: 'isMadeForKids',
+        type: 'boolean',
+        displayOptions: {
+          show: {
+            operation: ['create', 'update'],
+            postType: ['video'],
+          },
+        },
+        default: false,
+        description:
+          'Whether the video is made for kids (COPPA). Specifically applies to YouTube schedules with post type video. YouTube turns off comments on it, so First Comment is not posted. Off sends no audience, so the video follows the channel setting. Sent as additionalInfo.isMadeForKids.',
+      },
+      {
         displayName: 'Trial Reel (Instagram)',
         name: 'graduationStrategy',
         type: 'options',
@@ -426,7 +440,7 @@ export class ReplizSchedule implements INodeType {
         default:
           '{"isAiGenerated":false,"isDraft":false,"isAutoAddMusic":false,"link":"","targetCountries":[],"tags":[],"mentions":[],"collaborators":[],"products":[],"music":{}}',
         description:
-          'Extra metadata: isAiGenerated (AI label: TikTok and YouTube video, Facebook reel, Pinterest, Threads post and its replies), isAutoAddMusic, firstComment, isCommentDisabled, isDuetDisabled and isStitchDisabled (TikTok), set by their own fields above, isShareToFeed (Instagram video), privacy (YouTube video: public, unlisted or private), trialParams (Instagram video: { "graduationStrategy": "MANUAL"|"SS_PERFORMANCE" }), link (Pinterest destination URL), textAttachment (Threads text: { "text": "...", "link": "..." }), targetCountries, tags, mentions, collaborators, music (with volume: video, music), products',
+          'Extra metadata: isAiGenerated (AI label: TikTok and YouTube video, Facebook reel, Pinterest, Threads post and its replies), isAutoAddMusic, firstComment, isCommentDisabled, isDuetDisabled and isStitchDisabled (TikTok), set by their own fields above, isShareToFeed (Instagram video), privacy (YouTube video: public, unlisted or private), isMadeForKids (YouTube video, set by its own field above), trialParams (Instagram video: { "graduationStrategy": "MANUAL"|"SS_PERFORMANCE" }), link (Pinterest destination URL), textAttachment (Threads text: { "text": "...", "link": "..." }), targetCountries, tags, mentions, collaborators, music (with volume: video, music), products',
       },
       {
         displayName: 'Replies (JSON)',
@@ -552,6 +566,11 @@ export class ReplizSchedule implements INodeType {
               'public',
             ) as string;
             additionalInfo.privacy = privacy;
+            additionalInfo.isMadeForKids = this.getNodeParameter(
+              'isMadeForKids',
+              i,
+              false,
+            ) as boolean;
 
             const graduationStrategy = this.getNodeParameter(
               'graduationStrategy',
