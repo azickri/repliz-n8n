@@ -37,6 +37,13 @@ export class ReplizResearch implements INodeType {
         noDataExpression: true,
         options: [
           {
+            name: 'Get Threads Content by URL',
+            value: 'getThreadsContentByUrl',
+            description:
+              'Find a public Threads post from its link, to get its ID for a reply',
+            action: 'Get Threads content by URL',
+          },
+          {
             name: 'List TikTok Comment Replies',
             value: 'listTikTokCommentReplies',
             description: 'List the replies to a comment on a TikTok post (TikWM key)',
@@ -112,6 +119,7 @@ export class ReplizResearch implements INodeType {
         displayOptions: {
           show: {
             operation: [
+              'getThreadsContentByUrl',
               'searchThreadsContent',
               'searchThreadsContentByUser',
               'searchThreadsUser',
@@ -121,6 +129,26 @@ export class ReplizResearch implements INodeType {
         default: '',
         description:
           'The ID of your connected Threads account used to perform the research',
+      },
+      // Get Threads Content by URL
+      {
+        displayName:
+          'Works for main posts of public profiles with at least 100 followers. Replies, posts of private or smaller profiles, and posts older than the latest 1,000 fail with "post not found"; use Search Threads Content by Keyword with an Author Username for those.',
+        name: 'contentUrlNotice',
+        type: 'notice',
+        default: '',
+        displayOptions: { show: { operation: ['getThreadsContentByUrl'] } },
+      },
+      {
+        displayName: 'Post URL',
+        name: 'url',
+        type: 'string',
+        required: true,
+        displayOptions: { show: { operation: ['getThreadsContentByUrl'] } },
+        default: '',
+        placeholder: 'e.g. https://www.threads.com/@meta/post/DYZ80_hDVCA',
+        description:
+          'The link of the Threads post. threads.net links and links with a query string work too; a short /t/ link has no username and is not accepted.',
       },
       // Search Threads Content by Keyword
       {
@@ -350,7 +378,16 @@ export class ReplizResearch implements INodeType {
         const accountId = this.getNodeParameter('accountId', i, '') as string;
         let responseData: any;
 
-        if (operation === 'searchThreadsContent') {
+        if (operation === 'getThreadsContentByUrl') {
+          const url = this.getNodeParameter('url', i) as string;
+          responseData = await replizApiRequest.call(
+            this,
+            'GET',
+            '/public/research/threads/content',
+            {},
+            { accountId, url: url.trim() },
+          );
+        } else if (operation === 'searchThreadsContent') {
           const search = this.getNodeParameter('search', i) as string;
           const nextToken = this.getNodeParameter('nextToken', i, '') as string;
           const filters = this.getNodeParameter('filters', i, {}) as any;

@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Repliz Research**: new operation `Get Threads Content by URL`. Put the link of a Threads post (`https://www.threads.com/@username/post/{shortcode}`) and it returns the post with its `id`, ready for `Comment` in Repliz Content to reply to it, or for `Quote Post ID (Threads)` in Repliz Schedule. Repliz looks through the recent posts of the username in the link, so it works for main posts of public profiles with at least 100 followers. Replies, posts of private or smaller profiles, and posts older than the latest 1,000 fail with `404` `post not found in the posts of @username`. A short `/t/{shortcode}` link fails with `400`. Gold+.
+- Updated `api.json` with `GET /public/research/threads/content`.
+
 - **Repliz Schedule**: new switch `Made for Kids (YouTube)` (`additionalInfo.isMadeForKids`, Video) that tells YouTube the video is made for kids (COPPA). YouTube turns off comments on such a video, so `First Comment` is not posted on it. Off sends no audience, as before, and other platforms ignore it.
 - Updated `api.json` with `isMadeForKids` on `ScheduleAdditionalInfo` and in the YouTube Privacy example.
 - **Repliz Schedule**: new field `Quote Post ID (Threads)` (`additionalInfo.quotePost.id`) for post types Text, Image, Video and Album. Put the ID of a Threads post from Repliz Research (Search Threads Content by Keyword or by User) and the scheduled Threads post quotes it, shown under it as Threads shows quotes. Only the main post quotes, not the replies of a thread. Repliz reads the post when the schedule is saved, fills its link, username, text, picture and thumbnail, and fails with `400` when the account can't read it. Other platforms ignore it.
