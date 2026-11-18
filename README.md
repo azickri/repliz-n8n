@@ -83,6 +83,9 @@ Create and manage content automation rules. Operations: Get All, Create, Get, Up
 **Repliz Comment Sync** `Gold+`
 Run the automation on a post's old and missed comments. Operations: Get All, Create, Update Status (pause or resume), Delete.
 
+**Repliz Keyword Watch** `Gold+`
+Find new Threads posts by other people that contain a keyword, and optionally fit a description in plain words read by your Repliz AI setting, and reply to them. Excluded Words skip posts without AI. Operations: Get All, Get, Create, Update, Update Status (pause or resume), Delete, Get Posts, Update Draft, Send Reply, Skip Post. Every account searches with its own login and replies its own way: No Reply, Text, or AI, sent Automatically or kept as a draft to Review First. Replies are paced per account: at most 10 an hour and 50 a day, 3 to 10 minutes apart. Each post found reaches your Repliz webhook as a `keyword_match` event.
+
 **Repliz Template Automation** `Gold+`
 Create and manage reusable automation templates. Operations: Get All, Create, Get, Update, Delete.
 
