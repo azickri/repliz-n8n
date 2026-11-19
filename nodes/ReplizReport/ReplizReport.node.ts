@@ -23,7 +23,7 @@ export class ReplizReport implements INodeType {
 				options: [
 					{ name: 'Get All', value: 'getAll', description: 'Retrieve background job reports', action: 'Get all reports' },
 					{ name: 'Get', value: 'get', description: 'Retrieve details of a specific report', action: 'Get a report' },
-					{ name: 'Retry', value: 'retry', description: 'Retry execution of a failed report', action: 'Retry a report' },
+					{ name: 'Retry', value: 'retry', description: 'Retry execution of a failed report (a link reminder, isFollowUp true, cannot be retried)', action: 'Retry a report' },
 				],
 				default: 'getAll',
 			},

@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Repliz Account**, **Repliz Automation** and **Repliz Template Automation**: `opening.webUrl` takes `followUp` { `isActive`, `delay`, `text` } (Instagram and Facebook) to send one reminder with the same links when none of them was tapped after `delay` seconds (600, 1800, 3600, 10800, 21600, 43200 or 82800). `text` is up to 640 characters, `{name}` and `{Hi|Hello}` supported, and goes out with the same link buttons or before the same cards. It needs `isTrackLink`, and on a DM to a commenter it only goes out when the opening starts with a message with a button. Skipped when a link was tapped, the chat is paused, or the last message of the person is over 24 hours old. A sent reminder is a `chat` report with `isFollowUp: true`, which `Retry` turns down with `400`.
+- Updated `api.json` with `followUp` on `ConfigOpeningWebUrl` (`ConfigOpeningFollowUp`).
+
 - **Repliz Account**: `Update Automation` takes `starter` (Instagram and Facebook) for DM Starters. `questions` holds up to 4 questions shown in an empty chat in the mobile app (ice breakers), each with its own answer, as `text` (`{name}` and `{Hi|Hello}` supported) or an `opening` with buttons; they replace the FAQ set in the Instagram or Facebook app, and a question without an answer is not shown. `links` holds up to 20 chat links with a `ref` (letters, numbers, `-`, `_` and `=`, unique per account), answered when someone opens `https://ig.me/m/<username>?ref=<ref>` or `https://m.me/<page id>?ref=<ref>`; on Instagram the link opens the chat only when tapped inside the Instagram app, and a new chat through a link needs at least one question. Send the `id` values back unchanged. Left out, the saved setting is kept. A repeated `ref` fails with `400`.
 - Updated `api.json` with `starter` in `BodyUpdateAutomationAccountDTO` (`ConfigAutomationStarter`, `ConfigStarterQuestion`, `ConfigStarterLink`).
 
