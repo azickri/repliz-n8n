@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Repliz Account**, **Repliz Automation** and **Repliz Template Automation**: `opening` takes `input` { `isActive`, `type`, `text`, `retryText`, `tag` } (Instagram and Facebook) to ask for an email or phone number after a button tap, before `webUrl`. `type` is `email` or `phone`, `text` is the question and `retryText` goes out after an invalid answer (both up to 640 characters, `{name}` and `{Hi|Hello}` supported), and `tag` (up to 30 characters) is added to the contact. A valid answer is saved to the contact, then `webUrl` is sent; after 3 invalid answers `webUrl` is sent anyway. It needs `postback` or `additional` active. The steps are `chat` reports with `isInput: true`, which `Retry` turns down with `400`.
+- **Repliz Contact**: contacts have `email` and `phone`. `Update` takes `Email` and `Phone` (empty removes one), and `Get All` and `Count` filter by `Source` (`comment` or `chat`) and `Has` (`email` or `phone`). `Search` also matches the email and phone number.
+- A valid answer to the email or phone question reaches your Repliz webhook as a `contact_input` event with `input`, `contact` and `chat`.
+- Updated `api.json` with `input` on `ConfigOpening` (`ConfigOpeningInput`), `email` and `phone` on `BodyUpdateContactDTO`, and `source` and `has` on `GET /public/contact` and `GET /public/contact/count`.
+
 - **Repliz Account**, **Repliz Automation** and **Repliz Template Automation**: `opening.webUrl` takes `followUp` { `isActive`, `delay`, `text` } (Instagram and Facebook) to send one reminder with the same links when none of them was tapped after `delay` seconds (600, 1800, 3600, 10800, 21600, 43200 or 82800). `text` is up to 640 characters, `{name}` and `{Hi|Hello}` supported, and goes out with the same link buttons or before the same cards. It needs `isTrackLink`, and on a DM to a commenter it only goes out when the opening starts with a message with a button. Skipped when a link was tapped, the chat is paused, or the last message of the person is over 24 hours old. A sent reminder is a `chat` report with `isFollowUp: true`, which `Retry` turns down with `400`.
 - Updated `api.json` with `followUp` on `ConfigOpeningWebUrl` (`ConfigOpeningFollowUp`).
 

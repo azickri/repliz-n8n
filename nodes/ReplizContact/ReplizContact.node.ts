@@ -29,6 +29,28 @@ const filterOptions = [
 		description: 'Only contacts with a follow-up. With this set, contacts are sorted by the nearest follow-up.',
 	},
 	{
+		displayName: 'Source',
+		name: 'source',
+		type: 'options' as const,
+		options: [
+			{ name: 'Comment', value: 'comment', description: 'Contacts who ever commented' },
+			{ name: 'Chat', value: 'chat', description: 'Contacts who ever sent a DM' },
+		],
+		default: 'comment',
+		description: 'Only contacts who reached you this way. A contact can have both.',
+	},
+	{
+		displayName: 'Has',
+		name: 'has',
+		type: 'options' as const,
+		options: [
+			{ name: 'Email', value: 'email', description: 'Contacts with an email' },
+			{ name: 'Phone', value: 'phone', description: 'Contacts with a phone number' },
+		],
+		default: 'email',
+		description: 'Only contacts with this data, collected by an opening DM or filled in by hand',
+	},
+	{
 		displayName: 'Account IDs',
 		name: 'accountIds',
 		type: 'string' as const,
@@ -41,7 +63,7 @@ const filterOptions = [
 		name: 'search',
 		type: 'string' as const,
 		default: '',
-		description: 'Search contacts by name or note',
+		description: 'Search contacts by name, note, email or phone number',
 	},
 ];
 
@@ -50,6 +72,8 @@ function toQuery(filters: any): any {
 	if (filters.stage) qs.stage = filters.stage;
 	if (filters.tag) qs.tag = filters.tag;
 	if (filters.followUp) qs.followUp = filters.followUp;
+	if (filters.source) qs.source = filters.source;
+	if (filters.has) qs.has = filters.has;
 	if (filters.search) qs.search = filters.search;
 	if (filters.accountIds) qs.accountIds = filters.accountIds.split(',').map((s: string) => s.trim()).filter(Boolean);
 	return qs;
@@ -81,10 +105,10 @@ export class ReplizContact implements INodeType {
 					{ name: 'Get', value: 'get', description: 'Retrieve one contact', action: 'Get a contact' },
 					{ name: 'Get by Comment', value: 'getByComment', description: 'Retrieve the contact of the person who wrote a comment, creating it if needed', action: 'Get the contact of a comment' },
 					{ name: 'Get by Chat', value: 'getByChat', description: 'Retrieve the contact of the person in a chat, creating it if needed', action: 'Get the contact of a chat' },
-					{ name: 'Update', value: 'update', description: 'Change the funnel stage, tags or note of a contact', action: 'Update a contact' },
+					{ name: 'Update', value: 'update', description: 'Change the funnel stage, tags, note, email or phone number of a contact', action: 'Update a contact' },
 					{ name: 'Set Follow-up', value: 'setFollowUp', description: 'Plan a follow-up reminder for a contact', action: 'Set a contact follow up' },
 					{ name: 'Remove Follow-up', value: 'removeFollowUp', description: 'Clear the follow-up of a contact', action: 'Remove a contact follow up' },
-					{ name: 'Delete', value: 'delete', description: 'Delete a contact with its stage, tags, note and follow-up', action: 'Delete a contact' },
+					{ name: 'Delete', value: 'delete', description: 'Delete a contact with its stage, tags, note, email, phone number and follow-up', action: 'Delete a contact' },
 				],
 				default: 'getAll',
 			},
@@ -199,6 +223,22 @@ export class ReplizContact implements INodeType {
 						default: '',
 						description: 'The new note, up to 2000 characters, replacing the current one',
 					},
+					{
+						displayName: 'Email',
+						name: 'email',
+						type: 'string',
+						placeholder: 'name@email.com',
+						default: '',
+						description: 'The new email, saved in lowercase. Leave empty to remove it.',
+					},
+					{
+						displayName: 'Phone',
+						name: 'phone',
+						type: 'string',
+						default: '',
+						placeholder: '+6281234567890',
+						description: 'The new phone number, 8 to 15 digits with an optional leading +. Spaces, dashes, dots and brackets are removed. Leave empty to remove it.',
+					},
 				],
 			},
 			// Set Follow-up
@@ -277,6 +317,8 @@ export class ReplizContact implements INodeType {
 								? String(fields.tags).split(',').map((s: string) => s.trim()).filter(Boolean)
 								: current.tags || [],
 						note: fields.note ?? current.note ?? '',
+						...(fields.email !== undefined ? { email: fields.email } : {}),
+						...(fields.phone !== undefined ? { phone: fields.phone } : {}),
 					};
 					await replizApiRequest.call(this, 'PUT', `/public/contact/${contactId}`, body);
 					responseData = await replizApiRequest.call(this, 'GET', `/public/contact/${contactId}`);
