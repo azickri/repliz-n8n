@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Repliz Account**, **Repliz Automation** and **Repliz Template Automation**: `story` and `storyMention` take `react` { `isActive`, `emoji` } (Instagram) to react to the story reply or story mention with ❤️, 🔥, 😍, 😂, 👍 or 🙏, together with the answer (after `delay`), also when `limit` skips the answer. Left out, the saved setting is kept.
+- Updated `api.json` with `react` on `ConfigAutomationStory` and `ConfigAutomationStoryMention` (`ConfigReact`), and the Facebook-only note on `ConfigOpeningInput.type`.
+
 - **Repliz Account**, **Repliz Automation** and **Repliz Template Automation**: `opening` takes `input` { `isActive`, `type`, `text`, `retryText`, `tag` } (Instagram and Facebook) to ask for an email or phone number after a button tap, before `webUrl`. `type` is `email` or `phone`, `text` is the question and `retryText` goes out after an invalid answer (both up to 640 characters, `{name}` and `{Hi|Hello}` supported), and `tag` (up to 30 characters) is added to the contact. A valid answer is saved to the contact, then `webUrl` is sent; after 3 invalid answers `webUrl` is sent anyway. It needs `postback` or `additional` active. The steps are `chat` reports with `isInput: true`, which `Retry` turns down with `400`.
 - **Repliz Contact**: contacts have `email` and `phone`. `Update` takes `Email` and `Phone` (empty removes one), and `Get All` and `Count` filter by `Source` (`comment` or `chat`) and `Has` (`email` or `phone`). `Search` also matches the email and phone number.
 - A valid answer to the email or phone question reaches your Repliz webhook as a `contact_input` event with `input`, `contact` and `chat`.
