@@ -122,6 +122,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The description of `Automation Config (JSON)` and `Template Config (JSON)` explains keywords with buttons and links to [Keyword with Buttons](https://docs.repliz.com/api/guides/automation-config#keyword-with-buttons).
 - Updated `api.json` with `ConfigMessageKeyword` and `ConfigMessageKeywordValue` on `ConfigAutomationMessage`, `ConfigAutomationStory` and `ConfigAutomationChat`, and the `payload` note on `ConfigOpeningButton`.
 
+### Fixed
+
+- **Repliz Addon**: `Get Shopee Products` returns the cursor for the next page as `nextToken`, the value the `Next Token` field takes. The API sent it as `nexToken`, which still comes with the same value for now.
+- Updated `api.json` with `nextToken` in the Get Shopee Product response example.
+
 ## [1.0.22] - 2026-10-16
 
 ### Added
