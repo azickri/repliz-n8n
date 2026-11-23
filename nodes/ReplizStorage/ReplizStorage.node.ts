@@ -1,6 +1,10 @@
 import { IExecuteFunctions, INodeExecutionData, INodeType, INodeTypeDescription } from 'n8n-workflow';
 import { replizApiRequest, replizApiRequestAllItems } from '../GenericFunctions';
 
+function splitIds(value: string): string[] {
+	return (value || '').split(',').map((s) => s.trim()).filter(Boolean);
+}
+
 export class ReplizStorage implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Repliz Storage',
@@ -9,7 +13,7 @@ export class ReplizStorage implements INodeType {
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"]}}',
-		description: 'Manage files in Repliz cloud storage — upload, retrieve, and delete media assets (Storage+)',
+		description: 'Manage files in Repliz cloud storage — upload, retrieve, organize in folders, and delete media assets (Storage+)',
 		defaults: { name: 'Repliz Storage' },
 		inputs: ['main'],
 		outputs: ['main'],
@@ -63,6 +67,36 @@ export class ReplizStorage implements INodeType {
 						description: 'Permanently delete multiple files from storage at once',
 						action: 'Delete many files',
 					},
+					{
+						name: 'Move Files',
+						value: 'moveFiles',
+						description: 'Move files into a folder, or out of their folder. File URLs stay the same.',
+						action: 'Move files',
+					},
+					{
+						name: 'Get All Folders',
+						value: 'getFolders',
+						description: 'List every folder with the number and size of its files',
+						action: 'Get all folders',
+					},
+					{
+						name: 'Create Folder',
+						value: 'createFolder',
+						description: 'Create a folder, for example one per brand or social media account',
+						action: 'Create a folder',
+					},
+					{
+						name: 'Rename Folder',
+						value: 'updateFolder',
+						description: 'Rename a folder',
+						action: 'Rename a folder',
+					},
+					{
+						name: 'Delete Folder',
+						value: 'deleteFolder',
+						description: 'Delete a folder. Its files are kept and moved out of it.',
+						action: 'Delete a folder',
+					},
 				],
 				default: 'getAll',
 			},
@@ -93,6 +127,15 @@ export class ReplizStorage implements INodeType {
 				default: '',
 				placeholder: 'e.g. video.mp4',
 				description: 'Filter files by name (optional)',
+			},
+			{
+				displayName: 'Folder ID',
+				name: 'filterFolderId',
+				type: 'string',
+				displayOptions: { show: { operation: ['getAll'] } },
+				default: '',
+				placeholder: 'e.g. 6a4c3b580afd72bb342c3886 or none',
+				description: 'Only files in this folder, from Get All Folders. Use none for files outside any folder. Leave empty for all files.',
 			},
 
 			// ── Get / Delete / Complete ────────────────────────────────────
@@ -136,6 +179,14 @@ export class ReplizStorage implements INodeType {
 				placeholder: 'e.g. video/mp4, image/jpeg, audio/mpeg',
 				description: 'The MIME type of the file (e.g. video/mp4, image/jpeg)',
 			},
+			{
+				displayName: 'Folder ID',
+				name: 'uploadFolderId',
+				type: 'string',
+				displayOptions: { show: { operation: ['initUpload'] } },
+				default: '',
+				description: 'Folder to put the file in, from Get All Folders. Leave empty to keep it outside any folder.',
+			},
 
 			// ── Delete Many ────────────────────────────────────────────────
 			{
@@ -147,6 +198,47 @@ export class ReplizStorage implements INodeType {
 				default: '',
 				placeholder: 'id1,id2,id3',
 				description: 'Comma-separated list of file IDs to delete',
+			},
+
+			// ── Move Files ─────────────────────────────────────────────────
+			{
+				displayName: 'File IDs',
+				name: 'moveFileIds',
+				type: 'string',
+				required: true,
+				displayOptions: { show: { operation: ['moveFiles'] } },
+				default: '',
+				placeholder: 'id1,id2,id3',
+				description: 'Comma-separated list of file IDs to move, up to 100',
+			},
+			{
+				displayName: 'Target Folder ID',
+				name: 'targetFolderId',
+				type: 'string',
+				displayOptions: { show: { operation: ['moveFiles'] } },
+				default: '',
+				description: 'Folder to move the files into, from Get All Folders. Leave empty to take the files out of their folder.',
+			},
+
+			// ── Folders ────────────────────────────────────────────────────
+			{
+				displayName: 'Folder ID',
+				name: 'folderId',
+				type: 'string',
+				required: true,
+				displayOptions: { show: { operation: ['updateFolder', 'deleteFolder'] } },
+				default: '',
+				description: 'The folder ID, from Get All Folders',
+			},
+			{
+				displayName: 'Name',
+				name: 'name',
+				type: 'string',
+				required: true,
+				displayOptions: { show: { operation: ['createFolder', 'updateFolder'] } },
+				default: '',
+				placeholder: 'e.g. Brand A',
+				description: 'Folder name, up to 50 characters and unique (case-insensitive)',
 			},
 		],
 	};
@@ -166,8 +258,10 @@ export class ReplizStorage implements INodeType {
 				} else if (operation === 'getAll') {
 					const returnAll = this.getNodeParameter('returnAll', i) as boolean;
 					const search = this.getNodeParameter('search', i) as string;
+					const folderId = this.getNodeParameter('filterFolderId', i, '') as string;
 					const qs: any = {};
 					if (search) qs.search = search;
+					if (folderId) qs.folderId = folderId;
 
 					if (returnAll) {
 						responseData = await replizApiRequestAllItems.call(this, 'GET', '/public/storage/file', {}, qs);
@@ -189,7 +283,10 @@ export class ReplizStorage implements INodeType {
 					const filename = this.getNodeParameter('filename', i) as string;
 					const size = this.getNodeParameter('size', i) as number;
 					const mimetype = this.getNodeParameter('mimetype', i) as string;
-					responseData = await replizApiRequest.call(this, 'POST', '/public/storage/file/init', { filename, size, mimetype });
+					const folderId = this.getNodeParameter('uploadFolderId', i, '') as string;
+					const body: any = { filename, size, mimetype };
+					if (folderId) body.folderId = folderId;
+					responseData = await replizApiRequest.call(this, 'POST', '/public/storage/file/init', body);
 
 				} else if (operation === 'completeUpload') {
 					const fileId = this.getNodeParameter('fileId', i) as string;
@@ -201,6 +298,28 @@ export class ReplizStorage implements INodeType {
 						.map((s: string) => s.trim())
 						.filter(Boolean);
 					responseData = await replizApiRequest.call(this, 'DELETE', '/public/storage/file/mass', {}, { fileIds });
+
+				} else if (operation === 'moveFiles') {
+					const fileIds = splitIds(this.getNodeParameter('moveFileIds', i) as string);
+					const folderId = this.getNodeParameter('targetFolderId', i, '') as string;
+					responseData = await replizApiRequest.call(this, 'PUT', '/public/storage/file/folder', { fileIds, folderId: folderId || null });
+
+				} else if (operation === 'getFolders') {
+					const res = await replizApiRequest.call(this, 'GET', '/public/storage/folder');
+					responseData = res.docs || [];
+
+				} else if (operation === 'createFolder') {
+					const name = this.getNodeParameter('name', i) as string;
+					responseData = await replizApiRequest.call(this, 'POST', '/public/storage/folder', { name });
+
+				} else if (operation === 'updateFolder') {
+					const folderId = this.getNodeParameter('folderId', i) as string;
+					const name = this.getNodeParameter('name', i) as string;
+					responseData = await replizApiRequest.call(this, 'PUT', `/public/storage/folder/${folderId}`, { name });
+
+				} else if (operation === 'deleteFolder') {
+					const folderId = this.getNodeParameter('folderId', i) as string;
+					responseData = await replizApiRequest.call(this, 'DELETE', `/public/storage/folder/${folderId}`);
 				}
 
 				returnData.push(...this.helpers.returnJsonArray(responseData));

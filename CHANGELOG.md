@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Repliz Content**: `Get Comments` returns `likeCount` on each comment, its likes on Facebook, Instagram, TikTok, YouTube and X, or `null` on Threads and LinkedIn.
+- Updated `api.json` with `likeCount` in the `GET /public/content/{contentId}/comment` example and description.
+
+- **Repliz Storage**: folders, like a drive, for example one per brand or social media account. New operations `Get All Folders` (each folder with `file` { `total`, `used` }), `Create Folder` (`Name` up to 50 characters and unique, case-insensitive; up to 100 folders), `Rename Folder`, `Delete Folder` (its files are kept, outside any folder) and `Move Files` (up to 100 `File IDs`, empty `Target Folder ID` takes them out of their folder). Folders only live in Repliz, so moving a file never changes its URL or its place in the storage bucket. `Get All Files` filters by `Folder ID` (`none` for files outside any folder) and `Initialize Upload` takes an optional `Folder ID`. Files have `folderId`.
+- Updated `api.json` with `/public/storage/folder` (`GET`, `POST`), `/public/storage/folder/{folderId}` (`PUT`, `DELETE`) and `PUT /public/storage/file/folder` (`BodyCreateFolderDTO`, `BodyUpdateFolderDTO`, `BodyMoveFilesDTO`), `folderId` on `GET /public/storage/file` and `BodyInitFileDTO`, and `folderId` in the file examples.
+
 - **Repliz Account Instagram**: `Authorize Music & Research` and `Connect Music & Research` turn on Music & Research for a connected Instagram account through a Meta Business login: music for scheduled Reels and Instagram research. The user logs in with Facebook or Instagram and picks the account; no account is added and no account slot is used. Comments, messages, automation and webhooks stay on the Instagram connection. Connect fails with `400` when the user did not pick this account. Run both again to reconnect.
 - **Repliz Addon**: `Get Instagram Audio` searches Instagram music or original sounds for an account with Music & Research turned on (empty search for trending audio, the only list with more pages).
 - **Repliz Schedule**: `music` in **Additional Info** also works on an Instagram video or reel of an account with Music & Research turned on, with an `id` from Get Instagram Audio; the Reel is published with that audio. On other Instagram accounts it is ignored. Accounts with it on have `additional.isUnified: true`.

@@ -106,8 +106,8 @@ View and retry background job execution reports. Operations: Get All, Get, Retry
 ### Storage
 
 **Repliz Storage** `Storage+`
-Manage files in Repliz cloud storage. Upload media assets for use in scheduled posts, retrieve file info, and free up space by deleting unused files.
-Operations: Get Statistics, Get All Files, Get File, Delete File, Initialize Upload, Complete Upload.
+Manage files in Repliz cloud storage. Upload media assets for use in scheduled posts, retrieve file info, organize files in folders, and free up space by deleting unused files.
+Operations: Get Statistics, Get All Files, Get File, Delete File, Delete Many Files, Initialize Upload, Complete Upload, Move Files, Get All Folders, Create Folder, Rename Folder, Delete Folder. Folders only live in Repliz: moving a file never changes its URL or its place in the storage bucket, and deleting a folder keeps its files outside any folder.
 
 ---
 
