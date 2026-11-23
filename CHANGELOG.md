@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Repliz Account Instagram**: `Authorize Music & Research` and `Connect Music & Research` turn on Music & Research for a connected Instagram account through a Meta Business login: music for scheduled Reels and Instagram research. The user logs in with Facebook or Instagram and picks the account; no account is added and no account slot is used. Comments, messages, automation and webhooks stay on the Instagram connection. Connect fails with `400` when the user did not pick this account. Run both again to reconnect.
+- **Repliz Addon**: `Get Instagram Audio` searches Instagram music or original sounds for an account with Music & Research turned on (empty search for trending audio, the only list with more pages).
+- **Repliz Schedule**: `music` in **Additional Info** also works on an Instagram video or reel of an account with Music & Research turned on, with an `id` from Get Instagram Audio; the Reel is published with that audio. On other Instagram accounts it is ignored. Accounts with it on have `additional.isUnified: true`.
+- Updated `api.json` with `GET /public/addon/instagram/audio`, `GET /public/account/instagram/unified/authorize`, `POST /public/account/instagram/unified/connect/{accountId}` (`BodyConnectInstagramUnifiedDTO`), and the Instagram note on `ScheduleAdditionalInfoMusic`.
+
 - **Repliz Account**, **Repliz Automation** and **Repliz Template Automation**: `story` and `storyMention` take `react` { `isActive`, `emoji` } (Instagram) to react to the story reply or story mention with ❤️, 🔥, 😍, 😂, 👍 or 🙏, together with the answer (after `delay`), also when `limit` skips the answer. Left out, the saved setting is kept.
 - Updated `api.json` with `react` on `ConfigAutomationStory` and `ConfigAutomationStoryMention` (`ConfigReact`), and the Facebook-only note on `ConfigOpeningInput.type`.
 

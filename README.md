@@ -19,7 +19,7 @@ Manage connected workspace accounts. Operations: Get All, Count, Get, Get Statis
 Connect and authenticate Facebook pages. Operations: Authorize, Get Pages, Exchange Token, Connect, Reconnect.
 
 **Repliz Account Instagram** `Gold+`
-Connect and authenticate Instagram accounts. Operations: Authorize, Connect, Reconnect.
+Connect and authenticate Instagram accounts. Operations: Authorize, Connect, Reconnect, Authorize Music & Research, Connect Music & Research. Music & Research adds music for scheduled Reels and Instagram research to a connected account through a Meta Business login, without adding an account or using an account slot.
 
 **Repliz Account Threads** `Gold+`
 Connect and authenticate Threads accounts. Operations: Authorize, Connect, Reconnect.
@@ -114,7 +114,7 @@ Operations: Get Statistics, Get All Files, Get File, Delete File, Initialize Upl
 ### Addons
 
 **Repliz Addon** `Premium+`
-Access premium platform features. Operations: Get Addon Allocation, Get TikTok Trending Music, Get Shopee Products, Get WhatsApp Channels, Get Telegram Channels, Get Pinterest Boards, Create Pinterest Board, Update Pinterest Board, Delete Pinterest Board, Get Instagram Profile, Get Link Metadata. A new board is public, and Create Pinterest Board returns it ready to use as the schedule board. Deleting a board deletes every pin in it on Pinterest. Get Instagram Profile takes the `senderId` of an Instagram chat and returns `isFollower` (the user follows the account) and `isFollowing` (the account follows the user), only for users who have messaged the account.
+Access premium platform features. Operations: Get Addon Allocation, Get TikTok Trending Music, Get Instagram Audio, Get Shopee Products, Get WhatsApp Channels, Get Telegram Channels, Get Pinterest Boards, Create Pinterest Board, Update Pinterest Board, Delete Pinterest Board, Get Instagram Profile, Get Link Metadata. A new board is public, and Create Pinterest Board returns it ready to use as the schedule board. Deleting a board deletes every pin in it on Pinterest. Get Instagram Profile takes the `senderId` of an Instagram chat and returns `isFollower` (the user follows the account) and `isFollowing` (the account follows the user), only for users who have messaged the account.
 
 ---
 
@@ -191,7 +191,7 @@ The **Create** and **Update** operations on `Repliz Schedule` accept several JSO
 
 A Threads `text` reply can carry its own `textAttachment`, like `additionalInfo.textAttachment` of the main post. X ignores it.
 
-**Additional Info** — Tags, mentions, music, products, collaborators, Instagram share-to-feed and trial reel options, and YouTube privacy:
+**Additional Info** — Tags, mentions, music, products, collaborators, Instagram share-to-feed and trial reel options, and YouTube privacy. `music` takes a TikTok track (Get TikTok Trending Music) for TikTok, or an Instagram audio (Get Instagram Audio) for an Instagram video or reel of an account with Music & Research turned on:
 
 ```json
 {

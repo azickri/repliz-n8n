@@ -17,7 +17,7 @@ export class ReplizAddon implements INodeType {
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"]}}',
-		description: 'Access premium Repliz addons: TikTok trending music, Shopee products, WhatsApp and Telegram channels, Pinterest boards (get, create, update, delete), Instagram profile, and link metadata (Premium+)',
+		description: 'Access premium Repliz addons: TikTok trending music, Instagram audio, Shopee products, WhatsApp and Telegram channels, Pinterest boards (get, create, update, delete), Instagram profile, and link metadata (Premium+)',
 		defaults: { name: 'Repliz Addon' },
 		inputs: ['main'],
 		outputs: ['main'],
@@ -31,6 +31,7 @@ export class ReplizAddon implements INodeType {
 				options: [
 					{ name: 'Get Addon Allocation', value: 'getAddon', description: 'Retrieve current account addon allocation (accounts, operators, storage, twitter)', action: 'Get addon allocation' },
 					{ name: 'Get TikTok Trending Music', value: 'getTrendingMusic', description: 'Retrieve trending music tracks from TikTok by genre and country', action: 'Get TikTok trending music' },
+					{ name: 'Get Instagram Audio', value: 'getInstagramAudio', description: 'Search Instagram music or original sounds for a scheduled Reel of an account with Music & Research turned on', action: 'Get Instagram audio' },
 					{ name: 'Get Shopee Products', value: 'getShopeeProducts', description: 'Fetch product listings from a connected Shopee shop', action: 'Get Shopee products' },
 					{ name: 'Get WhatsApp Channels', value: 'getWhatsAppChannels', description: 'Retrieve the channels and groups of a connected WhatsApp account, used as the schedule Channel', action: 'Get WhatsApp channels' },
 					{ name: 'Get Telegram Channels', value: 'getTelegramChannels', description: 'Retrieve the channels and groups of a connected Telegram account, used as the schedule Channel', action: 'Get Telegram channels' },
@@ -202,6 +203,44 @@ export class ReplizAddon implements INodeType {
 				placeholder: '6793729447315239',
 				description: 'Instagram-scoped ID of the user, the `senderId` of a chat from Repliz Chat. Instagram only returns users who have sent a message to the account; anyone else fails with the error from Instagram.',
 			},
+			// Instagram Audio
+			{
+				displayName: 'Account ID',
+				name: 'accountId',
+				type: 'string',
+				required: true,
+				displayOptions: { show: { operation: ['getInstagramAudio'] } },
+				default: '',
+				description: 'The Repliz account ID of a connected Instagram account with Music & Research turned on (Repliz Account Instagram → Authorize / Connect Music & Research, or Turn On on the account card in Repliz)',
+			},
+			{
+				displayName: 'Type',
+				name: 'audioType',
+				type: 'options',
+				displayOptions: { show: { operation: ['getInstagramAudio'] } },
+				options: [
+					{ name: 'Music', value: 'music' },
+					{ name: 'Original Sound', value: 'original_sound' },
+				],
+				default: 'music',
+				description: 'Licensed tracks, or sounds made by Instagram accounts',
+			},
+			{
+				displayName: 'Search',
+				name: 'search',
+				type: 'string',
+				displayOptions: { show: { operation: ['getInstagramAudio'] } },
+				default: '',
+				description: 'Title or artist. Leave empty for trending audio, the only list with more pages.',
+			},
+			{
+				displayName: 'Next Token',
+				name: 'nextToken',
+				type: 'string',
+				displayOptions: { show: { operation: ['getInstagramAudio'] } },
+				default: '',
+				description: 'Pagination cursor from a previous response (trending only)',
+			},
 			// Link Metadata
 			{
 				displayName: 'URL',
@@ -275,6 +314,12 @@ export class ReplizAddon implements INodeType {
 					const accountId = this.getNodeParameter('accountId', i) as string;
 					const senderId = this.getNodeParameter('senderId', i) as string;
 					responseData = await replizApiRequest.call(this, 'GET', '/public/addon/instagram/profile', {}, { accountId, senderId });
+				} else if (operation === 'getInstagramAudio') {
+					const accountId = this.getNodeParameter('accountId', i) as string;
+					const type = this.getNodeParameter('audioType', i) as string;
+					const search = this.getNodeParameter('search', i, '') as string;
+					const nextToken = this.getNodeParameter('nextToken', i, '') as string;
+					responseData = await replizApiRequest.call(this, 'GET', '/public/addon/instagram/audio', {}, { accountId, type, search: search || undefined, nextToken: nextToken || undefined });
 				} else if (operation === 'getLinkMetadata') {
 					const url = this.getNodeParameter('url', i) as string;
 					responseData = await replizApiRequest.call(this, 'GET', '/public/addon/link/metadata', {}, { url });
