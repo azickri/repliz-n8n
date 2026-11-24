@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Repliz Content**: `Get Statistics` on Facebook returns `insight.video` for a reel or video the Page uploaded itself: `type` (`reel` or `video`), `length`, `averageWatchTime` and `watchTime` in seconds, and `retention` ({ `second`, `percentage` 0-1 }, like TikTok). A reel adds `plays`, `replays` and `follows`, a video adds `views` (3 seconds) and `completeViews` (97%). It is `null` for other posts and for a video shared from another Page.
+- Updated `api.json` with the Facebook Reels and Facebook Video examples and the `insight.video` description on `GET /public/content/{contentId}/statistic`.
+
 - **Repliz Content**: `Get Comments` returns `likeCount` on each comment, its likes on Facebook, Instagram, TikTok, YouTube and X, or `null` on Threads and LinkedIn.
 - Updated `api.json` with `likeCount` in the `GET /public/content/{contentId}/comment` example and description.
 
