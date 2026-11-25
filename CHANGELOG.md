@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Repliz Schedule**: `Post as Draft (TikTok, Facebook)` switch, sent as `additionalInfo.isDraft`. On Facebook the post is saved in the Page drafts of Meta Business Suite instead of being published, for text, image, video, reel, album and link (a Story is published as usual); on TikTok it goes to the TikTok app inbox as before. Automation and First Comment do not run on a draft. The switch only turns the draft on, so an `isDraft` already set in **Additional Info** keeps working.
+- Updated `api.json` with the Facebook text of `additionalInfo.isDraft` and `firstComment` and the `Post as Draft (TikTok and Facebook)` example on `POST /public/schedule`.
+
 - **Repliz Content**: `Get Statistics` on Facebook returns `insight.video` for a reel or video the Page uploaded itself: `type` (`reel` or `video`), `length`, `averageWatchTime` and `watchTime` in seconds, and `retention` ({ `second`, `percentage` 0-1 }, like TikTok). A reel adds `plays`, `replays` and `follows`, a video adds `views` (3 seconds) and `completeViews` (97%). It is `null` for other posts and for a video shared from another Page.
 - Updated `api.json` with the Facebook Reels and Facebook Video examples and the `insight.video` description on `GET /public/content/{contentId}/statistic`.
 

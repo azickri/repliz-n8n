@@ -4931,6 +4931,48 @@
                     "scheduleAt": "2026-10-28T06:06:24.150Z"
                   }
                 },
+                "additionalInfoDraft": {
+                  "summary": "Post as Draft (TikTok and Facebook)",
+                  "value": {
+                    "title": "",
+                    "description": "Hola! This is example for post saved as a draft",
+                    "topic": "",
+                    "type": "video",
+                    "medias": [
+                      {
+                        "alt": "",
+                        "customThumbnail": false,
+                        "type": "video",
+                        "thumbnail": "https://storage.repliz.com/thumbnail.png",
+                        "url": "https://storage.repliz.com/video.mp4"
+                      }
+                    ],
+                    "meta": { "title": "", "description": "", "url": "" },
+                    "additionalInfo": {
+                      "isAiGenerated": false,
+                      "isDraft": true,
+                      "isAutoAddMusic": false,
+                      "isShareToFeed": false,
+                      "privacy": "public",
+                      "trialParams": { "graduationStrategy": "" },
+                      "collaborators": [],
+                      "music": {
+                        "id": "",
+                        "artist": "",
+                        "name": "",
+                        "thumbnail": "",
+                        "volume": { "video": 50, "music": 100 }
+                      },
+                      "products": [],
+                      "tags": [],
+                      "mentions": [],
+                      "targetCountries": []
+                    },
+                    "replies": [],
+                    "accountId": "680affa5ce12f2f72916f67e",
+                    "scheduleAt": "2026-10-28T06:06:24.150Z"
+                  }
+                },
                 "additionalInfoFirstComment": {
                   "summary": "Post with First Comment",
                   "value": {
@@ -14390,7 +14432,7 @@
           "isDraft": {
             "type": "boolean",
             "example": false,
-            "description": "TikTok. `true` sends the post to the creator TikTok inbox as a draft instead of publishing it. The schedule `postId` is then `INBOX_TIKTOK`, so automation and statistics do not run on it. Default `false`."
+            "description": "TikTok and Facebook. `true` saves the post as a draft instead of publishing it, to finish and publish yourself. TikTok sends it to the creator TikTok inbox and the schedule `postId` is `INBOX_TIKTOK`. Facebook saves it in the Page drafts of Meta Business Suite (every type except `story`, which is published as usual) and the schedule `postId` is the ID of the draft. Automation and the first comment do not run on a draft. Default `false`."
           },
           "isAutoAddMusic": {
             "type": "boolean",
@@ -14415,7 +14457,7 @@
           "firstComment": {
             "type": "string",
             "example": "Full price list in the link in our bio 👆",
-            "description": "A comment the account posts on its own post right after it is published. Facebook, Instagram, LinkedIn, YouTube, and TikTok, not on a `story`, a TikTok draft, or a YouTube video made for kids. TikTok takes up to 150 characters, LinkedIn 1,250, and Instagram 2,200. Empty or left out posts no comment."
+            "description": "A comment the account posts on its own post right after it is published. Facebook, Instagram, LinkedIn, YouTube, and TikTok, not on a `story`, a TikTok or Facebook draft, or a YouTube video made for kids. TikTok takes up to 150 characters, LinkedIn 1,250, and Instagram 2,200. Empty or left out posts no comment."
           },
           "isShareToFeed": {
             "type": "boolean",

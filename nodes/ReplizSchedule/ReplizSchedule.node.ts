@@ -238,7 +238,21 @@ export class ReplizSchedule implements INodeType {
         },
         default: '',
         description:
-          'A comment the account posts on its own post right after it is published. Facebook, Instagram, LinkedIn, YouTube and TikTok, not on a Story or a TikTok draft. TikTok takes up to 150 characters, LinkedIn 1,250, Instagram 2,200. Leave empty for no comment. Sent as additionalInfo.firstComment.',
+          'A comment the account posts on its own post right after it is published. Facebook, Instagram, LinkedIn, YouTube and TikTok, not on a Story or a draft. TikTok takes up to 150 characters, LinkedIn 1,250, Instagram 2,200. Leave empty for no comment. Sent as additionalInfo.firstComment.',
+      },
+      {
+        displayName: 'Post as Draft (TikTok, Facebook)',
+        name: 'isDraft',
+        type: 'boolean',
+        displayOptions: {
+          show: {
+            operation: ['create', 'update'],
+            postType: ['text', 'image', 'video', 'reel', 'album', 'link'],
+          },
+        },
+        default: false,
+        description:
+          'Whether to keep the post as a draft instead of publishing it, to publish it yourself. TikTok sends it to the TikTok app inbox; Facebook saves it in the Page drafts of Meta Business Suite (not for a Story). Automation and First Comment do not run on a draft. Sent as additionalInfo.isDraft.',
       },
       {
         displayName: 'Turn Off Comments (TikTok)',
@@ -440,7 +454,7 @@ export class ReplizSchedule implements INodeType {
         default:
           '{"isAiGenerated":false,"isDraft":false,"isAutoAddMusic":false,"link":"","targetCountries":[],"tags":[],"mentions":[],"collaborators":[],"products":[],"music":{}}',
         description:
-          'Extra metadata: isAiGenerated (AI label: TikTok and YouTube video, Facebook reel, Pinterest, Threads post and its replies), isAutoAddMusic, firstComment, isCommentDisabled, isDuetDisabled and isStitchDisabled (TikTok), set by their own fields above, isShareToFeed (Instagram video), privacy (YouTube video: public, unlisted or private), isMadeForKids (YouTube video, set by its own field above), trialParams (Instagram video: { "graduationStrategy": "MANUAL"|"SS_PERFORMANCE" }), link (Pinterest destination URL), textAttachment (Threads text: { "text": "...", "link": "..." }), targetCountries, tags, mentions, collaborators, music (TikTok: a track from Repliz Addon → Get TikTok Trending Music; Instagram video or reel of an account with Music & Research turned on: an item from Get Instagram Audio; with volume: video, music), products',
+          'Extra metadata: isAiGenerated (AI label: TikTok and YouTube video, Facebook reel, Pinterest, Threads post and its replies), isDraft (TikTok, Facebook except Story, set by its own field above), isAutoAddMusic, firstComment, isCommentDisabled, isDuetDisabled and isStitchDisabled (TikTok), set by their own fields above, isShareToFeed (Instagram video), privacy (YouTube video: public, unlisted or private), isMadeForKids (YouTube video, set by its own field above), trialParams (Instagram video: { "graduationStrategy": "MANUAL"|"SS_PERFORMANCE" }), link (Pinterest destination URL), textAttachment (Threads text: { "text": "...", "link": "..." }), targetCountries, tags, mentions, collaborators, music (TikTok: a track from Repliz Addon → Get TikTok Trending Music; Instagram video or reel of an account with Music & Research turned on: an item from Get Instagram Audio; with volume: video, music), products',
       },
       {
         displayName: 'Replies (JSON)',
@@ -532,6 +546,10 @@ export class ReplizSchedule implements INodeType {
 
           const firstComment = this.getNodeParameter('firstComment', i, '') as string;
           if (firstComment.trim()) additionalInfo.firstComment = firstComment.trim();
+
+          if (this.getNodeParameter('isDraft', i, false) as boolean) {
+            additionalInfo.isDraft = true;
+          }
 
           if (['image', 'video', 'album'].includes(type)) {
             additionalInfo.isCommentDisabled = this.getNodeParameter(
