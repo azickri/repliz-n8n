@@ -10229,6 +10229,531 @@
         "tags": ["API Keyword Watch (Gold+)"]
       }
     },
+    "/public/broadcast": {
+      "get": {
+        "description": "\nRetrieve the broadcasts, newest first.\n\nEach item has the `platform` and `accountId` it goes out from with `account`, `audience` (`unreplied` or `all`), `delay` (seconds between two messages), `text`, `media` when it sends an image or video, `status` (`process`, `done`, or `canceled`), `total` recipients with how many were `sent`, `skipped`, and `failed` so far, `createdAt`, and `finishedAt` once it ended.\n",
+        "operationId": "BroadcastController_getBroadcast",
+        "parameters": [
+          {
+            "name": "page",
+            "required": true,
+            "in": "query",
+            "description": "Page to return, starting from `1`. Newest broadcasts first.",
+            "schema": { "minimum": 1, "example": 1, "type": "number" }
+          },
+          {
+            "name": "limit",
+            "required": true,
+            "in": "query",
+            "description": "Items per page, for example `20`.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "example": 20,
+              "type": "number"
+            }
+          },
+          {
+            "name": "accountIds",
+            "required": false,
+            "in": "query",
+            "description": "Only return broadcasts of these accounts, as `_id`s from Get Account. Send each one as `accountIds[]=ID`.",
+            "schema": {
+              "example": ["680affa5ce12f2f72916f67e"],
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "description": "`process`: still sending. `done`: every recipient was handled. `canceled`: stopped before the end. Every broadcast when left out.",
+            "schema": {
+              "example": "process",
+              "type": "string",
+              "enum": ["process", "done", "canceled"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "example": {
+                  "docs": [
+                    {
+                      "_id": "6927e1c2e4b0a1f2c3d4e5f6",
+                      "platform": "instagram",
+                      "audience": "unreplied",
+                      "delay": 5,
+                      "text": "{Halo|Hai} {name}, pesananmu sudah kami cek 🙏",
+                      "media": {
+                        "type": "image",
+                        "url": "https://storage.repliz.com/image.jpg",
+                        "thumbnail": "https://storage.repliz.com/image.jpg",
+                        "duration": 0,
+                        "mimetype": "image/jpeg"
+                      },
+                      "status": "process",
+                      "total": 120,
+                      "sent": 64,
+                      "skipped": 3,
+                      "failed": 1,
+                      "accountId": "680affa5ce12f2f72916f67e",
+                      "account": {
+                        "_id": "680affa5ce12f2f72916f67e",
+                        "name": "Repliz",
+                        "username": "replizofficial",
+                        "picture": "",
+                        "type": "instagram",
+                        "isConnected": true
+                      },
+                      "userId": "680aff8bce12f2f72916f67a",
+                      "expiredAt": "2026-12-27T08:00:00.000Z",
+                      "createdAt": "2026-11-27T08:00:00.000Z",
+                      "updatedAt": "2026-11-27T08:04:00.000Z"
+                    }
+                  ],
+                  "totalDocs": 1,
+                  "limit": 20,
+                  "totalPages": 1,
+                  "page": 1,
+                  "pagingCounter": 1,
+                  "hasPrevPage": false,
+                  "hasNextPage": false,
+                  "prevPage": null,
+                  "nextPage": null
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "basic": [] }, { "bearer": [] }],
+        "summary": "API Get Broadcast",
+        "tags": ["API Broadcast (Premium+)"]
+      },
+      "post": {
+        "description": "\nSend one message to many chats of a Facebook, Instagram, TikTok, or Telegram account, for example to follow up the chats nobody answered yet.\n\nPick the chats from Get Broadcast Audience: send `chatIds`, or `isAll` `true` with the ones to leave out in `excludedChatIds` to send to the whole audience (its 1,000 newest chats) without listing it first. `text` supports `{name}` and spintax such as `{Hi|Hello}`, so each person gets their own version. `media` adds one image or video, sent right after the text as its own message, on Facebook, Instagram, and Telegram only.\n\nRepliz sends to one chat at a time, `delay` seconds apart (5 seconds to 1 hour). Just before each send it checks the chat again: a chat whose 24-hour window closed, or that was answered before its turn with `unreplied`, is skipped. Chats closest to the end of their window go first. Sent messages show in the chat like any message the account sends, and the broadcast doesn't pause the chat's automation. One broadcast runs per account at a time (409). Broadcasts are kept for 30 days after their last send.\n\nResponse:\n- Returns the `broadcastId` and the `total` of chats it goes to\n",
+        "operationId": "BroadcastController_createBroadcast",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BodyCreateBroadcastDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "example": {
+                  "broadcastId": "6927e1c2e4b0a1f2c3d4e5f6",
+                  "total": 120
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 400,
+                  "message": "none of the chats can receive a broadcast now"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 409,
+                  "message": "a broadcast is still running on this account"
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "basic": [] }, { "bearer": [] }],
+        "summary": "API Create Broadcast",
+        "tags": ["API Broadcast (Premium+)"]
+      }
+    },
+    "/public/broadcast/audience": {
+      "get": {
+        "description": "\nList the chats of a Facebook, Instagram, TikTok, or Telegram account that a broadcast can go to now, newest first.\n\n`unreplied` lists the chats whose last message came from the other person; `all` lists every chat. On Facebook, Instagram, and TikTok only chats whose last message from the other person is less than 24 hours old are listed, since the platforms only allow messages within that window; Telegram has none. Pages go up to the 1,000 newest chats, the most one broadcast can go to.\n\nResponse:\n- `docs`: the chats, with `_id` (send it as `chatIds`), `senderId`, `senderName`, `senderPicture`, and `lastMessage` (`text`, `type`, `isFromMe`, `sendAt`, and `fromSenderAt`, when the 24-hour window started)\n- `total`: every chat in the audience, whatever the `search`\n- `totalDocs`, `page`, `limit`, `hasNextPage` for the `search` and paging\n",
+        "operationId": "BroadcastController_getBroadcastAudience",
+        "parameters": [
+          {
+            "name": "accountId",
+            "required": true,
+            "in": "query",
+            "description": "The Facebook, Instagram, TikTok, or Telegram account to send from, the `_id` from Get Account.",
+            "schema": {
+              "example": "680affa5ce12f2f72916f67e",
+              "type": "string"
+            }
+          },
+          {
+            "name": "audience",
+            "required": true,
+            "in": "query",
+            "description": "`unreplied`: chats whose last message came from the other person. `all`: every chat. On Facebook, Instagram, and TikTok only chats whose last message from the other person is less than 24 hours old are listed.",
+            "schema": {
+              "example": "unreplied",
+              "type": "string",
+              "enum": ["unreplied", "all"]
+            }
+          },
+          {
+            "name": "page",
+            "required": true,
+            "in": "query",
+            "description": "Page to return, starting from `1`. Newest chats first, up to the 1000 newest.",
+            "schema": { "minimum": 1, "example": 1, "type": "number" }
+          },
+          {
+            "name": "limit",
+            "required": true,
+            "in": "query",
+            "description": "Items per page, for example `50`.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "example": 50,
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Matches the name of the person, case-insensitive. `total` still counts the whole audience.",
+            "schema": { "example": "Azickri", "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "example": {
+                  "docs": [
+                    {
+                      "_id": "6927e1c2e4b0a1f2c3d4e5f7",
+                      "senderId": "1784140123456789",
+                      "senderName": "Azickri",
+                      "senderPicture": "",
+                      "unreadCount": 1,
+                      "accountId": "680affa5ce12f2f72916f67e",
+                      "lastMessage": {
+                        "isFromMe": false,
+                        "senderId": "1784140123456789",
+                        "messageId": "aWdfZAG1faWQ6...",
+                        "type": "text",
+                        "status": "unread",
+                        "text": "Kak, pesananku kapan dikirim?",
+                        "sendAt": "2026-11-27T06:00:00.000Z",
+                        "fromSenderAt": "2026-11-27T06:00:00.000Z"
+                      }
+                    }
+                  ],
+                  "total": 1,
+                  "totalDocs": 1,
+                  "page": 1,
+                  "limit": 50,
+                  "hasNextPage": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 400,
+                  "message": "none of the chats can receive a broadcast now"
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "basic": [] }, { "bearer": [] }],
+        "summary": "API Get Broadcast Audience",
+        "tags": ["API Broadcast (Premium+)"]
+      }
+    },
+    "/public/broadcast/{broadcastId}": {
+      "get": {
+        "description": "\nRetrieve one broadcast, in the same shape as an item of Get Broadcast. Ask again while `status` is `process` to follow its counts.\n",
+        "operationId": "BroadcastController_getOneBroadcast",
+        "parameters": [
+          {
+            "name": "broadcastId",
+            "required": true,
+            "in": "path",
+            "description": "ID of the broadcast, the `_id` from Get Broadcast or the `broadcastId` from Create Broadcast.",
+            "schema": {
+              "example": "6927e1c2e4b0a1f2c3d4e5f6",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "example": {
+                  "_id": "6927e1c2e4b0a1f2c3d4e5f6",
+                  "platform": "instagram",
+                  "audience": "unreplied",
+                  "delay": 5,
+                  "text": "{Halo|Hai} {name}, pesananmu sudah kami cek 🙏",
+                  "media": {
+                    "type": "image",
+                    "url": "https://storage.repliz.com/image.jpg",
+                    "thumbnail": "https://storage.repliz.com/image.jpg",
+                    "duration": 0,
+                    "mimetype": "image/jpeg"
+                  },
+                  "status": "process",
+                  "total": 120,
+                  "sent": 64,
+                  "skipped": 3,
+                  "failed": 1,
+                  "accountId": "680affa5ce12f2f72916f67e",
+                  "account": {
+                    "_id": "680affa5ce12f2f72916f67e",
+                    "name": "Repliz",
+                    "username": "replizofficial",
+                    "picture": "",
+                    "type": "instagram",
+                    "isConnected": true
+                  },
+                  "userId": "680aff8bce12f2f72916f67a",
+                  "expiredAt": "2026-12-27T08:00:00.000Z",
+                  "createdAt": "2026-11-27T08:00:00.000Z",
+                  "updatedAt": "2026-11-27T08:04:00.000Z"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "example": { "code": 404, "message": "broadcast not found" }
+              }
+            }
+          }
+        },
+        "security": [{ "basic": [] }, { "bearer": [] }],
+        "summary": "API Get One Broadcast",
+        "tags": ["API Broadcast (Premium+)"]
+      },
+      "delete": {
+        "description": "\nDelete a broadcast that is `done` or `canceled`, with its list of recipients. The messages already sent stay in the chats. Cancel a broadcast that is still sending first (400).\n",
+        "operationId": "BroadcastController_removeBroadcast",
+        "parameters": [
+          {
+            "name": "broadcastId",
+            "required": true,
+            "in": "path",
+            "description": "ID of the broadcast, the `_id` from Get Broadcast or the `broadcastId` from Create Broadcast.",
+            "schema": {
+              "example": "6927e1c2e4b0a1f2c3d4e5f6",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": { "description": "" },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 400,
+                  "message": "none of the chats can receive a broadcast now"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "example": { "code": 404, "message": "broadcast not found" }
+              }
+            }
+          }
+        },
+        "security": [{ "basic": [] }, { "bearer": [] }],
+        "summary": "API Remove Broadcast",
+        "tags": ["API Broadcast (Premium+)"]
+      }
+    },
+    "/public/broadcast/{broadcastId}/recipient": {
+      "get": {
+        "description": "\nList the recipients of a broadcast in the order they are sent, with what happened to each one.\n\nEach item has the chat (`chatId`, `senderId`, `senderName`, `senderPicture`), `status`, `dueAt` (when its turn is), `sentAt` and `messageIds` once sent, `reason` when `skipped` (`replied`, `window_closed`, `disconnected`, `chat_not_found`, `account_not_found`, or `canceled`), and `errorMessage` when `failed`. A recipient whose text went out but not its image or video is `failed` with the text's id in `messageIds`.\n",
+        "operationId": "BroadcastController_getBroadcastRecipient",
+        "parameters": [
+          {
+            "name": "broadcastId",
+            "required": true,
+            "in": "path",
+            "description": "ID of the broadcast, the `_id` from Get Broadcast or the `broadcastId` from Create Broadcast.",
+            "schema": {
+              "example": "6927e1c2e4b0a1f2c3d4e5f6",
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": true,
+            "in": "query",
+            "description": "Page to return, starting from `1`. Recipients come in the order they are sent.",
+            "schema": { "minimum": 1, "example": 1, "type": "number" }
+          },
+          {
+            "name": "limit",
+            "required": true,
+            "in": "query",
+            "description": "Items per page, for example `50`.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "example": 50,
+              "type": "number"
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "description": "`pending` and `queued`: waiting for their turn. `sending`: being sent now. `waiting`: all three. `sent`, `skipped` (see `reason`), or `failed` (see `errorMessage`). Every recipient when left out.",
+            "schema": {
+              "example": "sent",
+              "type": "string",
+              "enum": [
+                "pending",
+                "queued",
+                "sending",
+                "sent",
+                "skipped",
+                "failed",
+                "waiting"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "example": {
+                  "docs": [
+                    {
+                      "_id": "6927e1c2e4b0a1f2c3d4e5f8",
+                      "broadcastId": "6927e1c2e4b0a1f2c3d4e5f6",
+                      "platform": "instagram",
+                      "chatId": "6927e1c2e4b0a1f2c3d4e5f7",
+                      "senderId": "1784140123456789",
+                      "senderName": "Azickri",
+                      "senderPicture": "",
+                      "order": 0,
+                      "status": "sent",
+                      "messageIds": ["aWdfZAG1faWQ6...", "aWdfZAG1faWQ7..."],
+                      "dueAt": "2026-11-27T08:00:00.000Z",
+                      "sentAt": "2026-11-27T08:00:02.000Z",
+                      "accountId": "680affa5ce12f2f72916f67e",
+                      "userId": "680aff8bce12f2f72916f67a",
+                      "createdAt": "2026-11-27T08:00:00.000Z",
+                      "updatedAt": "2026-11-27T08:00:02.000Z"
+                    }
+                  ],
+                  "totalDocs": 1,
+                  "limit": 20,
+                  "totalPages": 1,
+                  "page": 1,
+                  "pagingCounter": 1,
+                  "hasPrevPage": false,
+                  "hasNextPage": false,
+                  "prevPage": null,
+                  "nextPage": null
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "example": { "code": 404, "message": "broadcast not found" }
+              }
+            }
+          }
+        },
+        "security": [{ "basic": [] }, { "bearer": [] }],
+        "summary": "API Get Broadcast Recipient",
+        "tags": ["API Broadcast (Premium+)"]
+      }
+    },
+    "/public/broadcast/{broadcastId}/cancel": {
+      "put": {
+        "description": "\nStop a broadcast that is still sending. The chats that haven't got it yet are `skipped` with `reason` `canceled`, and the messages already sent stay in the chats. Returns 400 when it isn't sending.\n",
+        "operationId": "BroadcastController_cancelBroadcast",
+        "parameters": [
+          {
+            "name": "broadcastId",
+            "required": true,
+            "in": "path",
+            "description": "ID of the broadcast, the `_id` from Get Broadcast or the `broadcastId` from Create Broadcast.",
+            "schema": {
+              "example": "6927e1c2e4b0a1f2c3d4e5f6",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": { "description": "" },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 400,
+                  "message": "none of the chats can receive a broadcast now"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "example": { "code": 404, "message": "broadcast not found" }
+              }
+            }
+          }
+        },
+        "security": [{ "basic": [] }, { "bearer": [] }],
+        "summary": "API Cancel Broadcast",
+        "tags": ["API Broadcast (Premium+)"]
+      }
+    },
     "/public/template": {
       "get": {
         "description": "\nRetrieve a list of automation templates.\n\nThis endpoint is used to fetch available templates that can be used to configure content automations.\nIt is useful for browsing and selecting templates before creating or configuring an automation.\n\nResponse:\n- Returns an array of automation template objects\n- Each template includes its basic information and automation configuration\n",
@@ -15285,6 +15810,87 @@
             "description": "Replaces the draft text before sending. The draft is sent when left out."
           }
         }
+      },
+      "BodyBroadcastMediaDTO": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["image", "video"],
+            "example": "image",
+            "description": "`image` or `video`. Not available on TikTok."
+          },
+          "url": {
+            "type": "string",
+            "example": "https://storage.repliz.com/image.jpg",
+            "description": "Public URL of the file. The platform downloads it from here."
+          },
+          "thumbnail": {
+            "type": "string",
+            "example": "https://storage.repliz.com/thumbnail.jpg",
+            "description": "Preview shown in Repliz, and the video cover on Telegram. It is not sent on Facebook and Instagram."
+          },
+          "duration": {
+            "type": "number",
+            "example": 12,
+            "description": "Video length in seconds."
+          },
+          "mimetype": {
+            "type": "string",
+            "example": "image/jpeg",
+            "description": "MIME type of the file, like `image/jpeg` or `video/mp4`."
+          }
+        },
+        "required": ["type", "url", "mimetype"]
+      },
+      "BodyCreateBroadcastDTO": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "type": "string",
+            "example": "680affa5ce12f2f72916f67e",
+            "description": "The Facebook, Instagram, TikTok, or Telegram account to send from, the `_id` from Get Account."
+          },
+          "audience": {
+            "type": "string",
+            "enum": ["unreplied", "all"],
+            "example": "unreplied",
+            "description": "The list the chats were picked from, as in Get Broadcast Audience. With `unreplied`, a chat answered before its turn is skipped."
+          },
+          "delay": {
+            "type": "number",
+            "enum": [5, 10, 15, 30, 60, 120, 300, 600, 900, 1800, 3600],
+            "example": 5,
+            "description": "Seconds between two messages: `5`, `10`, `15`, `30`, `60`, `120`, `300`, `600`, `900`, `1800`, or `3600` (1 hour)."
+          },
+          "isAll": {
+            "type": "boolean",
+            "example": false,
+            "description": "`true` sends to the whole audience (its 1000 newest chats) except `excludedChatIds`, so the list doesn't have to be loaded first. Otherwise `chatIds` says who gets it."
+          },
+          "chatIds": {
+            "example": ["6927e1c2e4b0a1f2c3d4e5f7"],
+            "description": "Chats to send to, as `_id`s from Get Broadcast Audience, up to 1000. Required unless `isAll` is `true`. Chats that no longer match the audience are left out.",
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "excludedChatIds": {
+            "example": [],
+            "description": "With `isAll`, the chats left out.",
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "text": {
+            "type": "string",
+            "example": "{Halo|Hai} {name}, pesananmu sudah kami cek 🙏",
+            "description": "The text, up to 1000 characters. Supports `{name}` and spintax. Required when there is no `media`."
+          },
+          "media": {
+            "description": "An image or video sent after the text. Facebook, Instagram, and Telegram only.",
+            "allOf": [{ "$ref": "#/components/schemas/BodyBroadcastMediaDTO" }]
+          }
+        },
+        "required": ["accountId", "audience", "delay"]
       },
       "ConfigAutomationTemplate": {
         "type": "object",

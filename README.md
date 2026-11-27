@@ -8,7 +8,7 @@ Repliz is a social media management platform that centralizes comment moderation
 
 ## Nodes
 
-This package provides 25 nodes, each mapped to a specific Repliz API group:
+This package provides 27 nodes, each mapped to a specific Repliz API group:
 
 ### Account Management
 
@@ -60,6 +60,9 @@ Manage the contacts Repliz creates from everyone who comments on or messages you
 
 **Repliz Chat** `Gold+`
 Manage live chat conversations and messages. Operations: Get All, Get, Get Messages, Send Message, Mark as Read, Send Action. Send Action shows or hides the typing indicator, or shows the person their messages as seen (Facebook, Instagram, TikTok, Telegram; TikTok has no Typing Off). Messages of the account get `status` `read` once the person has seen them (on Facebook `delivered` first), and your Repliz webhook gets `read` and `delivered` events. Messages the person edits come back with `isEdited: true` and reach your webhook as an `edit` event. On Facebook and Instagram, Send Message can also send buttons (`web_url` or `postback`), a carousel of cards, or quick replies. A tapped postback button reaches your Repliz webhook as a `postback` event and a tapped quick reply as a `chat` event, both with the value in `message.payload`. Set `Reply To Message ID` to a `messageId` from Get Messages to send the message as a reply that quotes it (TikTok: text only); messages that reply to another have `quoted`. Pause Automation stops Reply DM, Reply Story and Reply Story Mention in one chat for 30 minutes to 24 hours or until Resume Automation, so a person can take over; Get and Get All return `pausedUntil`.
+
+**Repliz Broadcast** `Premium+`
+Send one message to many chats of a Facebook, Instagram, TikTok, or Telegram account, for example to follow up the chats nobody answered yet. Operations: Get All, Get Audience, Get, Get Recipients, Create, Cancel, Delete. Get Audience lists the Unreplied chats or All Chats; on Facebook, Instagram, and TikTok only chats whose last message from the person is under 24 hours old, as the platforms require (Telegram has no window). Create sends to the Whole Audience (its 1,000 newest chats) minus Excluded Chat IDs, or to the picked Chat IDs, one chat at a time with a Delay of 5 seconds to 1 hour. The text supports `{name}` and `{Hi|Hello}`, and Facebook, Instagram, and Telegram can add one image or video. Each chat is checked again just before its turn: a closed 24-hour window, or an answer before its turn with Unreplied, skips it. Get and Get Recipients show what happened to each chat (sent, skipped with a reason, failed with the error).
 
 ---
 

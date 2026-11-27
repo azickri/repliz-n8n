@@ -41,6 +41,7 @@
       "dist/nodes/ReplizContact/ReplizContact.node.js",
       "dist/nodes/ReplizKnowledge/ReplizKnowledge.node.js",
       "dist/nodes/ReplizChat/ReplizChat.node.js",
+      "dist/nodes/ReplizBroadcast/ReplizBroadcast.node.js",
       "dist/nodes/ReplizContent/ReplizContent.node.js",
       "dist/nodes/ReplizSchedule/ReplizSchedule.node.js",
       "dist/nodes/ReplizResearch/ReplizResearch.node.js",
